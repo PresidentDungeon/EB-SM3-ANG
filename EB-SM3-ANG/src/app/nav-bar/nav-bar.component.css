@@ -1,0 +1,33 @@
+ul {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+input{
+  text-decoration: none;
+  outline: none;
+}
+
+div{
+  background-color: #333333;
+}

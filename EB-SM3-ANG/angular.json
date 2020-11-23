@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "EB-SM3-ANG"
+    }
+  },
+  "defaultProject": "EB-SM3-ANG",
+  "cli": {
+    "analytics": false
+  }
 }
