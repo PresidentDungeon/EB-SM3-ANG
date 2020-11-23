@@ -1,3 +1,53 @@
-div{
-  z-index: 1;
+#sidebar {
+  position: absolute;
+  right: 0px;
+  z-index: 2;
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 100%;
+  transition: all 0.3s;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #333333 !important;
+}
+
+#sidebar.hidden {
+  margin-right: -400px;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+@media (max-width: 575px) {
+  #sidebar {
+    margin-left: -400px;
+  }
+  #sidebar.hidden {
+    margin-left: 0;
+  }
+}
+
+a, a:hover, a:focus {
+  color: inherit;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+}
+
+#sidebar ul li a {
+  padding: 15px;
+  display: block;
+  width: 100%;
+}
+
+#sidebar ul li a:hover {
+   background-color: rgba(255, 255, 255, 0.1);
+ }
+
+hr {
+  border-top: 1px solid #fff;
+  margin-top: 0;
 }

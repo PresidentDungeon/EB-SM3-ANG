@@ -1,3 +1,13 @@
-<div id="collapseBasic" [collapse]="getCartStatus()" [isAnimated]="true">
-  <div class="well well-lg card card-block card-header">Some content</div>
-</div>
+<nav id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': getCartStatus()}">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Home page</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+  </ul>
+</nav>
