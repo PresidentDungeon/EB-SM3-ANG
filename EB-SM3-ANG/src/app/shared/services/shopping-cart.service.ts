@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class ShoppingCartService {
 
-  isOpen: boolean = false;
+  isClosed: boolean = true;
 
   constructor() { }
 
   collapse(): void{
-    this.isOpen = !this.isOpen;
+    this.isClosed = !this.isClosed;
   }
 
 }

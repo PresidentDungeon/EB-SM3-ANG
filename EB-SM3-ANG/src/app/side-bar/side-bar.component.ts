@@ -14,7 +14,7 @@ export class SideBarComponent implements OnInit {
   }
 
   getCartStatus(): boolean{
-    return this.shoppingService.isOpen;
+    return this.shoppingService.isClosed;
   }
 
 }
