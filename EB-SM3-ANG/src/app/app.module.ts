@@ -5,26 +5,29 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ProgressbarModule} from "ngx-bootstrap/progressbar";
-import { WelcomeComponent } from './welcome/welcome.component';
 import {NavBarComponent} from "./nav-bar/nav-bar.component";
 import {FooterComponent} from "./footer/footer.component";
 import {SideBarComponent } from './side-bar/side-bar.component';
 import {CollapseModule} from "ngx-bootstrap/collapse";
+import { FrontpageComponent } from './frontpage/frontpage.component';
+import { HeaderComponent } from './header/header.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent,
     NavBarComponent,
     FooterComponent,
-    SideBarComponent
+    SideBarComponent,
+    FrontpageComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     ProgressbarModule,
-    CollapseModule,
+    CollapseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

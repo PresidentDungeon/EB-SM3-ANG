@@ -8,7 +8,7 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display frontpage message', () => {
     page.navigateTo();
     expect(page.getTitleText()).toEqual('EB-SM3-ANG app is running!');
   });
