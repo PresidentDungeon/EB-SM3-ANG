@@ -11,6 +11,7 @@ import {SideBarComponent } from './side-bar/side-bar.component';
 import {CollapseModule} from "ngx-bootstrap/collapse";
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { HeaderComponent } from './header/header.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     AppRoutingModule,
     ProgressbarModule,
-    CollapseModule
+    CollapseModule,
+    ClickOutsideModule
   ],
   providers: [],
   bootstrap: [AppComponent]
