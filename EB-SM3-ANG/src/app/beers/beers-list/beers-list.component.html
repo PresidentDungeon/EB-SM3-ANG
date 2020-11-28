@@ -14,22 +14,36 @@
     </select>
   </label>
 
+  <label>
+    Beer Type:
+    <select class="form-control" [(ngModel)]="BeerType" (ngModelChange)="getBeers()">
+      <option value="0">All Types</option>
+      <option *ngFor="let types of beerTypes" value="{{types.id}}">{{types.typeName}}</option>
+    </select>
+  </label>
+
   <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
 
-  <h3 align="center">Beer types List:</h3>
+  <h3 align="center">Brands List:</h3>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
   <div id="table">
     <table *ngIf="!loading" class="table-">
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Description</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Beer Type</th>
+        <th scope="col">Brand</th>
       </tr>
-      <tr class="data" *ngFor="let type of types">
-        <th class="row"><a routerLink="">{{type.id}}</a></th>
-        <td><a routerLink="">{{type.typeName}}</a></td>
+      <tr class="data" *ngFor="let beer of beers">
+        <th class="row"><a routerLink="">{{beer.id}}</a></th>
+        <td><a routerLink="">{{beer.name}}</a></td>
+        <td><a routerLink="">{{beer.price}}</a></td>
+        <td><a routerLink="">{{beer.type.typeName}}</a></td>
+        <td><a routerLink="">{{beer.brand.brandName}}</a></td>
         <button type="button" class="btn btn-outline-dark">Update</button>
-        <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, type)">X</button>
+        <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, beer)">X</button>
       </tr>
     </table>
   </div>
@@ -73,10 +87,10 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Are you sure you want to delete <b>{{selectedType.typeName}}</b>?</p>
+    <p>Are you sure you want to delete <b>{{selectedBeer.name}}</b>?</p>
     <div class="float-right">
       <button (click)="modalRef.hide()" type="button" class="btn btn-secondary" >Cancel</button>
-      <button (click)="modalRef.hide(); deleteType(selectedType.id);" type="button" class="btn btn-danger">Delete</button>
-  </div>
+      <button (click)="modalRef.hide(); deleteBeer(selectedBeer.id);" type="button" class="btn btn-danger">Delete</button>
+    </div>
   </div>
 </ng-template>

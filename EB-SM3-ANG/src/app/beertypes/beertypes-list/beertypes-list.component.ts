@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {BeerType} from "../shared/beertype";
 import {BeertypeService} from "../shared/beertype.service";
 import {Router} from "@angular/router";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {Subject} from "rxjs";
+import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-beertypes-list',
@@ -16,16 +19,29 @@ export class BeertypesListComponent implements OnInit {
   totalItems: number;
   currentPage: number = 1;
   itemsPrPage: number = 10;
-  smallnumPages: number = 0;
+  smallNumPages: number = 0;
 
-  constructor(private typeService: BeertypeService, private router: Router) {}
+  modalRef: BsModalRef;
+  selectedType: BeerType;
+
+  searchTerms = new Subject<string>();
+  searchTerm: string = "";
+
+  constructor(private typeService: BeertypeService, private router: Router,
+              private modalService: BsModalService) {}
 
   ngOnInit(): void {
+
+    this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+    ).subscribe((search) => {this.searchTerm = search; this.getTypes()});
+
     this.getTypes();
   }
 
   getTypes(): void{
-    const filter = `?CurrentPage=${this.currentPage}&ItemsPrPage=${this.itemsPrPage}`;
+    const filter = `?CurrentPage=${this.currentPage}&ItemsPrPage=${this.itemsPrPage}&name=${this.searchTerm}`;
     this.loading = true;
 
     this.typeService.getTypes(filter).subscribe((FilterList) => {
@@ -42,7 +58,7 @@ export class BeertypesListComponent implements OnInit {
   }
 
   itemsPrPageUpdate(): void{
-    this.smallnumPages = Math.ceil(this.totalItems / this.itemsPrPage);
+    this.smallNumPages = Math.ceil(this.totalItems / this.itemsPrPage);
     this.currentPage = 1;
     this.getTypes();
   }
@@ -50,6 +66,15 @@ export class BeertypesListComponent implements OnInit {
   deleteType(id: number): void{
     this.typeService.deleteType(id).subscribe((brand) => this.getTypes(),
       error => {if (error.status === 401){this.router.navigate(['/login']); }});
+  }
+
+  openDeleteModal(template: TemplateRef<any>, typeToDelete: BeerType) {
+    this.selectedType = typeToDelete;
+    this.modalRef = this.modalService.show(template);
+  }
+
+  search(term: string): void {
+    this.searchTerms.next(term);
   }
 
 }

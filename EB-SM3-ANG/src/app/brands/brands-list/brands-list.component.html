@@ -14,6 +14,8 @@
     </select>
   </label>
 
+  <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
+
   <h3 align="center">Brands List:</h3>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
@@ -27,7 +29,7 @@
           <th class="row"><a routerLink="">{{brand.id}}</a></th>
           <td><a routerLink="">{{brand.brandName}}</a></td>
           <button type="button" class="btn btn-outline-dark">Update</button>
-          <button type="button" class="btn btn-outline-danger">X</button>
+          <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, brand)">X</button>
         </tr>
       </table>
     </div>
@@ -45,7 +47,7 @@
       [(ngModel)]="currentPage"
       (pageChanged)="pageChanged($event)"
       [itemsPerPage]="itemsPrPage"
-      (numPages)="smallnumPages = $event">
+      (numPages)="smallNumPages = $event">
     </pagination>
   </div>
 
@@ -62,3 +64,19 @@
 </div>
 
 </div>
+
+<ng-template #deleteTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title w-100 text-center">Confirmation</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete <b>{{selectedBrand.brandName}}</b>?</p>
+    <div class="float-right">
+      <button (click)="modalRef.hide()" type="button" class="btn btn-secondary" >Cancel</button>
+      <button (click)="modalRef.hide(); deleteBrand(selectedBrand.id);" type="button" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</ng-template>

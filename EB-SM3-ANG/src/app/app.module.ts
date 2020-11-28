@@ -11,6 +11,8 @@ import {FrontpageComponent} from './frontpage/frontpage.component';
 import {HeaderComponent} from './header/header.component';
 import {BrandsListComponent} from './brands/brands-list/brands-list.component';
 import {ClickOutsideModule} from 'ng-click-outside';
+import {ModalModule} from 'ngx-bootstrap/modal';
+
 
 import {CollapseModule} from 'ngx-bootstrap/collapse';
 import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
@@ -19,6 +21,8 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BeertypesListComponent} from './beertypes/beertypes-list/beertypes-list.component';
+import {BeersListComponent} from './beers/beers-list/beers-list.component';
+
 
 
 @NgModule({
@@ -30,7 +34,8 @@ import {BeertypesListComponent} from './beertypes/beertypes-list/beertypes-list.
     FrontpageComponent,
     HeaderComponent,
     BrandsListComponent,
-    BeertypesListComponent
+    BeertypesListComponent,
+    BeersListComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -42,7 +47,8 @@ import {BeertypesListComponent} from './beertypes/beertypes-list/beertypes-list.
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
