@@ -1,16 +1,16 @@
 <div class="container">
   <div class="d-flex flex-row justify-content-center">
-    <button type="button" class="btn btn-outline-primary" routerLink="/home">Beers</button>
-    <button type="button" class="btn btn-outline-primary" routerLink="/home">Types</button>
-    <button type="button" class="btn btn-outline-primary" routerLink="/home">Brands</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/beers">Beers</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/types">Types</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/brands">Brands</button>
   </div>
 
   <label>
     Items Pr Page:
     <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
-      <option value="5">5</option>
       <option value="10">10</option>
-      <option value="15">15</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
     </select>
   </label>
 
@@ -60,9 +60,5 @@
     </pager>
   </div>
 </div>
-
-
-
-
 
 </div>

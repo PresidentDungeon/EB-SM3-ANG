@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="d-flex flex-row justify-content-center">
+    <button type="button" class="btn btn-outline-primary" routerLink="/beers">Beers</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/types">Types</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/brands">Brands</button>
+  </div>
+
+  <label>
+    Items Pr Page:
+    <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+    </select>
+  </label>
+
+  <h3 align="center">Beer types List:</h3>
+  <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+
+  <div id="table">
+    <table *ngIf="!loading" class="table-">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Description</th>
+      </tr>
+      <tr class="data" *ngFor="let type of types">
+        <th class="row"><a routerLink="">{{type.id}}</a></th>
+        <td><a routerLink="">{{type.typeName}}</a></td>
+        <button type="button" class="btn btn-outline-dark">Update</button>
+        <button type="button" class="btn btn-outline-danger">X</button>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col text-center">
+    <button class="btn btn-success" routerLink="register">Add brand!</button>
+  </div>
+
+  <div class="">
+    <div class="row">
+      <pagination
+        [maxSize]="5"
+        [directionLinks]="false"
+        [totalItems]="totalItems"
+        [(ngModel)]="currentPage"
+        (pageChanged)="pageChanged($event)"
+        [itemsPerPage]="itemsPrPage"
+        (numPages)="smallnumPages = $event">
+      </pagination>
+    </div>
+
+    <div class="row">
+      <pager
+        [totalItems]="totalItems"
+        [(ngModel)]="currentPage"
+        (pageChanged)="pageChanged($event)"
+        pageBtnClass="btn"
+        [itemsPerPage]="itemsPrPage"
+        class="pull-left">
+      </pager>
+    </div>
+  </div>
+
+</div>

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {Brand} from '../shared/brand';
-import {BrandService} from '../shared/brand.service';
-import {Router} from '@angular/router';
+import {BeerType} from "../shared/beertype";
+import {BeertypeService} from "../shared/beertype.service";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-brands-list',
-  templateUrl: './brands-list.component.html',
-  styleUrls: ['./brands-list.component.css']
+  selector: 'app-beertypes-list',
+  templateUrl: './beertypes-list.component.html',
+  styleUrls: ['./beertypes-list.component.css']
 })
-export class BrandsListComponent implements OnInit {
+export class BeertypesListComponent implements OnInit {
 
-  brands: Brand[];
+  types: BeerType[];
   loading: boolean = true;
 
   totalItems: number;
@@ -18,37 +18,37 @@ export class BrandsListComponent implements OnInit {
   itemsPrPage: number = 10;
   smallnumPages: number = 0;
 
-  constructor(private brandService: BrandService, private router: Router) {}
+  constructor(private typeService: BeertypeService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getBrands();
+    this.getTypes();
   }
 
-  getBrands(): void{
+  getTypes(): void{
     const filter = `?CurrentPage=${this.currentPage}&ItemsPrPage=${this.itemsPrPage}`;
     this.loading = true;
 
-    this.brandService.getBrands(filter).subscribe((FilterList) => {
+    this.typeService.getTypes(filter).subscribe((FilterList) => {
       this.totalItems = FilterList.totalItems;
-      this.brands = FilterList.list;
+      this.types = FilterList.list;
     }, error => {}, () => {this.loading = false; });
   }
 
   pageChanged($event: any): void {
     if ($event.page !== this.currentPage){
       this.currentPage = $event.page;
-      this.getBrands();
+      this.getTypes();
     }
   }
 
   itemsPrPageUpdate(): void{
     this.smallnumPages = Math.ceil(this.totalItems / this.itemsPrPage);
     this.currentPage = 1;
-    this.getBrands();
+    this.getTypes();
   }
 
-  deleteBrand(id: number): void{
-    this.brandService.deleteBrand(id).subscribe((brand) => this.getBrands(),
+  deleteType(id: number): void{
+    this.typeService.deleteType(id).subscribe((brand) => this.getTypes(),
       error => {if (error.status === 401){this.router.navigate(['/login']); }});
   }
 
