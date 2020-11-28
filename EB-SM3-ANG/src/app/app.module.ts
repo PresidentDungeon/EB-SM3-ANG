@@ -2,16 +2,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import {ProgressbarModule} from "ngx-bootstrap/progressbar";
-import {NavBarComponent} from "./nav-bar/nav-bar.component";
-import {FooterComponent} from "./footer/footer.component";
+import {NavBarComponent} from './nav-bar/nav-bar.component';
+import {FooterComponent} from './footer/footer.component';
 import {SideBarComponent } from './side-bar/side-bar.component';
-import {CollapseModule} from "ngx-bootstrap/collapse";
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { HeaderComponent } from './header/header.component';
+import { BrandsListComponent } from './brands/brands-list/brands-list.component';
 import { ClickOutsideModule } from 'ng-click-outside';
+
+import {CollapseModule} from 'ngx-bootstrap/collapse';
+import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
+import { AppRoutingModule } from './app-routing.module';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -21,7 +27,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
     FooterComponent,
     SideBarComponent,
     FrontpageComponent,
-    HeaderComponent
+    HeaderComponent,
+    BrandsListComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -29,7 +36,11 @@ import { ClickOutsideModule } from 'ng-click-outside';
     AppRoutingModule,
     ProgressbarModule,
     CollapseModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    PaginationModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

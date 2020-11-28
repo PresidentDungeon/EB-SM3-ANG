@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="d-flex flex-row justify-content-center">
+    <button type="button" class="btn btn-outline-primary" routerLink="/home">Beers</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/home">Types</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/home">Brands</button>
+  </div>
+
+  <label>
+    Items Pr Page:
+    <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select>
+  </label>
+
+  <h3 align="center">Brands List:</h3>
+  <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+
+  <div id="table">
+      <table *ngIf="!loading" class="table-">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Description</th>
+        </tr>
+        <tr class="data" *ngFor="let brand of brands">
+          <th class="row"><a routerLink="">{{brand.id}}</a></th>
+          <td><a routerLink="">{{brand.brandName}}</a></td>
+        </tr>
+      </table>
+    </div>
+
+<div class="col text-center">
+  <button class="btn btn-success" routerLink="register">Add brand!</button>
+</div>
+
+<div class="">
+  <div class="row">
+    <pagination
+      [maxSize]="5"
+      [directionLinks]="false"
+      [totalItems]="totalItems"
+      [(ngModel)]="currentPage"
+      (pageChanged)="pageChanged($event)"
+      [itemsPerPage]="itemsPrPage"
+      (numPages)="smallnumPages = $event">
+    </pagination>
+  </div>
+
+  <div class="row">
+    <pager
+      [totalItems]="totalItems"
+      [(ngModel)]="currentPage"
+      (pageChanged)="pageChanged($event)"
+      pageBtnClass="btn"
+      [itemsPerPage]="itemsPrPage"
+      class="pull-left">
+    </pager>
+  </div>
+</div>
+
+
+
+
+
+</div>
