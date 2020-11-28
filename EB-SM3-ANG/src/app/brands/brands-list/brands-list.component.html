@@ -26,6 +26,8 @@
         <tr class="data" *ngFor="let brand of brands">
           <th class="row"><a routerLink="">{{brand.id}}</a></th>
           <td><a routerLink="">{{brand.brandName}}</a></td>
+          <button type="button" class="btn btn-outline-dark">Update</button>
+          <button type="button" class="btn btn-outline-danger">X</button>
         </tr>
       </table>
     </div>
