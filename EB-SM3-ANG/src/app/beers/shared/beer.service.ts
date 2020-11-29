@@ -39,6 +39,14 @@ export class BeerService {
     return this.http.delete<Beer>(environment.apiUrl + '/beer/' + id, this.httpOptions);
   }
 
+  uploadImage(file: File): Observable<any>{
+
+    const fd = new FormData();
+    fd.append('image', file, file.name);
+
+    return this.http.post<any>('https://us-central1-eb-sdm3.cloudfunctions.net/uploadFile', fd);
+  }
+
   setToken(): void{
     //  this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'bearer ' + this.authService.getToken());
   }

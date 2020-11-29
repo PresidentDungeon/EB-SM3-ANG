@@ -53,8 +53,8 @@ export class BrandsUpdateComponent implements OnInit {
 
     this.brandService.updateBrand(this.brand).subscribe(color => this.getBrand(),
       error => {this.error = error.error;
-        if(error.status === 401){this.router.navigate(['/login']);}
-      });
+        if(error.status === 401){this.router.navigate(['/login']);}},
+      () => {this.goBack()});
   }
 
   goBack(): void{

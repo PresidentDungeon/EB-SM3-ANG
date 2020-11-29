@@ -24,6 +24,8 @@ import {BeertypesListComponent} from './beertypes/beertypes-list/beertypes-list.
 import {BeersListComponent} from './beers/beers-list/beers-list.component';
 import { BrandsAddComponent } from './brands/brands-add/brands-add.component';
 import { BrandsUpdateComponent } from './brands/brands-update/brands-update.component';
+import { BeertypesAddComponent } from './beertypes/beertypes-add/beertypes-add.component';
+import { BeersAddComponent } from './beers/beers-add/beers-add.component';
 
 
 
@@ -39,7 +41,9 @@ import { BrandsUpdateComponent } from './brands/brands-update/brands-update.comp
     BeertypesListComponent,
     BeersListComponent,
     BrandsAddComponent,
-    BrandsUpdateComponent
+    BrandsUpdateComponent,
+    BeertypesAddComponent,
+    BeersAddComponent
   ],
   imports: [
     BrowserAnimationsModule,

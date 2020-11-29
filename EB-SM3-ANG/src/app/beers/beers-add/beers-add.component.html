@@ -1,0 +1,134 @@
+<h1 align="center">Register beer</h1>
+<progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+<div class="container" *ngIf="!loading">
+
+  <h6 id="errorMsg" align="center">{{error}}</h6>
+
+  <form [formGroup]="beerForm" (ngSubmit)="createBeer()">
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="name">Beer name</label>
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter beer name" maxlength="16" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="beerForm.get('name').invalid && beerForm.get('name').dirty">beer name must be between 0-16 characters with no trailing whitespace</h6>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="description">Beer description</label>
+        <input type="text" class="form-control" formControlName="description" id="description" placeholder="Enter beer description">
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="beerForm.get('description').invalid && beerForm.get('description').dirty">beer description must not be empty</h6>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="price">Beer price</label>
+        <input type="number" class="form-control" formControlName="price" id="price" placeholder="Enter beer price" min="0" max="99999">
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="beerForm.get('price').invalid && beerForm.get('price').dirty">beer price must be between 0-99999</h6>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="percentage">Beer percentage</label>
+        <input type="number" class="form-control" formControlName="percentage" id="percentage" placeholder="Enter beer percentage" min="0" max="100">
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="beerForm.get('percentage').invalid && beerForm.get('percentage').dirty">beer percentage must be between 0-100</h6>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="IBU">Beer IBU</label>
+        <input type="number" class="form-control" formControlName="IBU" id="IBU" placeholder="Enter beer IBU" min="0" max="120">
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="beerForm.get('IBU').invalid && beerForm.get('IBU').dirty">beer IBU must be between 0-120</h6>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="EBC">Beer EBC</label>
+        <input type="number" class="form-control" formControlName="EBC" id="EBC" placeholder="Enter beer EBC" min="0" max="80">
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="beerForm.get('EBC').invalid && beerForm.get('EBC').dirty">beer EBC must be between 0-80</h6>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="type">Beer type</label>
+        <select class="form-control" formControlName="type" id="type">
+          <option value="" disabled>Choose Type</option>
+          <option *ngFor="let type of types" [value]="type.id">{{type.typeName}}</option>
+        </select>
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="beerForm.get('type').invalid && beerForm.get('type').dirty">beer type must be selected</h6>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="brand">Beer brand</label>
+        <select class="form-control" formControlName="brand" id="brand">
+          <option value="" disabled>Choose Brand</option>
+          <option *ngFor="let brand of brands" [value]="brand.id">{{brand.brandName}}</option>
+        </select>
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="beerForm.get('brand').invalid && beerForm.get('brand').dirty">beer brand must be selected</h6>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="image">Beer image</label>
+        <input type="file" class="form-control" formControlName="imageURL" id="image" placeholder="Select beer image" accept="image/*" (change)="onFileChange($event)">
+      </div>
+
+      <div class="col-sm-8">
+        <progressbar class="progress" *ngIf="imageLoad" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+        <p *ngIf="!imageLoad">{{URL}}</p>
+      </div>
+    </div>
+
+
+
+
+    <div class="col text-center">
+      <button class="btn btn-success" type="submit" [disabled]="!beerForm.valid">Create</button>
+    </div>
+  </form>
+  <button class="btn btn-info" (click)="goBack();">Go back</button>
+
+</div>
+
+
+

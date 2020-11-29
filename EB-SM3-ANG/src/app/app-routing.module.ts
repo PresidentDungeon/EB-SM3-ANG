@@ -6,15 +6,19 @@ import {BeertypesListComponent} from "./beertypes/beertypes-list/beertypes-list.
 import {BeersListComponent} from "./beers/beers-list/beers-list.component";
 import {BrandsAddComponent} from "./brands/brands-add/brands-add.component";
 import {BrandsUpdateComponent} from "./brands/brands-update/brands-update.component";
+import {BeertypesAddComponent} from "./beertypes/beertypes-add/beertypes-add.component";
+import {BeersAddComponent} from "./beers/beers-add/beers-add.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: FrontpageComponent},
   {path: 'brands', component: BrandsListComponent},
-  {path: 'types', component: BeertypesListComponent},
-  {path: 'beers', component: BeersListComponent},
   {path: 'brands/add', component: BrandsAddComponent},
-  {path: 'brands/update/:id', component: BrandsUpdateComponent}
+  {path: 'brands/update/:id', component: BrandsUpdateComponent},
+  {path: 'types', component: BeertypesListComponent},
+  {path: 'types/add', component: BeertypesAddComponent},
+  {path: 'beers', component: BeersListComponent},
+  {path: 'test', component: BeersAddComponent},
 ];
 
 @NgModule({

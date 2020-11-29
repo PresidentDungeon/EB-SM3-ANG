@@ -30,7 +30,7 @@ export class BrandService {
 
   updateBrand(brand: Brand): Observable<Brand>{
     this.setToken();
-    return this.http.put<Brand>(environment.apiUrl + '/brand', brand, this.httpOptions);
+    return this.http.put<Brand>(environment.apiUrl + '/brand/' + brand.id, brand, this.httpOptions);
   }
 
   deleteBrand(id: number): Observable<Brand>{

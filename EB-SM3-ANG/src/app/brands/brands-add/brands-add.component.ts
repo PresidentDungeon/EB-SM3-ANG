@@ -16,7 +16,6 @@ export class BrandsAddComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(16)])
   });
 
-  loading: boolean = false;
   error: string = '';
 
   constructor(private brandService: BrandService, private location: Location,
@@ -32,11 +31,10 @@ export class BrandsAddComponent implements OnInit {
       brandName: brandData.name
     }
 
-    this.brandService.addBrand(brand).subscribe(() => this.goBack(),
+    this.brandService.addBrand(brand).subscribe(() => {},
       (error) => {this.error = error.error;
-      if(error.status === 401){this.router.navigate(['/login']);}
-
-    });
+      if(error.status === 401){this.router.navigate(['/login']);}},
+      () => {this.goBack()});
   }
 
   goBack(): void{

@@ -28,14 +28,14 @@
       <tr class="data" *ngFor="let type of types">
         <th class="row"><a routerLink="">{{type.id}}</a></th>
         <td><a routerLink="">{{type.typeName}}</a></td>
-        <button type="button" class="btn btn-outline-dark">Update</button>
+        <button type="button" class="btn btn-outline-dark" routerLink="/types/update/{{type.id}}">Update</button>
         <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, type)">X</button>
       </tr>
     </table>
   </div>
 
   <div class="col text-center">
-    <button class="btn btn-success" routerLink="register">Add brand!</button>
+    <button class="btn btn-success" routerLink="add">Add type!</button>
   </div>
 
   <div class="">
