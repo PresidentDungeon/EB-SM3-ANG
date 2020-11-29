@@ -25,13 +25,13 @@ export class BeersAddComponent implements OnInit {
     EBC: new FormControl('', [Validators.required, Validators.min(0), Validators.max(80)]),
     type: new FormControl('', [Validators.required]),
     brand: new FormControl('', [Validators.required]),
-    imageURL: new FormControl('', [Validators.required]),
+    imageURL: new FormControl(''),
 
   });
 
   types: BeerType[];
   brands: Brand[];
-  URL: string = '';
+  imageURL: string = '';
   invalidImageURL: string = 'https://firebasestorage.googleapis.com/v0/b/eb-sdm3.appspot.com/o/NoImage.png?alt=media&token=d522375a-08c4-4ea9-99b0-30f23e3d52ed';
   loading: boolean = true;
   imageLoad: boolean = false;
@@ -63,17 +63,53 @@ export class BeersAddComponent implements OnInit {
   }
 
   onFileChange(event){
+
+    if(event.target.files.length === 0){
+      if(this.imageURL !== ''){
+        this.deleteImage();}}
+
+    else{
+
+      this.imageLoad = true;
+
+      if(this.imageURL !== ''){
+        this.deleteImage();
+      }
+
+      let selectedFile: File = <File>event.target.files[0];
+
+      this.beerService.uploadImage(selectedFile).subscribe((response) => {
+
+          let urls: string[] = response.message;
+          this.imageURL = urls[0];},
+        (error) => {this.error = error.error}, () => {this.imageLoad = false;});
+    }
+  }
+
+  deleteImage(){
     this.imageLoad = true;
 
-    let selectedFile: File = <File>event.target.files[0];
+    let imageTitle = this.imageURL.slice(66,79)
+    let imageToDelete = {image: imageTitle}
 
-    this.beerService.uploadImage(selectedFile).subscribe((response) => {
+    this.beerService.deleteImage(imageToDelete).subscribe((response) => {},
+      (error) => {this.imageLoad = false; this.error = error.error;},
+      () => {
 
-      let urls: string[] = response.message;
-      console.log(response);
-      console.log(urls);
-      this.URL = urls[0];},
-      (error) => {this.error = error.error}, () => {this.imageLoad = false;});
+
+
+
+        this.beerForm.patchValue({
+          imageURL: ''
+        });
+
+
+
+
+      this.imageURL = '';
+      this.imageLoad = false;
+
+    });
   }
 
   createBeer(): void{
@@ -81,18 +117,7 @@ export class BeersAddComponent implements OnInit {
     this.loading = true;
 
     const beerData = this.beerForm.value;
-
-
-
-
-
-
-
-
-    let imageURL: string = this.URL;
-    if(imageURL === ''){
-      imageURL = this.invalidImageURL;
-    }
+    this.imageURL = (this.imageURL === '') ? this.invalidImageURL : this.imageURL;
 
     const beer: Beer = {
       id: 0,
@@ -104,7 +129,7 @@ export class BeersAddComponent implements OnInit {
       EBC: beerData.EBC,
       type: {id: beerData.type, typeName: ''},
       brand: {id: beerData.brand, brandName: ''},
-      imageURL: imageURL
+      imageURL: this.imageURL
     }
 
     this.beerService.addBeer(beer).subscribe(() => {},

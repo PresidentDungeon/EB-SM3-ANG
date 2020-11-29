@@ -47,6 +47,10 @@ export class BeerService {
     return this.http.post<any>('https://us-central1-eb-sdm3.cloudfunctions.net/uploadFile', fd);
   }
 
+  deleteImage(imageToDelete: any): Observable<any>{
+    return this.http.post<any>('https://us-central1-eb-sdm3.cloudfunctions.net/deleteFile', imageToDelete);
+  }
+
   setToken(): void{
     //  this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'bearer ' + this.authService.getToken());
   }

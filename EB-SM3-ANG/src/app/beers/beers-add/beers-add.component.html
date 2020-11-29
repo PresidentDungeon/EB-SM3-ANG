@@ -113,9 +113,11 @@
         <input type="file" class="form-control" formControlName="imageURL" id="image" placeholder="Select beer image" accept="image/*" (change)="onFileChange($event)">
       </div>
 
+      <progressbar class="progress" *ngIf="imageLoad" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+
       <div class="col-sm-8">
-        <progressbar class="progress" *ngIf="imageLoad" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
-        <p *ngIf="!imageLoad">{{URL}}</p>
+        <a href="{{imageURL}}" *ngIf="!imageLoad && imageURL !== ''">Uploaded image</a>
+        <button type="button" class="btn btn-outline-danger" *ngIf="!imageLoad && imageURL !== ''" (click)="deleteImage()">X</button>
       </div>
     </div>
 
@@ -123,7 +125,7 @@
 
 
     <div class="col text-center">
-      <button class="btn btn-success" type="submit" [disabled]="!beerForm.valid">Create</button>
+      <button class="btn btn-success" type="submit" [disabled]="!beerForm.valid || imageLoad">Create</button>
     </div>
   </form>
   <button class="btn btn-info" (click)="goBack();">Go back</button>
