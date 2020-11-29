@@ -28,7 +28,7 @@
         <tr class="data" *ngFor="let brand of brands">
           <th class="row"><a routerLink="">{{brand.id}}</a></th>
           <td><a routerLink="">{{brand.brandName}}</a></td>
-          <button type="button" class="btn btn-outline-dark">Update</button>
+          <button type="button" class="btn btn-outline-dark" routerLink="/brands/update/{{brand.id}}">Update</button>
           <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, brand)">X</button>
         </tr>
       </table>

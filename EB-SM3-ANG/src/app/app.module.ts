@@ -22,6 +22,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BeertypesListComponent} from './beertypes/beertypes-list/beertypes-list.component';
 import {BeersListComponent} from './beers/beers-list/beers-list.component';
+import { BrandsAddComponent } from './brands/brands-add/brands-add.component';
+import { BrandsUpdateComponent } from './brands/brands-update/brands-update.component';
 
 
 
@@ -35,7 +37,9 @@ import {BeersListComponent} from './beers/beers-list/beers-list.component';
     HeaderComponent,
     BrandsListComponent,
     BeertypesListComponent,
-    BeersListComponent
+    BeersListComponent,
+    BrandsAddComponent,
+    BrandsUpdateComponent
   ],
   imports: [
     BrowserAnimationsModule,
