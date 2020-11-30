@@ -1,20 +1,17 @@
 <nav (clickOutside)="closeShoppingCart()" [exclude]="'.cart'" id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': getCartStatus()}">
 
-  <h4>Total size: {{calculateTotal()}}</h4>
-  <h3>Total price: {{calculateTotalPrice()}}</h3>
+  <h4>Total size: {{shoppingService.calculateTotal()}}</h4>
+  <h3>Total price: {{shoppingService.calculateTotalPrice()}}</h3>
 
-
-  <div *ngFor="let orderItem of shoppingCart">
+  <div *ngFor="let orderItem of shoppingService.getItems()">
     <div>{{orderItem.item.name}}</div>
     <input type="number" [(ngModel)]="orderItem.quantity" min="0" (ngModelChange)="modelChanged(orderItem)"/>
   </div>
 
-  <ul *ngFor="let orderItem of shoppingCart">
+  <ul *ngFor="let orderItem of shoppingService.getItems()">
     <li>{{orderItem.item.name}} -- {{orderItem.quantity}} ({{orderItem.item.price}})</li>
   </ul>
 
-
-  <button (click)="getShoppingCart();">Reload Shopping Cart</button>
-  <button (click)="resetProducts();">Reset</button>
+  <button (click)="shoppingService.clearCart();">Reset</button>
 
 </nav>

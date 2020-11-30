@@ -13,48 +13,20 @@ export class SideBarComponent implements OnInit {
     this.ngOnDestroy();
   }
 
-  shoppingCart: OrderItem[] = [];
-
-  constructor(private shoppingService: ShoppingCartService) { }
+  constructor(public shoppingService: ShoppingCartService) { }
 
   ngOnInit(): void {
-    this.getShoppingCart();
   }
 
   ngOnDestroy(): void{
     this.shoppingService.saveCart();
   }
 
-
-  getShoppingCart(): void{
-    this.shoppingCart = this.shoppingService.getItems();
-  }
-
-  resetProducts(): void{
-    this.shoppingCart = this.shoppingService.clearCart();
-  }
-
-
-  calculateTotal(): number{
-    return this.shoppingCart.reduce((accumulator , OrderItem) => accumulator += OrderItem.quantity ,0);
-  }
-
-  calculateTotalPrice(): number{
-    return this.shoppingCart.reduce((accumulator , OrderItem) => accumulator += OrderItem.item.price * OrderItem.quantity ,0);
-  }
-
   modelChanged(orderItem: OrderItem) {
     if (orderItem.quantity === 0) {
       this.shoppingService.removeItem(orderItem.item);
-      this.getShoppingCart();
     }
-    this.shoppingService.saveCart();
   }
-
-
-
-
-
 
   getCartStatus(): boolean{
     return this.shoppingService.isClosed;

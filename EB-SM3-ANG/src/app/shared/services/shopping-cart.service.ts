@@ -29,8 +29,6 @@ export class ShoppingCartService {
     else{
       orderItemInCart.quantity++;
     }
-
-    //this.isClosed = false;
   }
 
   removeItem(item: Beer) {
@@ -43,8 +41,14 @@ export class ShoppingCartService {
 
   clearCart() {
     this.shoppingCart = [];
-    //localStorage.removeItem('shoppingCart');
-    return this.shoppingCart;
+  }
+
+  calculateTotal(): number{
+    return this.shoppingCart.reduce((accumulator , OrderItem) => accumulator += OrderItem.quantity ,0);
+  }
+
+  calculateTotalPrice(): number{
+    return this.shoppingCart.reduce((accumulator , OrderItem) => accumulator += OrderItem.item.price * OrderItem.quantity ,0);
   }
 
   saveCart(): void{
