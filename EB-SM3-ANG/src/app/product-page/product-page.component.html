@@ -1,0 +1,87 @@
+<div class="container">
+
+  <label>
+    Items Pr Page:
+    <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+    </select>
+  </label>
+
+  <label>
+    Beer Type:
+    <select class="form-control" [(ngModel)]="BeerType" (ngModelChange)="getBeers()">
+      <option value="0">All Types</option>
+      <option *ngFor="let types of beerTypes" value="{{types.id}}">{{types.typeName}}</option>
+    </select>
+  </label>
+
+  <label>
+    Sorting Type:
+    <select class="form-control" [(ngModel)]="sortingType" (ngModelChange)="getBeers()">
+      <option value="ADDED">Newest</option>
+      <option value="ALF">Alphabetical</option>
+      <option value="IBU">IBU</option>
+      <option value="EBC">EBC</option>
+    </select>
+  </label>
+
+  <label>
+    Sorting:
+    <select class="form-control" [(ngModel)]="sorting" (ngModelChange)="getBeers()">
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+  </label>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
+
+  <h3 align="center">Beers List:</h3>
+  <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+
+  <div id="table">
+    <table *ngIf="!loading" class="table-">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Beer Type</th>
+        <th scope="col">Brand</th>
+      </tr>
+      <tr class="data" *ngFor="let beer of beers">
+        <th class="row"><a routerLink="">{{beer.id}}</a></th>
+        <td><a routerLink="">{{beer.name}}</a></td>
+        <td><a routerLink="">{{beer.price}}</a></td>
+        <td><a routerLink="">{{beer.type.typeName}}</a></td>
+        <td><a routerLink="">{{beer.brand.brandName}}</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="">
+    <div class="row">
+      <pagination
+        [maxSize]="5"
+        [directionLinks]="false"
+        [totalItems]="totalItems"
+        [(ngModel)]="currentPage"
+        (pageChanged)="pageChanged($event)"
+        [itemsPerPage]="itemsPrPage"
+        (numPages)="smallNumPages = $event">
+      </pagination>
+    </div>
+
+    <div class="row">
+      <pager
+        [totalItems]="totalItems"
+        [(ngModel)]="currentPage"
+        (pageChanged)="pageChanged($event)"
+        pageBtnClass="btn"
+        [itemsPerPage]="itemsPrPage"
+        class="pull-left">
+      </pager>
+    </div>
+  </div>
+
+</div>
