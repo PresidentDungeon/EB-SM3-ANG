@@ -1,0 +1,46 @@
+<h1 align="center">Login</h1>
+
+<progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+
+<div class="container" *ngIf="!loading">
+  <h6 id="errorMsg" align="center">{{error}}</h6>
+
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" formControlName="username" id="username" placeholder="Enter username">
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="loginForm.get('username').invalid && loginForm.get('username').dirty">Username is required</h6>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password" id="password" placeholder="Enter password">
+      </div>
+
+      <div class="col-sm-8">
+        <h6 id="error" *ngIf="loginForm.get('password').invalid && loginForm.get('password').dirty">Password is required</h6>
+      </div>
+    </div>
+
+    <input type="checkbox" class="checkbox" id="rememberBe" name="saveLogin" [checked]="saveLogin" [(ngModel)]="saveLogin" [ngModelOptions]="{standalone: true}">
+    <label class="checkboxLabel" for="rememberBe">Remember me</label>
+
+    <div class="col text-center">
+      <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid || loginLoad">Login</button>
+    </div>
+  </form>
+
+  <button class="btn btn-info" (click)="goBack();">Go back</button>
+
+</div>
+
+
+

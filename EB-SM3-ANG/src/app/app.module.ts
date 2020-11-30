@@ -12,6 +12,7 @@ import {HeaderComponent} from './header/header.component';
 import {BrandsListComponent} from './brands/brands-list/brands-list.component';
 import {ClickOutsideModule} from 'ng-click-outside';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 import {CollapseModule} from 'ngx-bootstrap/collapse';
@@ -28,7 +29,8 @@ import { BeertypesAddComponent } from './beertypes/beertypes-add/beertypes-add.c
 import { BeersAddComponent } from './beers/beers-add/beers-add.component';
 import { BeersUpdateComponent } from './beers/beers-update/beers-update.component';
 import { ProductPageComponent } from './product-page/product-page.component';
-
+import {BeertypesUpdateComponent} from './beertypes/beertypes-update/beertypes-update.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { ProductPageComponent } from './product-page/product-page.component';
     BeertypesAddComponent,
     BeersAddComponent,
     BeersUpdateComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    BeertypesUpdateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -60,7 +64,8 @@ import { ProductPageComponent } from './product-page/product-page.component';
     ReactiveFormsModule,
     HttpClientModule,
     PaginationModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

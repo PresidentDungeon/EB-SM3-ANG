@@ -30,7 +30,7 @@ export class BeertypeService {
 
   updateType(type: BeerType): Observable<BeerType>{
     this.setToken();
-    return this.http.put<BeerType>(environment.apiUrl + '/beertype', type, this.httpOptions);
+    return this.http.put<BeerType>(environment.apiUrl + '/beertype/' + type.id, type, this.httpOptions);
   }
 
   deleteType(id: number): Observable<BeerType>{

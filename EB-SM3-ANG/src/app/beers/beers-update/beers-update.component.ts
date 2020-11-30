@@ -98,14 +98,6 @@ export class BeersUpdateComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
-
-
   onFileChange(event){
 
     if(event.target.files.length === 0) {

@@ -10,6 +10,8 @@ import {BeertypesAddComponent} from "./beertypes/beertypes-add/beertypes-add.com
 import {BeersAddComponent} from "./beers/beers-add/beers-add.component";
 import {BeersUpdateComponent} from "./beers/beers-update/beers-update.component";
 import {ProductPageComponent} from "./product-page/product-page.component";
+import {BeertypesUpdateComponent} from './beertypes/beertypes-update/beertypes-update.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -19,10 +21,12 @@ const routes: Routes = [
   {path: 'brands/update/:id', component: BrandsUpdateComponent},
   {path: 'types', component: BeertypesListComponent},
   {path: 'types/add', component: BeertypesAddComponent},
+  {path: 'types/update/:id', component: BeertypesUpdateComponent},
   {path: 'beers', component: BeersListComponent},
   {path: 'beers/add', component: BeersAddComponent},
   {path: 'beers/update/:id', component: BeersUpdateComponent},
   {path: 'shop', component: ProductPageComponent},
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({
