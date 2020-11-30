@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BrandService} from "../../brands/shared/brand.service";
 import {Location} from "@angular/common";
@@ -15,6 +15,10 @@ import {Beer} from "../shared/beer";
   styleUrls: ['./beers-add.component.css']
 })
 export class BeersAddComponent implements OnInit {
+
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    this.ngOnDestroy();
+  }
 
   beerForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(16)]),
@@ -37,13 +41,21 @@ export class BeersAddComponent implements OnInit {
   imageLoad: boolean = false;
   error: string = '';
 
+  created: boolean = false;
+
   constructor(private beerService: BeerService, private typeService: BeertypeService,
               private brandService: BrandService, private location: Location,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.imageURL = (localStorage.getItem('loadedImage') !== null) ? JSON.parse(localStorage.getItem('loadedImage')).image : '';
     this.getTypes();
     this.getBrands();
+  }
+
+  ngOnDestroy(): void{
+    if(!this.created && this.imageURL !== ''){localStorage.setItem('loadedImage', JSON.stringify({image: this.imageURL}))}
+    else{localStorage.removeItem('loadedImage')}
   }
 
   getTypes(): void{
@@ -89,26 +101,23 @@ export class BeersAddComponent implements OnInit {
   deleteImage(){
     this.imageLoad = true;
 
-    let imageTitle = this.imageURL.slice(66,79)
+    let imageTitle: string = this.imageURL.substring(
+      this.imageURL.lastIndexOf("/o/") + 3,
+      this.imageURL.lastIndexOf("?alt")
+    );
+
     let imageToDelete = {image: imageTitle}
 
     this.beerService.deleteImage(imageToDelete).subscribe((response) => {},
       (error) => {this.imageLoad = false; this.error = error.error;},
       () => {
 
-
-
-
         this.beerForm.patchValue({
           imageURL: ''
         });
 
-
-
-
       this.imageURL = '';
       this.imageLoad = false;
-
     });
   }
 
@@ -135,7 +144,7 @@ export class BeersAddComponent implements OnInit {
     this.beerService.addBeer(beer).subscribe(() => {},
       (error) => {this.error = error.error; this.loading = false;
         if(error.status === 401){this.router.navigate(['/login']);}},
-      () => {this.goBack()});
+      () => {this.created = true; this.router.navigate(['/beers']);});
   }
 
   goBack(): void{

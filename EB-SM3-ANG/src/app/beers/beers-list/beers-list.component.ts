@@ -77,6 +77,17 @@ export class BeersListComponent implements OnInit {
   }
 
   deleteBeer(id: number): void{
+
+    if(!this.selectedBeer.imageURL.includes('NoImage.png')){
+      let imageTitle: string = this.selectedBeer.imageURL.substring(
+        this.selectedBeer.imageURL.lastIndexOf("/o/") + 3,
+        this.selectedBeer.imageURL.lastIndexOf("?alt")
+      );
+
+      let imageToDelete = {image: imageTitle}
+      this.beerService.deleteImage(imageToDelete).subscribe();
+    }
+
     this.beerService.deleteBeer(id).subscribe((brand) => this.getBeers(),
       error => {if (error.status === 401){this.router.navigate(['/login']); }});
   }

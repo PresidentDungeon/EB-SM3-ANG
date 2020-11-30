@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'types', component: BeertypesListComponent},
   {path: 'types/add', component: BeertypesAddComponent},
   {path: 'beers', component: BeersListComponent},
-  {path: 'test', component: BeersAddComponent},
+  {path: 'beers/add', component: BeersAddComponent},
 ];
 
 @NgModule({
