@@ -189,6 +189,11 @@ export class BeersUpdateComponent implements OnInit {
     }
   }
 
+  clearPreviousImage(){
+    this.imageURL = this.invalidImageURL;
+    this.changed = true;
+  }
+
   goBack(): void{
     this.location.back();
   }
