@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Beer} from '../beers/shared/beer';
 import {BeerService} from '../beers/shared/beer.service';
+import {ShoppingCartService} from '../shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-frontpage',
@@ -12,7 +13,7 @@ export class FrontpageComponent implements OnInit {
   beers: Beer[];
   loading: boolean = false;
 
-  constructor(private beerService: BeerService) { }
+  constructor(private beerService: BeerService, private shoppingService: ShoppingCartService) { }
 
   ngOnInit(): void {
     this.getBeers();
@@ -25,6 +26,10 @@ export class FrontpageComponent implements OnInit {
     this.beerService.getBeers(filter).subscribe((FilterList) => {
       this.beers = FilterList.list;
     }, error => {}, () => {this.loading = false; });
+  }
+
+  addItem(beer: Beer): void{
+    this.shoppingService.addToCart(beer);
   }
 
 }

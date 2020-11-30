@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BeerType} from "../../beertypes/shared/beertype";
-import {Observable} from "rxjs";
-import {environment} from "../../../environments/environment";
-import {Beer} from "./beer";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Beer} from './beer';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

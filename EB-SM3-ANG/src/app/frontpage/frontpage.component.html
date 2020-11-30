@@ -22,7 +22,7 @@
             <h5 class="card-title-top">{{beer.name}}</h5>
             <p class="card-percentage">{{beer.percentage}}%</p>
             <p class="card-price">{{beer.price | currency:'DKK '}}</p>
-            <button class="btn btn-success float-right">KØB</button>
+            <button class="btn btn-success float-right" (click)="addItem(beer)">KØB</button>
           </div>
         </div>
       </div>
