@@ -2,7 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BrandService} from "../../brands/shared/brand.service";
 import {Location} from "@angular/common";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BeerService} from "../shared/beer.service";
 import {BeertypeService} from "../../beertypes/shared/beertype.service";
 import {Brand} from "../../brands/shared/brand";
@@ -30,7 +30,6 @@ export class BeersAddComponent implements OnInit {
     type: new FormControl('', [Validators.required]),
     brand: new FormControl('', [Validators.required]),
     imageURL: new FormControl(''),
-
   });
 
   types: BeerType[];
@@ -45,7 +44,7 @@ export class BeersAddComponent implements OnInit {
 
   constructor(private beerService: BeerService, private typeService: BeertypeService,
               private brandService: BrandService, private location: Location,
-              private router: Router) { }
+              private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.imageURL = (localStorage.getItem('loadedImage') !== null) ? JSON.parse(localStorage.getItem('loadedImage')).image : '';

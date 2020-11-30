@@ -26,6 +26,7 @@ import { BrandsAddComponent } from './brands/brands-add/brands-add.component';
 import { BrandsUpdateComponent } from './brands/brands-update/brands-update.component';
 import { BeertypesAddComponent } from './beertypes/beertypes-add/beertypes-add.component';
 import { BeersAddComponent } from './beers/beers-add/beers-add.component';
+import { BeersUpdateComponent } from './beers/beers-update/beers-update.component';
 
 
 
@@ -43,7 +44,8 @@ import { BeersAddComponent } from './beers/beers-add/beers-add.component';
     BrandsAddComponent,
     BrandsUpdateComponent,
     BeertypesAddComponent,
-    BeersAddComponent
+    BeersAddComponent,
+    BeersUpdateComponent
   ],
   imports: [
     BrowserAnimationsModule,

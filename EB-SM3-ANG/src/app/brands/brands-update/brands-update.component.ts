@@ -51,7 +51,7 @@ export class BrandsUpdateComponent implements OnInit {
 
     this.brand.brandName = brandData.name;
 
-    this.brandService.updateBrand(this.brand).subscribe(color => this.getBrand(),
+    this.brandService.updateBrand(this.brand).subscribe(() => this.getBrand(),
       error => {this.error = error.error;
         if(error.status === 401){this.router.navigate(['/login']);}},
       () => {this.goBack()});

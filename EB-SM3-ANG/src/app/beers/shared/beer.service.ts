@@ -29,9 +29,9 @@ export class BeerService {
     return this.http.get<Beer>(environment.apiUrl + '/beer/' + id);
   }
 
-  updateType(beer: Beer): Observable<Beer>{
+  updateBeer(beer: Beer): Observable<Beer>{
     this.setToken();
-    return this.http.put<Beer>(environment.apiUrl + '/beer', beer, this.httpOptions);
+    return this.http.put<Beer>(environment.apiUrl + '/beer/' + beer.id, beer, this.httpOptions);
   }
 
   deleteBeer(id: number): Observable<Beer>{
