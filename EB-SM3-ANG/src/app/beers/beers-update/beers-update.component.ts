@@ -85,8 +85,8 @@ export class BeersUpdateComponent implements OnInit {
         description: this.beer.description,
         price: this.beer.price,
         percentage: this.beer.percentage,
-        IBU: this.beer.IBU,
-        EBC: this.beer.EBC,
+        IBU: this.beer.ibu,
+        EBC: this.beer.ebc,
         type: this.beer.type.id,
         brand: this.beer.brand.id
       });
@@ -144,8 +144,8 @@ export class BeersUpdateComponent implements OnInit {
     this.beer.description = beerData.description;
     this.beer.price = beerData.price;
     this.beer.percentage = beerData.percentage;
-    this.beer.IBU = beerData.IBU;
-    this.beer.EBC = beerData.EBC;
+    this.beer.ibu = beerData.IBU;
+    this.beer.ebc = beerData.EBC;
     this.beer.type = {id: beerData.type, typeName: ''}
     this.beer.brand = {id: beerData.brand, brandName: ''}
 

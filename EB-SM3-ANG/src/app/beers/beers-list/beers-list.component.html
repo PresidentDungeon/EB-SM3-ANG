@@ -42,7 +42,7 @@
         <td><a routerLink="">{{beer.price}}</a></td>
         <td><a routerLink="">{{beer.type.typeName}}</a></td>
         <td><a routerLink="">{{beer.brand.brandName}}</a></td>
-        <button type="button" class="btn btn-outline-dark">Update</button>
+        <button type="button" class="btn btn-outline-dark" routerLink="/beers/update/{{beer.id}}">Update</button>
         <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, beer)">X</button>
       </tr>
     </table>

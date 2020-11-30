@@ -1,4 +1,4 @@
-<h1 align="center">Register beer</h1>
+<h1 align="center">Register update</h1>
 <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 <div class="container" *ngIf="!loading">
 
@@ -124,7 +124,7 @@
 
 
     <div class="col text-center">
-      <button class="btn btn-success" type="submit" [disabled]="!beerForm.valid || imageLoad">Create</button>
+      <button class="btn btn-success" type="submit" [disabled]="!beerForm.valid || imageLoad">Update</button>
     </div>
   </form>
   <button class="btn btn-info" (click)="goBack();">Go back</button>

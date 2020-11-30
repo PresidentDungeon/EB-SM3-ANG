@@ -133,8 +133,8 @@ export class BeersAddComponent implements OnInit {
       description: beerData.description,
       price: beerData.price,
       percentage: beerData.percentage,
-      IBU: beerData.IBU,
-      EBC: beerData.EBC,
+      ibu: beerData.IBU,
+      ebc: beerData.EBC,
       type: {id: beerData.type, typeName: ''},
       brand: {id: beerData.brand, brandName: ''},
       imageURL: this.imageURL
