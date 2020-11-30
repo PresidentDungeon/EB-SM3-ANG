@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ShoppingCartService} from '../shared/services/shopping-cart.service';
 
 @Component({
@@ -8,9 +8,17 @@ import {ShoppingCartService} from '../shared/services/shopping-cart.service';
 })
 export class SideBarComponent implements OnInit {
 
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    this.ngOnDestroy();
+  }
+
   constructor(private shoppingService: ShoppingCartService) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void{
+    this.shoppingService.saveCart();
   }
 
   getCartStatus(): boolean{
