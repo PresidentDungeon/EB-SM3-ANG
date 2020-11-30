@@ -19,9 +19,10 @@
         <div class="card">
           <img src="{{beer.imageURL}}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">{{beer.name}}</h5>
-            <p class="card-text">{{beer.description}}</p>
+            <h5 class="card-title-top">{{beer.name}}</h5>
+            <p class="card-percentage">{{beer.percentage}}%</p>
             <p class="card-price">{{beer.price | currency:'DKK '}}</p>
+            <button class="btn btn-success float-right">KØB</button>
           </div>
         </div>
       </div>

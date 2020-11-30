@@ -40,23 +40,21 @@
   <h3 align="center">Beers List:</h3>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
-  <div id="table">
-    <table *ngIf="!loading" class="table-">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Price</th>
-        <th scope="col">Beer Type</th>
-        <th scope="col">Brand</th>
-      </tr>
-      <tr class="data" *ngFor="let beer of beers">
-        <th class="row"><a routerLink="">{{beer.id}}</a></th>
-        <td><a routerLink="">{{beer.name}}</a></td>
-        <td><a routerLink="">{{beer.price}}</a></td>
-        <td><a routerLink="">{{beer.type.typeName}}</a></td>
-        <td><a routerLink="">{{beer.brand.brandName}}</a></td>
-      </tr>
-    </table>
+  <div class="container">
+
+    <div class="row row-cols-3 row-cols-md-2">
+
+      <div class="col-sm-3" *ngFor="let beer of beers">
+        <div class="card">
+          <img src="{{beer.imageURL}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{beer.name}}</h5>
+            <p class="card-text">{{beer.description}}</p>
+            <p class="card-price">{{beer.price | currency:'DKK '}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="">

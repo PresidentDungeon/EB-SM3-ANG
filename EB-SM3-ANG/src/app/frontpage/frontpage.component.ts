@@ -19,7 +19,7 @@ export class FrontpageComponent implements OnInit {
   }
 
   getBeers(): void{
-    const filter = `?CurrentPage=1&ItemsPrPage=4`;
+    const filter = `?CurrentPage=1&ItemsPrPage=4&SortingType=ADDED&Sorting=asc`;
     this.loading = true;
 
     this.beerService.getBeers(filter).subscribe((FilterList) => {
