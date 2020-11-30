@@ -1,9 +1,4 @@
 <div class="container">
-  <div class="d-flex flex-row justify-content-center">
-    <button type="button" class="btn btn-outline-primary" routerLink="/beers">Beers</button>
-    <button type="button" class="btn btn-outline-primary" routerLink="/types">Types</button>
-    <button type="button" class="btn btn-outline-primary" routerLink="/brands">Brands</button>
-  </div>
 
   <label>
     Items Pr Page:
@@ -19,6 +14,24 @@
     <select class="form-control" [(ngModel)]="BeerType" (ngModelChange)="getBeers()">
       <option value="0">All Types</option>
       <option *ngFor="let types of beerTypes" value="{{types.id}}">{{types.typeName}}</option>
+    </select>
+  </label>
+
+  <label>
+    Sorting Type:
+    <select class="form-control" [(ngModel)]="sortingType" (ngModelChange)="getBeers()">
+      <option value="ADDED">Newest</option>
+      <option value="ALF">Alphabetical</option>
+      <option value="IBU">IBU</option>
+      <option value="EBC">EBC</option>
+    </select>
+  </label>
+
+  <label>
+    Sorting:
+    <select class="form-control" [(ngModel)]="sorting" (ngModelChange)="getBeers()">
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
     </select>
   </label>
 
@@ -42,14 +55,8 @@
         <td><a routerLink="">{{beer.price}}</a></td>
         <td><a routerLink="">{{beer.type.typeName}}</a></td>
         <td><a routerLink="">{{beer.brand.brandName}}</a></td>
-        <button type="button" class="btn btn-outline-dark" routerLink="/beers/update/{{beer.id}}">Update</button>
-        <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, beer)">X</button>
       </tr>
     </table>
-  </div>
-
-  <div class="col text-center">
-    <button class="btn btn-success" routerLink="add">Add beer!</button>
   </div>
 
   <div class="">
@@ -78,19 +85,3 @@
   </div>
 
 </div>
-
-<ng-template #deleteTemplate>
-  <div class="modal-header">
-    <h4 class="modal-title w-100 text-center">Confirmation</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>Are you sure you want to delete <b>{{selectedBeer.name}}</b>?</p>
-    <div class="float-right">
-      <button (click)="modalRef.hide()" type="button" class="btn btn-secondary" >Cancel</button>
-      <button (click)="modalRef.hide(); deleteBeer(selectedBeer.id);" type="button" class="btn btn-danger">Delete</button>
-    </div>
-  </div>
-</ng-template>

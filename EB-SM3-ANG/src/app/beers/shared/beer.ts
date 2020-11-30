@@ -7,8 +7,8 @@ export interface Beer{
   description: string;
   price: number;
   percentage: number;
-  IBU: number;
-  EBC: number;
+  ibu: number;
+  ebc: number;
   imageURL: string;
   type: BeerType;
   brand: Brand

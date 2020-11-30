@@ -9,6 +9,7 @@ import {BrandsUpdateComponent} from "./brands/brands-update/brands-update.compon
 import {BeertypesAddComponent} from "./beertypes/beertypes-add/beertypes-add.component";
 import {BeersAddComponent} from "./beers/beers-add/beers-add.component";
 import {BeersUpdateComponent} from "./beers/beers-update/beers-update.component";
+import {ProductPageComponent} from "./product-page/product-page.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'beers', component: BeersListComponent},
   {path: 'beers/add', component: BeersAddComponent},
   {path: 'beers/update/:id', component: BeersUpdateComponent},
+  {path: 'shop', component: ProductPageComponent},
 ];
 
 @NgModule({
