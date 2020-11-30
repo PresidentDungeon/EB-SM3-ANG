@@ -1,8 +1,15 @@
 .jumbotron {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/eb-sdm3.appspot.com/o/beer-banner.jpg?alt=media&token=0a780f54-5cec-4192-bb04-9865026bab67");
   background-size: cover;
   background-color: #1d1d1d;
   background-position-y: center;
   margin-bottom: 0px;
   border-radius: 0;
+}
+
+.card-deck {
+  margin: 0px;
+}
+
+#events {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/eb-sdm3.appspot.com/o/beer-banner.jpg?alt=media&token=0a780f54-5cec-4192-bb04-9865026bab67");
 }
