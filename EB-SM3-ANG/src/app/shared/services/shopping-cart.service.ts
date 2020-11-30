@@ -23,7 +23,6 @@ export class ShoppingCartService {
     if(!orderItemInCart){
 
       this.shoppingCart.push(Object.assign({},{item: beer, quantity: 1}));
-
     }
 
     else{
@@ -49,6 +48,13 @@ export class ShoppingCartService {
 
   calculateTotalPrice(): number{
     return this.shoppingCart.reduce((accumulator , OrderItem) => accumulator += OrderItem.item.price * OrderItem.quantity ,0);
+  }
+
+  isValid(beer: Beer): boolean{
+
+    var orderItemInCart = this.shoppingCart.find(x => x.item.id == beer.id);
+    if(orderItemInCart){return orderItemInCart.quantity >= 5}
+
   }
 
   saveCart(): void{

@@ -4,12 +4,12 @@
   <h3>Total price: {{shoppingService.calculateTotalPrice()}}</h3>
 
   <div *ngFor="let orderItem of shoppingService.getItems()">
-    <div>{{orderItem.item.name}}</div>
-    <input type="number" [(ngModel)]="orderItem.quantity" min="0" (ngModelChange)="modelChanged(orderItem)"/>
+    <p>{{orderItem.item.name}}</p>
+    <input type="number" [(ngModel)]="orderItem.quantity" min="0" max="5" (ngModelChange)="modelChanged(orderItem)"/>
   </div>
 
   <ul *ngFor="let orderItem of shoppingService.getItems()">
-    <li>{{orderItem.item.name}} -- {{orderItem.quantity}} ({{orderItem.item.price}})</li>
+    <li><p>{{orderItem.item.name}} -- {{orderItem.quantity}} ({{orderItem.item.price}})</p></li>
   </ul>
 
   <button (click)="shoppingService.clearCart();">Reset</button>
