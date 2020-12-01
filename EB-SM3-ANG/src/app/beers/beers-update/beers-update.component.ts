@@ -17,7 +17,7 @@ import {Beer} from "../shared/beer";
 export class BeersUpdateComponent implements OnInit {
 
   beerForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(16)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(32)]),
     description: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required, Validators.min(0), Validators.max(99999)]),
     percentage: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),

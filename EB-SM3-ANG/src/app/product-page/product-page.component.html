@@ -1,6 +1,9 @@
+<div class="jumbotron">
 <div class="container">
 
-  <label>
+  <input #searchBox class="col-md-4" (input)="search(searchBox.value)"/>
+
+  <label class="col-md-2">
     Items Pr Page:
     <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
       <option value="10">10</option>
@@ -9,7 +12,7 @@
     </select>
   </label>
 
-  <label>
+  <label class="col-md-2">
     Beer Type:
     <select class="form-control" [(ngModel)]="BeerType" (ngModelChange)="getBeers()">
       <option value="0">All Types</option>
@@ -17,7 +20,7 @@
     </select>
   </label>
 
-  <label>
+  <label class="col-md-2">
     Sorting Type:
     <select class="form-control" [(ngModel)]="sortingType" (ngModelChange)="getBeers()">
       <option value="ADDED">Newest</option>
@@ -27,7 +30,7 @@
     </select>
   </label>
 
-  <label>
+  <label class="col-md-2">
     Sorting:
     <select class="form-control" [(ngModel)]="sorting" (ngModelChange)="getBeers()">
       <option value="asc">Ascending</option>
@@ -35,30 +38,29 @@
     </select>
   </label>
 
-  <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
-
   <h3 align="center">Beers List:</h3>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
   <div class="container">
-
     <div class="row row-cols-3 row-cols-md-2">
 
       <div class="col-sm-3" *ngFor="let beer of beers">
         <div class="card">
           <img src="{{beer.imageURL}}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">{{beer.name}}</h5>
-            <p class="card-text">{{beer.description}}</p>
+            <h5 class="card-title-top">{{beer.name}}</h5>
+            <p class="card-percentage">{{beer.percentage}}%</p>
             <p class="card-price">{{beer.price | currency:'DKK '}}</p>
+            <button class="btn btn-success float-right" (click)="addItem(beer)">KØB</button>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
-  <div class="">
-    <div class="row">
+  <div>
+    <div id="pages" class="row">
       <pagination
         [maxSize]="5"
         [directionLinks]="false"
@@ -70,16 +72,18 @@
       </pagination>
     </div>
 
-    <div class="row">
+    <div id="paging" class="row">
       <pager
         [totalItems]="totalItems"
         [(ngModel)]="currentPage"
         (pageChanged)="pageChanged($event)"
         pageBtnClass="btn"
+        previousText="« Back"
         [itemsPerPage]="itemsPrPage"
         class="pull-left">
       </pager>
     </div>
   </div>
 
+</div>
 </div>

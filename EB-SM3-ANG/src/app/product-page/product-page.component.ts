@@ -5,6 +5,7 @@ import {BeerType} from "../beertypes/shared/beertype";
 import {BeerService} from "../beers/shared/beer.service";
 import {BeertypeService} from "../beertypes/shared/beertype.service";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+import {ShoppingCartService} from '../shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-product-page',
@@ -29,7 +30,7 @@ export class ProductPageComponent implements OnInit {
   sortingType: string = 'ADDED';
   sorting: string = 'asc';
 
-  constructor(private beerService: BeerService, private typeService: BeertypeService) { }
+  constructor(private beerService: BeerService, private typeService: BeertypeService, private shoppingService: ShoppingCartService) { }
 
   ngOnInit(): void {
     this.searchTerms.pipe(
@@ -73,6 +74,10 @@ export class ProductPageComponent implements OnInit {
 
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  addItem(beer: Beer): void{
+    this.shoppingService.addToCart(beer);
   }
 
 }

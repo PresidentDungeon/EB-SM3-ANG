@@ -1,0 +1,57 @@
+.jumbotron {
+  background-size: cover;
+  background-color: #1d1d1d;
+  background-position-y: center;
+  margin-bottom: 0px;
+  border-radius: 0;
+}
+
+input {
+  background: #3d3d3d;
+  border: none!important;
+}
+
+label {
+  color: #f28e1c;
+}
+
+select {
+  background-color: #3d3d3d!important;
+  color: #f28e1c!important;
+  border: none!important;
+}
+
+h3 {
+  color: #f28e1c;
+}
+
+h5 {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.card {
+
+  background-color: #fefefe;
+}
+
+#pages {
+  display: flex;
+  justify-content: center;
+}
+
+#paging {
+  display: flex;
+  justify-content: center;
+}
+
+ul pager {
+  padding: 0px!important;
+}
