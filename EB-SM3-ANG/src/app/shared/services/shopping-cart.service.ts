@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {OrderItem} from "./orderItem";
 import {Beer} from "../../beers/shared/beer";
+import {BeerService} from '../../beers/shared/beer.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,9 @@ export class ShoppingCartService {
 
   shoppingCart: OrderItem[] = [];
   isClosed: boolean = true;
+  isChanged: boolean = false;
 
-  constructor() {this.loadCart();}
+  constructor(private beerService: BeerService) {this.loadCart();}
 
   collapse(): void{
     this.isClosed = !this.isClosed;
@@ -53,16 +55,40 @@ export class ShoppingCartService {
 
   isValid(beer: Beer): boolean{
     var orderItemInCart = this.shoppingCart.find(x => x.item.id == beer.id);
-    if(orderItemInCart){return orderItemInCart.quantity >= orderItemInCart.item.stock}
+    if(orderItemInCart){return orderItemInCart.quantity >= beer.stock}
   }
 
   saveCart(): void{
     localStorage.setItem('shoppingCart', JSON.stringify({ shoppingCart: this.shoppingCart}));
   }
 
-  loadCart(): void{
+  loadCart(): boolean{
+
+    //When loading a check is ongoing checking for item stock
+
     if(localStorage.getItem('shoppingCart') !== null){
-      this.shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')).shoppingCart;
+
+      var cart = JSON.parse(localStorage.getItem('shoppingCart')).shoppingCart;
+      cart.forEach((item: OrderItem, index, object) => {
+
+        this.beerService.getBeerById(item.item.id).subscribe((beer)=>{
+
+          item.item = beer;
+
+          if(item.quantity > beer.stock){
+
+            if(item.quantity === 0){object.splice(index, 1);}
+            else{
+              item.quantity = beer.stock;
+            }
+            this.isChanged = true;
+            this.isClosed = false;
+          }
+        }, (error) => {if(error.status === 404){object.splice(index, 1); this.isChanged = true; this.isClosed = false;}});
+      })
+
+      this.shoppingCart = cart;
+      return this.isChanged;
     }
   }
 

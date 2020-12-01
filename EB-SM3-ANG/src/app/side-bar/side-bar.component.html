@@ -1,5 +1,10 @@
 <nav (clickOutside)="closeShoppingCart()" [exclude]="'.cart'" id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': getCartStatus()}">
 
+  <alert type="danger" *ngIf="shoppingService.isChanged">
+    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+    <button (click)="shoppingService.isChanged = false"></button>
+  </alert>
+
   <h4>Total size: {{shoppingService.calculateTotal()}}</h4>
   <h3>Total price: {{shoppingService.calculateTotalPrice()}}</h3>
 
