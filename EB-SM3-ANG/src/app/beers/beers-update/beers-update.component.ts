@@ -88,6 +88,7 @@ export class BeersUpdateComponent implements OnInit {
         percentage: this.beer.percentage,
         IBU: this.beer.ibu,
         EBC: this.beer.ebc,
+        stock: this.beer.stock,
         type: this.beer.type.id,
         brand: this.beer.brand.id
       });
