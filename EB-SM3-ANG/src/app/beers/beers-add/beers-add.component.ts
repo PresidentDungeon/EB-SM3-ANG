@@ -27,6 +27,7 @@ export class BeersAddComponent implements OnInit {
     percentage: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),
     IBU: new FormControl('', [Validators.required, Validators.min(0), Validators.max(120)]),
     EBC: new FormControl('', [Validators.required, Validators.min(0), Validators.max(80)]),
+    stock: new FormControl(0, [Validators.required, Validators.min(0)]),
     type: new FormControl('', [Validators.required]),
     brand: new FormControl('', [Validators.required]),
     imageURL: new FormControl(''),
@@ -135,13 +136,14 @@ export class BeersAddComponent implements OnInit {
       percentage: beerData.percentage,
       ibu: beerData.IBU,
       ebc: beerData.EBC,
+      stock: beerData.stock,
       type: {id: beerData.type, typeName: ''},
       brand: {id: beerData.brand, brandName: ''},
       imageURL: this.imageURL
     }
 
     this.beerService.addBeer(beer).subscribe(() => {},
-      (error) => {this.error = error.error; this.loading = false;
+      (error) => {this.error = error.error; console.log(error); this.loading = false;
         if(error.status === 401){this.router.navigate(['/login']);}},
       () => {this.created = true; this.router.navigate(['/beers']);});
   }
