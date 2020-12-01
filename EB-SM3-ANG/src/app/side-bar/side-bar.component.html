@@ -5,7 +5,7 @@
 
   <div *ngFor="let orderItem of shoppingService.getItems()">
     <p>{{orderItem.item.name}}</p>
-    <input type="number" [(ngModel)]="orderItem.quantity" min="0" (ngModelChange)="modelChanged(orderItem)"/>
+    <input type="number" [(ngModel)]="orderItem.quantity" min="0" max="{{orderItem.item.stock}}" (ngModelChange)="modelChanged(orderItem)"/>
   </div>
 
   <ul *ngFor="let orderItem of shoppingService.getItems()">

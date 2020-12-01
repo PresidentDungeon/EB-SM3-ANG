@@ -23,6 +23,10 @@ export class SideBarComponent implements OnInit {
   }
 
   modelChanged(orderItem: OrderItem) {
+    if(orderItem.quantity > orderItem.item.stock){
+      orderItem.quantity = orderItem.item.stock;
+    }
+
     if (orderItem.quantity === 0) {
       this.shoppingService.removeItem(orderItem.item);
     }
