@@ -13,6 +13,7 @@ import {BrandsListComponent} from './brands/brands-list/brands-list.component';
 import {ClickOutsideModule} from 'ng-click-outside';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 import {CollapseModule} from 'ngx-bootstrap/collapse';
@@ -65,7 +66,8 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
