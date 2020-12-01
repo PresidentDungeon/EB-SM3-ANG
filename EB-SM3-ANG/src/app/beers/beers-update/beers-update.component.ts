@@ -23,6 +23,7 @@ export class BeersUpdateComponent implements OnInit {
     percentage: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),
     IBU: new FormControl('', [Validators.required, Validators.min(0), Validators.max(120)]),
     EBC: new FormControl('', [Validators.required, Validators.min(0), Validators.max(80)]),
+    stock: new FormControl('', [Validators.min(0)]),
     type: new FormControl('', [Validators.required]),
     brand: new FormControl('', [Validators.required]),
     imageURL: new FormControl(''),
@@ -87,6 +88,7 @@ export class BeersUpdateComponent implements OnInit {
         percentage: this.beer.percentage,
         IBU: this.beer.ibu,
         EBC: this.beer.ebc,
+        stock: this.beer.stock,
         type: this.beer.type.id,
         brand: this.beer.brand.id
       });
@@ -138,6 +140,7 @@ export class BeersUpdateComponent implements OnInit {
     this.beer.percentage = beerData.percentage;
     this.beer.ibu = beerData.IBU;
     this.beer.ebc = beerData.EBC;
+    this.beer.stock = beerData.stock;
     this.beer.type = {id: beerData.type, typeName: ''}
     this.beer.brand = {id: beerData.brand, brandName: ''}
 

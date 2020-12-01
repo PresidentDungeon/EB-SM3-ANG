@@ -51,6 +51,11 @@ export class ShoppingCartService {
     return this.shoppingCart.reduce((accumulator , OrderItem) => accumulator += OrderItem.item.price * OrderItem.quantity ,0);
   }
 
+  isValid(beer: Beer): boolean{
+    var orderItemInCart = this.shoppingCart.find(x => x.item.id == beer.id);
+    if(orderItemInCart){return orderItemInCart.quantity >= orderItemInCart.item.stock}
+  }
+
   saveCart(): void{
     localStorage.setItem('shoppingCart', JSON.stringify({ shoppingCart: this.shoppingCart}));
   }

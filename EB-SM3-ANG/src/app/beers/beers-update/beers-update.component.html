@@ -76,6 +76,16 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="stock">Beer stock</label>
+        <input type="number" class="form-control" formControlName="stock" id="stock" placeholder="Enter beer stock" min="0">
+      </div>
+
+      <div class="col-sm-8">
+        <h6 *ngIf="beerForm.get('stock').invalid && beerForm.get('stock').dirty">stock must be a whole number above or equal to zero</h6>
+      </div>
+    </div>
 
     <div class="form-group">
       <div class="col-sm-4">
