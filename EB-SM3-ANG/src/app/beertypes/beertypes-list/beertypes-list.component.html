@@ -1,11 +1,14 @@
+<div class="jumbotron">
 <div class="container">
-  <div class="d-flex flex-row justify-content-center">
+  <div class="categories">
     <button type="button" class="btn btn-outline-primary" routerLink="/beers">Beers</button>
     <button type="button" class="btn btn-outline-primary" routerLink="/types">Types</button>
     <button type="button" class="btn btn-outline-primary" routerLink="/brands">Brands</button>
   </div>
 
-  <label>
+  <input #searchBox class="col-md-3 offset-md-2" (input)="search(searchBox.value)"/>
+
+  <label class="col-md-2 offset-md-1">
     Items Pr Page:
     <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
       <option value="10">10</option>
@@ -14,19 +17,17 @@
     </select>
   </label>
 
-  <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
-
-  <h3 align="center">Beer types List:</h3>
+  <h3>Beer types List:</h3>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
   <div id="table">
-    <table *ngIf="!loading" class="table-">
+    <table *ngIf="!loading" class="offset-md-4">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Description</th>
       </tr>
       <tr class="data" *ngFor="let type of types">
-        <th class="row"><a routerLink="">{{type.id}}</a></th>
+        <td><a routerLink="">{{type.id}}</a></td>
         <td><a routerLink="">{{type.typeName}}</a></td>
         <button type="button" class="btn btn-outline-dark" routerLink="/types/update/{{type.id}}">Update</button>
         <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, type)">X</button>
@@ -38,8 +39,8 @@
     <button class="btn btn-success" routerLink="add">Add type!</button>
   </div>
 
-  <div class="">
-    <div class="row">
+  <div>
+    <div id="pages" class="row">
       <pagination
         [maxSize]="5"
         [directionLinks]="false"
@@ -51,12 +52,13 @@
       </pagination>
     </div>
 
-    <div class="row">
+    <div id="paging" class="row">
       <pager
         [totalItems]="totalItems"
         [(ngModel)]="currentPage"
         (pageChanged)="pageChanged($event)"
         pageBtnClass="btn"
+        previousText="« Back"
         [itemsPerPage]="itemsPrPage"
         class="pull-left">
       </pager>
@@ -80,3 +82,4 @@
   </div>
   </div>
 </ng-template>
+</div>

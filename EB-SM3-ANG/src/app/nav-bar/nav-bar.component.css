@@ -1,3 +1,7 @@
+#nav-bar{
+  background-color: #0d0d0d;
+}
+
 ul {
   width: 100%;
   display: flex;
@@ -9,6 +13,7 @@ ul {
 }
 
 li {
+  color: #f28e1c;
 }
 
 li a {
@@ -21,6 +26,7 @@ li a {
 
 li a:hover {
   background-color: #1d1d1d;
+  cursor: pointer;
 }
 
 input{
@@ -28,6 +34,12 @@ input{
   outline: none;
 }
 
-div{
+popover-container {
+  background-color: #1d1d1d;
+  color: #1d1d1d;
+}
+
+.profile {
+  color: #0d0d0d;
   background-color: #0d0d0d;
 }

@@ -1,4 +1,4 @@
-<div>
+<div id="nav-bar">
   <div class="container">
   <ul class = "col-sm-12">
     <li><a routerLink="/home">Hjem</a></li>
@@ -19,13 +19,11 @@
   </div>
 </div>
 
-<ng-template #popTemplate>
+<ng-template  #popTemplate>
+  <div class="profile">
   <li *ngIf="authenticationService.getRole() === 'Admin'"><a (click)="profileOpen = !profileOpen" routerLink="/beers">Opret produkter</a></li>
   <li><a routerLink="">Min profil</a></li>
   <li><a routerLink="">Mine ordre</a></li>
   <li><a routerLink="/login">Log ud</a></li>
+  </div>
 </ng-template>
-
-
-
-

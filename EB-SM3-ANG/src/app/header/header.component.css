@@ -49,8 +49,13 @@
 
 .cart {
   height: 90%;
-  width: 60%;
+  width: 55%;
   padding: 15px;
   float: right;
   outline: none;
+}
+
+h1 {
+  float: right;
+  padding-top: 20px;
 }

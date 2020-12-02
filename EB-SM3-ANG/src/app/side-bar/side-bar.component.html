@@ -2,21 +2,26 @@
 
   <alert type="danger" *ngIf="shoppingService.isChanged">
     <strong>Oh snap!</strong> Change a few things up and try submitting again.
-    <button (click)="shoppingService.isChanged = false"></button>
+    <button (click)="shoppingService.isChanged = false" class="btn btn-danger">X</button>
   </alert>
 
-  <h4>Total size: {{shoppingService.calculateTotal()}}</h4>
-  <h3>Total price: {{shoppingService.calculateTotalPrice()}}</h3>
+  <h3>Wares: {{shoppingService.calculateTotal()}}</h3>
+  <h3>Price: {{shoppingService.calculateTotalPrice() | currency:'DKK '}}</h3>
 
   <div *ngFor="let orderItem of shoppingService.getItems()">
-    <p>{{orderItem.item.name}}</p>
+    <h5>{{orderItem.item.name}}</h5>
+  <div class="row">
     <input type="number" [(ngModel)]="orderItem.quantity" min="0" max="{{orderItem.item.stock}}" (ngModelChange)="modelChanged(orderItem)"/>
+    <h5>{{orderItem.item.price * orderItem.quantity | currency: 'DKK'}}</h5>
+  </div>
   </div>
 
+  <h3>BON</h3>
+
   <ul *ngFor="let orderItem of shoppingService.getItems()">
-    <li><p>{{orderItem.item.name}} -- {{orderItem.quantity}} ({{orderItem.item.price}})</p></li>
+    <li><p>{{orderItem.item.name}} - {{orderItem.quantity}} ({{orderItem.item.price}})</p></li>
   </ul>
 
-  <button (click)="shoppingService.clearCart();">Reset</button>
+  <button (click)="shoppingService.clearCart();" class="btn btn-danger">Reset</button>
 
 </nav>

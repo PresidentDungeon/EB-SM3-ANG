@@ -8,13 +8,13 @@ import {ShoppingCartService} from '../shared/services/shopping-cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public shoppingSerivce: ShoppingCartService) { }
+  constructor(public shoppingService: ShoppingCartService) { }
 
   ngOnInit(): void {
   }
 
   collapseCart(): void{
-    this.shoppingSerivce.collapse();
+    this.shoppingService.collapse();
   }
 
 }

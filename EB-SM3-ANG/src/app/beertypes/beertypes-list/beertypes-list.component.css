@@ -1,15 +1,53 @@
-#table{
-  display: table;
-  margin: 20px auto;
+.jumbotron {
+  background-size: cover;
+  background-color: #1d1d1d;
+  background-position-y: center;
+  margin-bottom: 0px;
+  border-radius: 0;
 }
 
-.table-{
+.categories {
+  text-align: center;
+}
 
+button {
+  color: #fefefe;
+  margin: 15px;
+}
+
+label {
+  color: #f28e1c;
+}
+
+input {
+  background: #3d3d3d;
+  border: none!important;
+  color: #f28e1c;
+}
+
+select {
+  background-color: #3d3d3d!important;
+  color: #f28e1c!important;
+  border: none!important;
+}
+
+h3 {
+  color: #f28e1c;
+  text-align: center;
+}
+
+#table {
+  color: #f28e1c;
+}
+
+td, th {
+  padding: 15px;
+  color: #f28e1c;
 }
 
 a{
   text-decoration: none;
-  color: #111111;
+  color: #f28e1c;
 }
 
 progressbar{
@@ -19,11 +57,14 @@ progressbar{
 }
 
 .data:hover a{
-  color: dimgrey;
+  background-color: #3d3d3d;
   cursor: pointer;
 }
 
-pagination {
+#pages {
   justify-content: center;
 }
 
+#paging {
+  justify-content: center;
+}

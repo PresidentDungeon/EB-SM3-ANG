@@ -1,3 +1,4 @@
+<div class="brands-add">
 <h1 align="center">Register brand</h1>
 
 <div class="container">
@@ -6,12 +7,12 @@
 
   <form [formGroup]="brandForm" (ngSubmit)="createBrand()">
     <div class="form-group">
-      <div class="col-sm-4">
+      <div class="col-sm-4 offset-sm-4">
         <label for="name">Brand name</label>
         <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter brand name" maxlength="16" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
       </div>
 
-      <div class="col-sm-8">
+      <div class="col-sm-8 offset-sm-4">
         <h6 id="error" *ngIf="brandForm.get('name').invalid && brandForm.get('name').dirty">brand name must be between 0-16 characters with no trailing whitespace</h6>
       </div>
     </div>
@@ -23,6 +24,4 @@
   <button class="btn btn-info" (click)="goBack();">Go back</button>
 
 </div>
-
-
-
+</div>

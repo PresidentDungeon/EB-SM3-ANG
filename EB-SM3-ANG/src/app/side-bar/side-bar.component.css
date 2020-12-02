@@ -9,7 +9,7 @@
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5;
-  background-color: #333333 !important;
+  background-color: #0d0d0d !important;
 }
 
 #sidebar.hidden {
@@ -52,6 +52,24 @@ hr {
   margin-top: 0;
 }
 
-p{
-  color: white;
+h3, h5, p {
+  margin: 15px 0px 0px 15px;
+  color: #f28e1c;
 }
+
+input {
+  margin-left: 30px;
+  width: 50%;
+  background: #3d3d3d;
+  border: none!important;
+  color: #f28e1c;
+}
+
+::marker {
+  color: #f28e1c;
+}
+
+button {
+  margin-left: 15px;
+}
+
