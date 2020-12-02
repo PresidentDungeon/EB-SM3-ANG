@@ -37,7 +37,7 @@ export class BeersUpdateComponent implements OnInit {
   selectedImage: File = null;
 
   imageURL: string = '';
-  invalidImageURL: string = 'https://firebasestorage.googleapis.com/v0/b/eb-sdm3.appspot.com/o/NoImage.png?alt=media&token=d522375a-08c4-4ea9-99b0-30f23e3d52ed';
+  invalidImageURL: string = 'https://firebasestorage.googleapis.com/v0/b/eb-sdm3.appspot.com/o/NoImage.png?alt=media&token=9f213b80-6356-4f8e-83b6-301936912a6e';
   loading: boolean = true;
   imageLoad: boolean = false;
   error: string = '';
