@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ShoppingCartService} from "../shared/services/shopping-cart.service";
+import {AuthenticationService} from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,12 +9,14 @@ import {ShoppingCartService} from "../shared/services/shopping-cart.service";
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private shoppingSerivce: ShoppingCartService) { }
+  profileOpen: boolean = false;
+
+  constructor(public authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
-  collapseCart(): void{
-    this.shoppingSerivce.collapse();
+  outsideClick(): void{
+    this.profileOpen = false;
   }
 }

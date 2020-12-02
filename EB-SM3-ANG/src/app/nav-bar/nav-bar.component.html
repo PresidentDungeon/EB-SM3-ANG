@@ -6,8 +6,26 @@
     <li><a routerLink="">Om Esbjerg Bryghus</a></li>
     <li><a routerLink="">Ølsmagning</a></li>
     <li><a routerLink="">Om Os</a></li>
-    <li><a routerLink="/login">Login</a></li>
+
+
+    <li *ngIf="!authenticationService.getToken()"><a routerLink="/login">Login</a></li>
+
+    <li *ngIf="authenticationService.getToken()" type="button" placement="bottom" [popover]="popTemplate" [isOpen]="profileOpen" triggers="" (click)="profileOpen = !profileOpen;" (clickOutside)="outsideClick()">
+      <a >Profile</a>
+    </li>
+
+
   </ul>
   </div>
 </div>
+
+<ng-template #popTemplate>
+  <li *ngIf="authenticationService.getRole() === 'Admin'"><a (click)="profileOpen = !profileOpen" routerLink="/beers">Opret produkter</a></li>
+  <li><a routerLink="">Min profil</a></li>
+  <li><a routerLink="">Mine ordre</a></li>
+  <li><a routerLink="/login">Log ud</a></li>
+</ng-template>
+
+
+
 
