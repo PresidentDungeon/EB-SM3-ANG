@@ -124,11 +124,11 @@
         <input type="file" class="form-control" formControlName="imageURL" id="image" placeholder="Select beer image" accept="image/*" (change)="onFileChange($event)">
       </div>
 
-      <progressbar class="progress" *ngIf="imageLoad" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+      <progressbar class="progress" *ngIf="updateLoad" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
       <div class="col-sm-8 offset-sm-4">
-        <a href="{{imageURL}}" *ngIf="!imageLoad && imageURL !== ''">Previous Image</a>
-        <button type="button" class="btn btn-outline-danger" *ngIf="!imageLoad && imageURL !== ''" (click)="clearPreviousImage()">Clear previous image</button>
+        <a href="{{imageURL}}" *ngIf="!updateLoad && imageURL !== ''">Previous Image</a>
+        <button type="button" class="btn btn-outline-danger" *ngIf="!updateLoad && imageURL !== ''" (click)="clearPreviousImage()">Clear previous image</button>
       </div>
     </div>
 
@@ -136,7 +136,7 @@
 
 
     <div class="col text-center">
-      <button class="btn btn-success" type="submit" [disabled]="!beerForm.valid || imageLoad">Update</button>
+      <button class="btn btn-success" type="submit" [disabled]="!beerForm.valid || updateLoad">Update</button>
     </div>
   </form>
   <button class="btn btn-info" (click)="goBack();">Go back</button>

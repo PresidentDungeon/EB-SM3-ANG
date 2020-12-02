@@ -37,9 +37,9 @@ export class BeersUpdateComponent implements OnInit {
   selectedImage: File = null;
 
   imageURL: string = '';
-  invalidImageURL: string = 'https://firebasestorage.googleapis.com/v0/b/eb-sdm3.appspot.com/o/NoImage.png?alt=media&token=d522375a-08c4-4ea9-99b0-30f23e3d52ed';
+  invalidImageURL: string = 'https://firebasestorage.googleapis.com/v0/b/eb-sdm3.appspot.com/o/NoImage.png?alt=media&token=9f213b80-6356-4f8e-83b6-301936912a6e';
   loading: boolean = true;
-  imageLoad: boolean = false;
+  updateLoad: boolean = false;
   error: string = '';
   changed: boolean = false;
   found: boolean = true;
@@ -116,8 +116,6 @@ export class BeersUpdateComponent implements OnInit {
 
     if(!this.beer.imageURL.includes('NoImage.png')){
 
-      this.imageLoad = true;
-
       let imageTitle: string = this.beer.imageURL.substring(
       this.beer.imageURL.lastIndexOf("/o/") + 3,
       this.beer.imageURL.lastIndexOf("?alt")
@@ -132,6 +130,7 @@ export class BeersUpdateComponent implements OnInit {
 
   updateBeer(): void{
 
+    this.updateLoad = true;
     const beerData = this.beerForm.value;
 
     this.beer.name = beerData.name;
@@ -153,12 +152,10 @@ export class BeersUpdateComponent implements OnInit {
             this.imageURL = urls[0];},
           (error) => {this.error = error.error},
           () => {
-          this.imageLoad = false;
           this.beer.imageURL = this.imageURL;
 
-          this.loading = true;
           this.beerService.updateBeer(this.beer).subscribe(() => {},
-              error => {this.error = error.error; this.loading = false;
+              error => {this.error = error.error; this.updateLoad = false;
                 if(error.status === 401){this.router.navigate(['/login']);}},
               () => {this.router.navigate(['/beers']);});
         });
@@ -166,19 +163,17 @@ export class BeersUpdateComponent implements OnInit {
 
       else{
         this.beer.imageURL = this.invalidImageURL;
-        this.imageLoad = false;
         this.loading = true;
 
         this.beerService.updateBeer(this.beer).subscribe(() => {},
-          error => {this.error = error.error; this.loading = false;
+          error => {this.error = error.error; this.updateLoad = false;
             if(error.status === 401){this.router.navigate(['/login']);}},
           () => {this.router.navigate(['/beers']);});
       }
     }
     else{
-      this.loading = true;
       this.beerService.updateBeer(this.beer).subscribe(() => {},
-        error => {this.error = error.error; this.loading = false;
+        error => {this.error = error.error; this.updateLoad = false;
           if(error.status === 401){this.router.navigate(['/login']);}},
         () => {this.router.navigate(['/beers']);});
     }
