@@ -5,6 +5,10 @@
   padding: 20px;
 }
 
+#logindiv {
+  border-right: dashed 2px;
+}
+
 form button{;
   padding: 12px 20px;
   text-align: center;
@@ -20,12 +24,28 @@ form button:disabled{
   background-color: rgba(96,96,96,0.20)
 }
 
+button {
+  margin: 15px;
+}
+
 h6{
   color: red;
 }
 
 input.ng-dirty.ng-invalid {
   border: 1px solid red;
+}
+
+.form-control {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.checkbox {
+  margin-left: 27%;
+  margin-right: 15px;
+  margin-bottom: 69px;
 }
 
 progressbar{

@@ -36,8 +36,9 @@ h3 {
   text-align: center;
 }
 
-#table {
+table {
   color: #f28e1c;
+  outline: solid 2px #f28e1c;
 }
 
 td, th {

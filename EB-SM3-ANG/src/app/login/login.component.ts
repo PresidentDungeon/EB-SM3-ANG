@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../shared/services/authentication.service';
 import {Location} from '@angular/common';
@@ -16,8 +16,21 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
+  registerForm = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(24)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(8)])
+  }, {validators: [this.passwordConfirming]});
+
+  passwordConfirming(c: AbstractControl): { invalid: boolean } {
+    if (c.get('password').value !== c.get('passwordConfirm').value) {
+      return {invalid: true};
+    }
+  }
+
   loading: boolean = true;
   loginLoad: boolean = false;
+  registerLoad: boolean = false;
 
   saveLogin: boolean = false;
   error: string = '';
@@ -57,6 +70,17 @@ export class LoginComponent implements OnInit {
         }},
       error => {this.error = error.error; this.loginLoad = false;},
       () => {this.location.back(); this.loginLoad = false;});
+  }
+
+  register(): void{
+
+    this.registerLoad = true;
+
+    const registerData = this.registerForm.value;
+    const username: string = registerData.username;
+    const password: string = registerData.password;
+
+
   }
 
   goBack(): void{
