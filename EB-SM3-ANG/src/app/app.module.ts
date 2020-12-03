@@ -32,6 +32,7 @@ import { BeersUpdateComponent } from './beers/beers-update/beers-update.componen
 import { ProductPageComponent } from './product-page/product-page.component';
 import {BeertypesUpdateComponent} from './beertypes/beertypes-update/beertypes-update.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { LoginComponent } from './login/login.component';
     BeersUpdateComponent,
     ProductPageComponent,
     BeertypesUpdateComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserAnimationsModule,

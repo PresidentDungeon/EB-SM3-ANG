@@ -12,21 +12,29 @@ ul {
   padding: 0;
 }
 
-li {
+.nav-bar-route {
   color: #f28e1c;
 }
 
-li a {
+.nav-bar-route a {
   display: block;
   color: #f28e1c;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 55px;
   text-decoration: none;
 }
 
-li a:hover {
+.nav-bar-route a:hover {
   background-color: #1d1d1d;
   cursor: pointer;
+}
+
+.pageover-route a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 input{
@@ -37,9 +45,4 @@ input{
 popover-container {
   background-color: #1d1d1d;
   color: #1d1d1d;
-}
-
-.profile {
-  color: #0d0d0d;
-  background-color: #0d0d0d;
 }

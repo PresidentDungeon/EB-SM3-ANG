@@ -3,6 +3,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../shared/services/authentication.service';
 import {Location} from '@angular/common';
+import {UserService} from '../profile/shared/user.service';
 
 @Component({
   selector: 'app-login',
@@ -34,9 +35,10 @@ export class LoginComponent implements OnInit {
 
   saveLogin: boolean = false;
   error: string = '';
+  registerError: string = '';
 
   constructor(private router: Router, private authService: AuthenticationService,
-              private location: Location) { }
+              private userService: UserService, private location: Location) { }
 
   ngOnInit(): void {
 
@@ -80,7 +82,20 @@ export class LoginComponent implements OnInit {
     const username: string = registerData.username;
     const password: string = registerData.password;
 
+    this.userService.register(username, password).subscribe(success => {
 
+        this.authService.login(username, password).subscribe(success => {
+            if(this.saveLogin){
+              this.authService.saveLogin(username, password);
+            }
+            else{
+              this.authService.forgetLogin();
+            }},
+          error => {this.registerError = error.error; this.loginLoad = false;},
+          () => {this.location.back(); this.loginLoad = false;});
+        },
+      error => {this.registerError = error.error; this.registerLoad = false;},
+      () => {this.location.back(); this.registerLoad = false;});
   }
 
   goBack(): void{

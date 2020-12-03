@@ -48,10 +48,10 @@
 
 
       <div class="col-sm-6" *ngIf="!loading">
-        <h6 align="center">{{error}}</h6>
+        <h6 align="center">{{registerError}}</h6>
         <h1 align="center">Opret bruger</h1>
 
-        <form [formGroup]="registerForm" (ngSubmit)="login()">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
 
           <div class="form-group">
             <div class="col text-center">
@@ -82,7 +82,7 @@
             </div>
 
             <div class="col text-center">
-              <h6 *ngIf="registerForm.get('passwordConfirm').invalid && registerForm.get('passwordConfirm').dirty">Koden ska være ens makker'</h6>
+              <h6 *ngIf="registerForm.get('passwordConfirm').dirty && registerForm.hasError('invalid')">Koden ska være ens makker'</h6>
             </div>
           </div>
 

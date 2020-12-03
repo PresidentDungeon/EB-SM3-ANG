@@ -1,17 +1,17 @@
 <div id="nav-bar">
   <div class="container">
-  <ul class = "col-sm-12">
-    <li><a routerLink="/home">Hjem</a></li>
-    <li><a routerLink="/shop">Vores Øl</a></li>
-    <li><a routerLink="">Om Esbjerg Bryghus</a></li>
-    <li><a routerLink="">Ølsmagning</a></li>
-    <li><a routerLink="">Om Os</a></li>
+  <ul class= "col-sm-12">
+    <li class="nav-bar-route"><a routerLink="/home">Hjem</a></li>
+    <li class="nav-bar-route"><a routerLink="/shop">Vores Øl</a></li>
+    <li class="nav-bar-route"><a routerLink="">Om Esbjerg Bryghus</a></li>
+    <li class="nav-bar-route"><a routerLink="">Ølsmagning</a></li>
+    <li class="nav-bar-route"><a routerLink="">Om Os</a></li>
 
 
-    <li *ngIf="!authenticationService.getToken()"><a routerLink="/login">Login</a></li>
+    <li class="nav-bar-route" *ngIf="!authenticationService.getToken()"><a routerLink="/login">Login</a></li>
 
-    <li *ngIf="authenticationService.getToken()" type="button" placement="bottom" [popover]="popTemplate" [isOpen]="profileOpen" triggers="" (click)="profileOpen = !profileOpen;" (clickOutside)="outsideClick()">
-      <a >Profile</a>
+    <li class="nav-bar-route" *ngIf="authenticationService.getToken()" type="button" placement="bottom" [popover]="popTemplate" [isOpen]="profileOpen" triggers="" (click)="profileOpen = !profileOpen;" (clickOutside)="outsideClick()">
+      <a>Profile</a>
     </li>
 
 
@@ -19,11 +19,9 @@
   </div>
 </div>
 
-<ng-template  #popTemplate>
-  <div class="profile">
-  <li *ngIf="authenticationService.getRole() === 'Admin'"><a (click)="profileOpen = !profileOpen" routerLink="/beers">Opret produkter</a></li>
-  <li><a routerLink="">Min profil</a></li>
-  <li><a routerLink="">Mine ordre</a></li>
-  <li><a routerLink="/login">Log ud</a></li>
-  </div>
+<ng-template class="template"  #popTemplate>
+  <li class="pageover-route" *ngIf="authenticationService.getRole() === 'Admin'"><a (click)="profileOpen = !profileOpen" routerLink="/beers">Opret produkter</a></li>
+  <li class="pageover-route"><a routerLink="/profile" (click)="profileOpen = false">Min profil</a></li>
+  <li class="pageover-route"><a routerLink="" (click)="profileOpen = false">Mine ordre</a></li>
+  <li class="pageover-route"><a routerLink="/login" (click)="profileOpen = false" k>Log ud</a></li>
 </ng-template>
