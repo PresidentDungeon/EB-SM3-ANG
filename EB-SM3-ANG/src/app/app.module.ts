@@ -34,6 +34,7 @@ import {BeertypesUpdateComponent} from './product/beertypes/beertypes-update/bee
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { OrderListComponent } from './order-list/order-list.component';
     BeertypesUpdateComponent,
     LoginComponent,
     ProfileComponent,
-    OrderListComponent
+    OrderListComponent,
+    AboutComponent
   ],
   imports: [
     BrowserAnimationsModule,

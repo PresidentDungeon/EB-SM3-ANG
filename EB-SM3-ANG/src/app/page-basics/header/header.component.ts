@@ -17,4 +17,9 @@ export class HeaderComponent implements OnInit {
     this.shoppingService.collapse();
   }
 
+  calculateItemCount(): string{
+    let total: number = this.shoppingService.calculateTotal();
+    return (total <= 99)?total + "": "+99";
+  }
+
 }

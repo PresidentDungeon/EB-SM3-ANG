@@ -4,7 +4,7 @@
   <input #searchBox class="col-md-4" (input)="search(searchBox.value)"/>
 
   <label class="col-md-2">
-    Items Pr Page:
+    Ting pr. side:
     <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
       <option value="10">10</option>
       <option value="25">25</option>
@@ -13,32 +13,32 @@
   </label>
 
   <label class="col-md-2">
-    Beer Type:
+    Øl type:
     <select class="form-control" [(ngModel)]="BeerType" (ngModelChange)="getBeers()">
-      <option value="0">All Types</option>
+      <option value="0">Alle typer</option>
       <option *ngFor="let types of beerTypes" value="{{types.id}}">{{types.typeName}}</option>
     </select>
   </label>
 
   <label class="col-md-2">
-    Sorting Type:
+    Sorterings type:
     <select class="form-control" [(ngModel)]="sortingType" (ngModelChange)="getBeers()">
-      <option value="ADDED">Newest</option>
-      <option value="ALF">Alphabetical</option>
+      <option value="ADDED">Nyeste</option>
+      <option value="ALF">Alfabetisk</option>
       <option value="IBU">IBU</option>
       <option value="EBC">EBC</option>
     </select>
   </label>
 
   <label class="col-md-2">
-    Sorting:
+    Sortering:
     <select class="form-control" [(ngModel)]="sorting" (ngModelChange)="getBeers()">
-      <option value="asc">Ascending</option>
-      <option value="desc">Descending</option>
+      <option value="asc">Stigende</option>
+      <option value="desc">Faldende</option>
     </select>
   </label>
 
-  <h3>Beers List:</h3>
+  <h3>Øl Sortiment</h3>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
   <div class="container">
