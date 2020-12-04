@@ -1,4 +1,4 @@
-.profile {
+.profile, .updateView{
   background-color: #1d1d1d;
 }
 
@@ -55,6 +55,20 @@ h6{
 
 input.ng-dirty.ng-invalid {
   border: 1px solid red;
+}
+
+progressbar{
+  width: 300px;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+.modal-header {
+  border-bottom: 0 none;
+}
+
+.modal-footer {
+  border-top: 0 none;
 }
 
 progressbar{

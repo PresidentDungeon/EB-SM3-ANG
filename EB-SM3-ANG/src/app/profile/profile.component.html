@@ -92,10 +92,165 @@
       </div>
 
       <div class="col text-center">
-        <button class="btn btn-success" type="submit" [disabled]="!userForm.valid">Create</button>
+        <button class="btn btn-success" type="submit" [disabled]="!userForm.valid && !formLoading">Create</button>
+        <button type="button" class="btn btn-outline-warning" (click)="openUpdateModal(updateTemplate)">Update password</button>
       </div>
     </form>
 
+    <form *ngIf="foundUserInfo" [formGroup]="userForm" (ngSubmit)="updateCustomerInfo()">
 
+      <div class="form-group">
+        <div class="col-sm-4 offset-sm-4">
+          <label for="fnameUpdate">Fornavn *</label>
+          <input type="text" class="form-control" formControlName="fname" id="fnameUpdate" placeholder="Indtast fornavn" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
+        </div>
+
+        <div class="col-sm-8 offset-sm-4">
+          <h6 *ngIf="userForm.get('fname').invalid && userForm.get('fname').dirty">Feltet må ikke være tomt</h6>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-4 offset-sm-4">
+          <label for="lnameUpdate">Efternavn *</label>
+          <input type="text" class="form-control" formControlName="lname" id="lnameUpdate" placeholder="Indtast efternavn" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
+        </div>
+
+        <div class="col-sm-8 offset-sm-4">
+          <h6 *ngIf="userForm.get('lname').invalid && userForm.get('lname').dirty">Feltet må ikke være tomt</h6>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-4 offset-sm-4">
+          <label for="emailUpdate">Email *</label>
+          <input type="text" class="form-control" formControlName="email" id="emailUpdate" placeholder="Indtast email" pattern="^.+@[^\.].*\.[a-z]{2,}$">
+        </div>
+
+        <div class="col-sm-8 offset-sm-4">
+          <h6 *ngIf="userForm.get('email').invalid && userForm.get('email').dirty">Feltet må ikke være tomt</h6>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-4 offset-sm-4">
+          <label for="pNumberUpdate">Telefon nummer</label>
+          <input type="text" class="form-control" formControlName="pNumber" id="pNumberUpdate" placeholder="Indtast telefon nummer" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
+        </div>
+
+        <div class="col-sm-8 offset-sm-4">
+          <h6 *ngIf="userForm.get('pNumber').invalid && userForm.get('pNumber').dirty">Feltet må ikke være tomt</h6>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-4 offset-sm-4">
+          <label for="streetNameUpdate">Adresse *</label>
+          <input type="text" class="form-control" formControlName="streetName" id="streetNameUpdate" placeholder="Indtast adresse">
+        </div>
+
+        <div class="col-sm-8 offset-sm-4">
+          <h6 *ngIf="userForm.get('streetName').invalid && userForm.get('streetName').dirty">Feltet må ikke være tomt</h6>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-4 offset-sm-4">
+          <label for="postalCodeUpdate">Postnummer *</label>
+          <input type="number" class="form-control" formControlName="postalCode" id="postalCodeUpdate" placeholder="Indtast postnummer" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$" min="0" max="9999">
+        </div>
+
+        <div class="col-sm-8 offset-sm-4">
+          <h6 *ngIf="userForm.get('postalCode').invalid && userForm.get('postalCode').dirty">Feltet skal indeholde et postnummer mellem 0 - 9999</h6>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-4 offset-sm-4">
+          <label for="cityNameUpdate">By *</label>
+          <input type="text" class="form-control" formControlName="cityName" id="cityNameUpdate" placeholder="Indtast by" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
+        </div>
+
+        <div class="col-sm-8 offset-sm-4">
+          <h6 *ngIf="userForm.get('cityName').invalid && userForm.get('cityName').dirty">Feltet må ikke være tomt</h6>
+        </div>
+      </div>
+
+      <div class="col text-center">
+        <button class="btn btn-success" type="submit" [disabled]="!userForm.valid && !formLoading">Update</button>
+        <button type="button" class="btn btn-outline-warning" (click)="openUpdateModal(updateTemplate)">Update password</button>
+      </div>
+    </form>
+
+    <button class="btn btn-info" (click)="goBack();">Go back</button>
   </div>
 </div>
+
+
+
+
+
+
+
+<ng-template #updateTemplate>
+  <div  class="updateView modal-header">
+    <h1 class="modal-title w-100 text-center">Opdater <b>kodeord</b>?</h1>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="updateView modal-body">
+    <h6 align="center">{{passwordError}}</h6>
+    <form [formGroup]="updateForm" (ngSubmit)="updatePassword()">
+
+      <div class="form-group">
+        <div class="col text-center">
+          <label for="oldPassword">Current password</label>
+          <input type="text" class="form-control" formControlName="oldPassword" id="oldPassword" placeholder="Current password">
+        </div>
+
+        <div class="col text-center">
+          <h6 *ngIf="updateForm.get('oldPassword').invalid && updateForm.get('oldPassword').dirty">Kodeord er påkrævet</h6>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col text-center">
+          <label for="passwordRegister">Password</label>
+          <input type="password" class="form-control" formControlName="password" id="passwordRegister" placeholder="Enter new password">
+        </div>
+
+        <div class="col text-center">
+          <h6 *ngIf="updateForm.get('password').invalid && updateForm.get('password').dirty">Kodeord er påkrævet (min. 8 tegn)</h6>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col text-center">
+          <label for="passwordConfirm">Gentag Password</label>
+          <input type="password" class="form-control" formControlName="passwordConfirm" id="passwordConfirm" placeholder="Enter password">
+        </div>
+
+        <div class="col text-center">
+          <h6 *ngIf="updateForm.get('passwordConfirm').dirty && updateForm.hasError('invalid')">Gentagende kode skal være ens</h6>
+        </div>
+      </div>
+
+      <progressbar class="progress" *ngIf="passwordUpdateLoading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+
+      <div class="col text-center">
+        <button (click)="modalRef.hide();" type="button" class="btn btn-secondary" >Cancel</button>
+        <button class="btn btn-success" type="submit" [disabled]="!updateForm.valid || passwordUpdateLoading">Opdater</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>
+
