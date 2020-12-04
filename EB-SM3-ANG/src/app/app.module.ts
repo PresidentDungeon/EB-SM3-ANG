@@ -33,7 +33,8 @@ import { ProductPageComponent } from './product/product-page/product-page.compon
 import {BeertypesUpdateComponent} from './product/beertypes/beertypes-update/beertypes-update.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { OrderListComponent } from './order-list/order-list.component';
+import { OrderListComponent } from './orders/order-list/order-list.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { OrderListComponent } from './order-list/order-list.component';
     BeertypesUpdateComponent,
     LoginComponent,
     ProfileComponent,
-    OrderListComponent
+    OrderListComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserAnimationsModule,

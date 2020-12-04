@@ -72,7 +72,7 @@ export class SideBarComponent implements OnInit {
         this.orderCreateLoad = false;
         this.shoppingService.clearCart();
         this.closeShoppingCart();
-        //this.router.navigate(['/order/' + order.id]);
+        this.router.navigate(['/order/' + order.id]);
         },
         (error) => {
         if (error.status === 400){
