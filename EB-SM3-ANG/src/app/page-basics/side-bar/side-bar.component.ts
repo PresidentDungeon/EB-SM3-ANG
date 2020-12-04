@@ -1,6 +1,4 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
-import {OrderItem} from '../../shared/services/orderItem';
 import {ShoppingCartService} from '../shared/services/shopping-cart.service';
 import {OrderItem} from '../shared/services/orderItem';
 import {AuthenticationService} from '../shared/services/authentication.service';
@@ -43,7 +41,7 @@ export class SideBarComponent implements OnInit {
   }
 
   orderProducts(): void{
-    
+
     this.orderCreateLoad = true;
 
     let date = new Date();
