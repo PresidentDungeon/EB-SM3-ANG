@@ -35,9 +35,11 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'orders', component: OrderListComponent},
   {path: 'order/:id', component: OrderDetailComponent},
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
