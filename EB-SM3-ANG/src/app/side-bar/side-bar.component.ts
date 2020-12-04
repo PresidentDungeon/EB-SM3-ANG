@@ -4,7 +4,6 @@ import {OrderItem} from '../shared/services/orderItem';
 import {AuthenticationService} from '../shared/services/authentication.service';
 import {Router} from '@angular/router';
 import {UserService} from '../profile/shared/user.service';
-import {Customer} from '../profile/shared/customer';
 import {Order} from '../shared/services/order';
 
 @Component({
@@ -42,8 +41,7 @@ export class SideBarComponent implements OnInit {
   }
 
   orderProducts(): void{
-
-    debugger;
+    
     this.orderCreateLoad = true;
 
     let date = new Date();
