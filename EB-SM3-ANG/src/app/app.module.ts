@@ -33,6 +33,7 @@ import { ProductPageComponent } from './product/product-page/product-page.compon
 import {BeertypesUpdateComponent} from './product/beertypes/beertypes-update/beertypes-update.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AboutComponent } from './about/about.component';
 import { OrderListComponent } from './orders/order-list/order-list.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 
@@ -58,6 +59,7 @@ import { OrderDetailComponent } from './orders/order-detail/order-detail.compone
     LoginComponent,
     ProfileComponent,
     OrderListComponent,
+    AboutComponent,
     OrderDetailComponent
   ],
   imports: [

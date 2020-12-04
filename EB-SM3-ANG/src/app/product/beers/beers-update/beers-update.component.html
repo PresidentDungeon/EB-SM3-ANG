@@ -1,5 +1,5 @@
-<div class="beers-update">
-<h1 align="center">Register update</h1>
+<div class="jumbotron">
+<h1 align="center">Opdatér øl</h1>
 <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 <div class="container" *ngIf="!loading">
 
@@ -8,127 +8,127 @@
   <form [formGroup]="beerForm" (ngSubmit)="updateBeer()">
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="name">Beer name</label>
-        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter beer name" maxlength="32" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
+        <label for="name">Øl navn</label>
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Indtast øl navn" maxlength="32" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 *ngIf="beerForm.get('name').invalid && beerForm.get('name').dirty">beer name must be between 0-16 characters with no trailing whitespace</h6>
+        <h6 *ngIf="beerForm.get('name').invalid && beerForm.get('name').dirty">Øl navn skal være mellem 0-16 tegn uden efterfulgt mellemrum</h6>
       </div>
     </div>
 
 
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="description">Beer description</label>
-        <input type="text" class="form-control" formControlName="description" id="description" placeholder="Enter beer description">
+        <label for="description">Øl beskrivelse</label>
+        <input type="text" class="form-control" formControlName="description" id="description" placeholder="Indtast øl beskrivelse">
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 *ngIf="beerForm.get('description').invalid && beerForm.get('description').dirty">beer description must not be empty</h6>
+        <h6 *ngIf="beerForm.get('description').invalid && beerForm.get('description').dirty">Øl beskrivelse må ikke være tom</h6>
       </div>
     </div>
 
 
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="price">Beer price</label>
-        <input type="number" class="form-control" formControlName="price" id="price" placeholder="Enter beer price" min="0" max="99999">
+        <label for="price">Øl pris</label>
+        <input type="number" class="form-control" formControlName="price" id="price" placeholder="Indtast øl pris" min="0" max="99999">
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 *ngIf="beerForm.get('price').invalid && beerForm.get('price').dirty">beer price must be between 0-99999</h6>
+        <h6 *ngIf="beerForm.get('price').invalid && beerForm.get('price').dirty">Øl pris skal være mellem 0-99999</h6>
       </div>
     </div>
 
 
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="percentage">Beer percentage</label>
-        <input type="number" class="form-control" formControlName="percentage" id="percentage" placeholder="Enter beer percentage" min="0" max="100">
+        <label for="percentage">Øl procent</label>
+        <input type="number" class="form-control" formControlName="percentage" id="percentage" placeholder="Indtast øl procent" min="0" max="100">
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 *ngIf="beerForm.get('percentage').invalid && beerForm.get('percentage').dirty">beer percentage must be between 0-100</h6>
+        <h6 *ngIf="beerForm.get('percentage').invalid && beerForm.get('percentage').dirty">Øl procent skal være mellem 0-100</h6>
       </div>
     </div>
 
 
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="IBU">Beer IBU</label>
-        <input type="number" class="form-control" formControlName="IBU" id="IBU" placeholder="Enter beer IBU" min="0" max="120">
+        <label for="IBU">Øl IBU (Bitterhed)</label>
+        <input type="number" class="form-control" formControlName="IBU" id="IBU" placeholder="Indtast øl IBU" min="0" max="120">
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 *ngIf="beerForm.get('IBU').invalid && beerForm.get('IBU').dirty">beer IBU must be between 0-120</h6>
+        <h6 *ngIf="beerForm.get('IBU').invalid && beerForm.get('IBU').dirty">Øl IBU skal være mellem 0-120</h6>
       </div>
     </div>
 
 
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="EBC">Beer EBC</label>
-        <input type="number" class="form-control" formControlName="EBC" id="EBC" placeholder="Enter beer EBC" min="0" max="80">
+        <label for="EBC">Øl EBC (Farve)</label>
+        <input type="number" class="form-control" formControlName="EBC" id="EBC" placeholder="Indtast øl EBC" min="0" max="80">
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 *ngIf="beerForm.get('EBC').invalid && beerForm.get('EBC').dirty">beer EBC must be between 0-80</h6>
+        <h6 *ngIf="beerForm.get('EBC').invalid && beerForm.get('EBC').dirty">Øl EBC skal være mellem 0-80</h6>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="stock">Beer stock</label>
-        <input type="number" class="form-control" formControlName="stock" id="stock" placeholder="Enter beer stock" min="0">
+        <label for="stock">Øl på lager</label>
+        <input type="number" class="form-control" formControlName="stock" id="stock" placeholder="Indtast antal øl på lager" min="0">
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 *ngIf="beerForm.get('stock').invalid && beerForm.get('stock').dirty">stock must be a whole number above or equal to zero</h6>
+        <h6 *ngIf="beerForm.get('stock').invalid && beerForm.get('stock').dirty">Antal må ikke være tom eller negativ</h6>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="type">Beer type</label>
+        <label for="type">Øl type</label>
         <select class="form-control" formControlName="type" id="type">
-          <option value="" disabled>Choose Type</option>
+          <option value="" disabled>Vælg type</option>
           <option *ngFor="let type of types" [value]="type.id">{{type.typeName}}</option>
         </select>
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 *ngIf="beerForm.get('type').invalid && beerForm.get('type').dirty">beer type must be selected</h6>
+        <h6 *ngIf="beerForm.get('type').invalid && beerForm.get('type').dirty">Øl type skal være valgt</h6>
       </div>
     </div>
 
 
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="brand">Beer brand</label>
+        <label for="brand">Øl mærke</label>
         <select class="form-control" formControlName="brand" id="brand">
-          <option value="" disabled>Choose Brand</option>
+          <option value="" disabled>Vælg mærke</option>
           <option *ngFor="let brand of brands" [value]="brand.id">{{brand.brandName}}</option>
         </select>
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 *ngIf="beerForm.get('brand').invalid && beerForm.get('brand').dirty">beer brand must be selected</h6>
+        <h6 *ngIf="beerForm.get('brand').invalid && beerForm.get('brand').dirty">Øl mærke skal være valgt</h6>
       </div>
     </div>
 
 
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="image">Beer image</label>
+        <label for="image">Øl billede</label>
         <input type="file" class="form-control" formControlName="imageURL" id="image" placeholder="Select beer image" accept="image/*" (change)="onFileChange($event)">
       </div>
 
       <progressbar class="progress" *ngIf="updateLoad" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
       <div class="col-sm-8 offset-sm-4">
-        <a href="{{imageURL}}" *ngIf="!updateLoad && imageURL !== ''">Previous Image</a>
-        <button type="button" class="btn btn-outline-danger" *ngIf="!updateLoad && imageURL !== ''" (click)="clearPreviousImage()">Clear previous image</button>
+        <a href="{{imageURL}}" *ngIf="!updateLoad && imageURL !== ''">Forrige billede</a>
+        <button type="button" class="btn btn-outline-danger" *ngIf="!updateLoad && imageURL !== ''" (click)="clearPreviousImage()">Fjern forrige billede</button>
       </div>
     </div>
 
@@ -136,10 +136,10 @@
 
 
     <div class="col text-center">
-      <button class="btn btn-success" type="submit" [disabled]="!beerForm.valid || updateLoad">Update</button>
+      <button class="btn btn-success" type="submit" [disabled]="!beerForm.valid || updateLoad">Opdatér</button>
     </div>
   </form>
-  <button class="btn btn-info" (click)="goBack();">Go back</button>
+  <button class="btn btn-info" (click)="goBack();">Gå tilbage</button>
 
 </div>
 </div>

@@ -1,15 +1,15 @@
 <div class="jumbotron">
 <div class="container">
   <div class="categories">
-    <button type="button" class="btn btn-outline-primary" routerLink="/beers">Beers</button>
-    <button type="button" class="btn btn-outline-primary" routerLink="/types">Types</button>
-    <button type="button" class="btn btn-outline-primary" routerLink="/brands">Brands</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/beers">Øl</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/types">Typer</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/brands">Mærker</button>
   </div>
 
   <input #searchBox class="col-md-3 offset-md-2" (input)="search(searchBox.value)"/>
 
   <label class="col-md-2 offset-md-1">
-    Items Pr Page:
+    Ting pr. side:
     <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
       <option value="10">10</option>
       <option value="25">25</option>
@@ -18,24 +18,24 @@
   </label>
 
   <label class="col-md-2">
-    Beer Type:
+    Øl type:
     <select class="form-control" [(ngModel)]="BeerType" (ngModelChange)="getBeers()">
       <option value="0">All Types</option>
       <option *ngFor="let types of beerTypes" value="{{types.id}}">{{types.typeName}}</option>
     </select>
   </label>
 
-  <h3>Beers List:</h3>
+  <h3>Øl liste</h3>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
   <div id="table">
     <table *ngIf="!loading" class="offset-md-2">
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Price</th>
-        <th scope="col">Beer Type</th>
-        <th scope="col">Brand</th>
+        <th scope="col">Navn</th>
+        <th scope="col">Pris</th>
+        <th scope="col">Øl type</th>
+        <th scope="col">Mærke</th>
       </tr>
       <tr class="data" *ngFor="let beer of beers">
         <td><a routerLink="">{{beer.id}}</a></td>
@@ -43,14 +43,14 @@
         <td><a routerLink="">{{beer.price}}</a></td>
         <td><a routerLink="">{{beer.type.typeName}}</a></td>
         <td><a routerLink="">{{beer.brand.brandName}}</a></td>
-        <button type="button" class="btn btn-outline-dark" routerLink="/beers/update/{{beer.id}}">Update</button>
-        <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, beer)">X</button>
+        <button type="button" class="btn btn-outline-dark" routerLink="/beers/update/{{beer.id}}">Opdatér</button>
+        <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, beer)">Slet</button>
       </tr>
     </table>
   </div>
 
   <div class="col text-center">
-    <button class="btn btn-success" routerLink="add">Add beer!</button>
+    <button class="btn btn-success" routerLink="add">Tilføj øl</button>
   </div>
 
   <div>
@@ -83,16 +83,16 @@
 
 <ng-template #deleteTemplate>
   <div class="modal-header">
-    <h4 class="modal-title w-100 text-center">Confirmation</h4>
+    <h4 class="modal-title w-100 text-center">Bekræft</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <p>Are you sure you want to delete <b>{{selectedBeer.name}}</b>?</p>
+    <p>Er du sikker på at du vil slette <b>{{selectedBeer.name}}</b>?</p>
     <div class="float-right">
-      <button (click)="modalRef.hide()" type="button" class="btn btn-secondary" >Cancel</button>
-      <button (click)="modalRef.hide(); deleteBeer(selectedBeer.id);" type="button" class="btn btn-danger">Delete</button>
+      <button (click)="modalRef.hide()" type="button" class="btn btn-secondary" >Annullér</button>
+      <button (click)="modalRef.hide(); deleteBeer(selectedBeer.id);" type="button" class="btn btn-danger">Slet</button>
     </div>
   </div>
 </ng-template>
