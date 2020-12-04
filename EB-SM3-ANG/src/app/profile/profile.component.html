@@ -200,7 +200,7 @@
 
 <ng-template #updateTemplate>
   <div  class="updateView modal-header">
-    <h1 class="modal-title w-100 text-center">Opdater <b>kodeord</b>?</h1>
+    <h1 class="modal-title w-100 text-center"><b>Opdater kodeord</b>?</h1>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -213,7 +213,7 @@
       <div class="form-group">
         <div class="col text-center">
           <label for="oldPassword">Current password</label>
-          <input type="text" class="form-control" formControlName="oldPassword" id="oldPassword" placeholder="Current password">
+          <input type="password" class="form-control" formControlName="oldPassword" id="oldPassword" placeholder="Current password">
         </div>
 
         <div class="col text-center">

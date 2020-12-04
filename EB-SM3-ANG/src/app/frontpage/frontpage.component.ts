@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Beer} from '../beers/shared/beer';
-import {BeerService} from '../beers/shared/beer.service';
+import {Beer} from '../product/beers/shared/beer';
+import {BeerService} from '../product/beers/shared/beer.service';
 import {ShoppingCartService} from '../shared/services/shopping-cart.service';
 
 @Component({

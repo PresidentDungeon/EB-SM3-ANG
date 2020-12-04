@@ -1,10 +1,11 @@
 import {Component, HostListener, OnInit} from '@angular/core';
+import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
+import {OrderItem} from '../../shared/services/orderItem';
 import {ShoppingCartService} from '../shared/services/shopping-cart.service';
 import {OrderItem} from '../shared/services/orderItem';
 import {AuthenticationService} from '../shared/services/authentication.service';
 import {Router} from '@angular/router';
 import {UserService} from '../profile/shared/user.service';
-import {Customer} from '../profile/shared/customer';
 import {Order} from '../shared/services/order';
 
 @Component({
@@ -42,7 +43,7 @@ export class SideBarComponent implements OnInit {
   }
 
   orderProducts(): void{
-
+    
     this.orderCreateLoad = true;
 
     let date = new Date();
@@ -56,10 +57,10 @@ export class SideBarComponent implements OnInit {
 
 
     const userID = this.authService.getID();
-    if(userID === null){this.router.navigate(['/login']); this.orderCreateLoad = false;}
+    if(userID === null){this.router.navigate(['/login']); this.orderCreateLoad = false; return;}
 
     this.userService.getCustomerById(userID).subscribe((customer) => {
-      if(customer === null){this.router.navigate(['/profile']);}
+      if(customer === null){this.router.navigate(['/profile']); return;}
 
       const order: Order = {
         id: 0,
