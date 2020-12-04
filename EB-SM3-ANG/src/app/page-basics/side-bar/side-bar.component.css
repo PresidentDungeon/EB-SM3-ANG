@@ -73,3 +73,15 @@ button {
   margin-left: 15px;
 }
 
+button:disabled{
+  cursor: not-allowed;
+  border: none;
+  background-color: rgba(96,96,96,0.20)
+}
+
+progressbar{
+  width: 300px;
+  margin-left: auto;
+  margin-right:auto;
+}
+

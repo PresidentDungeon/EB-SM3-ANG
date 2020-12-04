@@ -94,8 +94,6 @@ export class BeersUpdateComponent implements OnInit {
       });
 
       this.imageURL = this.beer.imageURL;
-      console.log(this.beer);
-
       this.loading = false;
     }
   }

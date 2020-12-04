@@ -1,7 +1,7 @@
 <nav (clickOutside)="closeShoppingCart()" [exclude]="'.cart'" id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': getCartStatus()}">
 
   <alert type="danger" *ngIf="shoppingService.isChanged">
-    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+    <strong>Shopping card updated because of max stock available.</strong>
     <button (click)="shoppingService.isChanged = false" class="btn btn-danger">X</button>
   </alert>
 
@@ -23,5 +23,7 @@
   </ul>
 
   <button (click)="shoppingService.clearCart();" class="btn btn-danger">Reset</button>
+  <button type="button" class="btn btn-outline-success" (click)="orderProducts();" [disabled]="this.shoppingService.calculateTotal() === 0 || this.orderCreateLoad">Purchase items</button>
+  <progressbar class="progress center-block" *ngIf="orderCreateLoad" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
 </nav>
