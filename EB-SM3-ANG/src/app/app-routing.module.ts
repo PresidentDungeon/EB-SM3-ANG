@@ -14,6 +14,8 @@ import {BeertypesUpdateComponent} from './product/beertypes/beertypes-update/bee
 import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AboutComponent} from './about/about.component';
+import {OrderListComponent} from './orders/order-list/order-list.component';
+import {OrderDetailComponent} from './orders/order-detail/order-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -31,7 +33,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'about', component: AboutComponent},
-];
+  {path: 'orders', component: OrderListComponent},
+  {path: 'order/:id', component: OrderDetailComponent},
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,13 @@
+<div class="jumbotron">
+  <div class="container">
+
+    <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+
+    <div class="tableList" *ngIf="!loading">
+      <h3>Ordre {{1000 + order.id}}:</h3>
+    </div>
+
+
+  </div>
+
+</div>
