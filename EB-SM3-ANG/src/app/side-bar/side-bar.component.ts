@@ -43,6 +43,7 @@ export class SideBarComponent implements OnInit {
 
   orderProducts(): void{
 
+    debugger;
     this.orderCreateLoad = true;
 
     let date = new Date();
@@ -56,10 +57,10 @@ export class SideBarComponent implements OnInit {
 
 
     const userID = this.authService.getID();
-    if(userID === null){this.router.navigate(['/login']); this.orderCreateLoad = false;}
+    if(userID === null){this.router.navigate(['/login']); this.orderCreateLoad = false; return;}
 
     this.userService.getCustomerById(userID).subscribe((customer) => {
-      if(customer === null){this.router.navigate(['/profile']);}
+      if(customer === null){this.router.navigate(['/profile']); return;}
 
       const order: Order = {
         id: 0,
