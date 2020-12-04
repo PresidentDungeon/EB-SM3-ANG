@@ -1,12 +1,10 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
-import {OrderItem} from '../../shared/services/orderItem';
-import {ShoppingCartService} from '../shared/services/shopping-cart.service';
-import {OrderItem} from '../shared/services/orderItem';
-import {AuthenticationService} from '../shared/services/authentication.service';
 import {Router} from '@angular/router';
-import {UserService} from '../profile/shared/user.service';
-import {Order} from '../shared/services/order';
+import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
+import {AuthenticationService} from '../../shared/services/authentication.service';
+import {UserService} from '../../profile/shared/user.service';
+import {OrderItem} from '../../shared/services/orderItem';
+import {Order} from '../../shared/services/order';
 
 @Component({
   selector: 'app-side-bar',
@@ -43,7 +41,7 @@ export class SideBarComponent implements OnInit {
   }
 
   orderProducts(): void{
-    
+
     this.orderCreateLoad = true;
 
     let date = new Date();
