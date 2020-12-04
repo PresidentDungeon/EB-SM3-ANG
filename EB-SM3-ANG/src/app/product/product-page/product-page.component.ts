@@ -54,7 +54,6 @@ export class ProductPageComponent implements OnInit {
 
   getTypes(): void{
     this.typeService.getTypes('').subscribe((FilterList) => {
-      this.totalItems = FilterList.totalItems;
       this.beerTypes = FilterList.list;
     }, error => {}, () => {});
   }

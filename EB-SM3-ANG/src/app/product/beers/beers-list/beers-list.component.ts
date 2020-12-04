@@ -58,7 +58,6 @@ export class BeersListComponent implements OnInit {
 
   getTypes(): void{
     this.typeService.getTypes('').subscribe((FilterList) => {
-      this.totalItems = FilterList.totalItems;
       this.beerTypes = FilterList.list;
     }, error => {}, () => {});
   }
