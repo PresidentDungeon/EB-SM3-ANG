@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {ShoppingCartService} from '../shared/services/shopping-cart.service';
-import {OrderItem} from '../shared/services/orderItem';
+import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
+import {OrderItem} from '../../shared/services/orderItem';
 
 @Component({
   selector: 'app-side-bar',

@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
-import {Brand} from '../../brands/shared/brand';
+import {Brand} from '../../product/brands/shared/brand';
 import {Customer} from './customer';
 import {User} from './user';
 

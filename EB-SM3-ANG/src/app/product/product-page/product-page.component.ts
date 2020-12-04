@@ -5,7 +5,7 @@ import {BeerType} from "../beertypes/shared/beertype";
 import {BeerService} from "../beers/shared/beer.service";
 import {BeertypeService} from "../beertypes/shared/beertype.service";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
-import {ShoppingCartService} from '../shared/services/shopping-cart.service';
+import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-product-page',

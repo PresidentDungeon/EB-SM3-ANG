@@ -1,4 +1,4 @@
-import {Beer} from "../../beers/shared/beer";
+import {Beer} from "../../product/beers/shared/beer";
 
 export interface OrderItem{
   item: Beer;

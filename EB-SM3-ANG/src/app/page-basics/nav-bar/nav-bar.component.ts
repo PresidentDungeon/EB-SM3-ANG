@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ShoppingCartService} from "../shared/services/shopping-cart.service";
-import {AuthenticationService} from '../shared/services/authentication.service';
+import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
+import {AuthenticationService} from '../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-nav-bar',

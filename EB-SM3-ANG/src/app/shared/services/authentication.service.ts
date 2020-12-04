@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
-import {Beer} from '../../beers/shared/beer';
+import {Beer} from '../../product/beers/shared/beer';
 
 @Injectable({
   providedIn: 'root'
