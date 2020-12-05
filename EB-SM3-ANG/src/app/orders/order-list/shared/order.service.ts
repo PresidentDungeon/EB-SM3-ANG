@@ -23,7 +23,7 @@ export class OrderService {
     return this.http.get<Order>(environment.apiUrl + '/order/' + orderID + '/' + userID, this.httpOptions);
   }
 
-  ReadOrderByID(orderID: number): Observable <Order>{
+  ReadOrderByID(orderID: number): Observable<Order>{
     return this.http.get<Order>(environment.apiUrl + '/order/' + orderID, this.httpOptions);
   }
 

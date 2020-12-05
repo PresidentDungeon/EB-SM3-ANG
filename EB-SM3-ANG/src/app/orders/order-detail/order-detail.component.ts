@@ -5,6 +5,7 @@ import {UserService} from '../../profile/shared/user.service';
 import {User} from '../../profile/shared/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../order-list/shared/order.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-order-detail',
@@ -13,7 +14,7 @@ import {OrderService} from '../order-list/shared/order.service';
 })
 export class OrderDetailComponent implements OnInit {
 
-  order: Order = null;
+  order: any = null;
   user: User;
   orderID: number = 0;
 
@@ -22,7 +23,7 @@ export class OrderDetailComponent implements OnInit {
 
   constructor(private authService: AuthenticationService, private userService: UserService,
               private orderService: OrderService, private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.orderID = +this.route.snapshot.paramMap.get('id');
@@ -34,8 +35,6 @@ export class OrderDetailComponent implements OnInit {
     this.userService.getUserById(this.authService.getID()).subscribe((user) => {this.user = user}, (error) => {this.loading = false; this.router.navigate(['/login']); return;},
       () => {
 
-      debugger;
-      console.log(this.user.userRole);
       if(this.user.userRole !== 'Admin'){
         this.loadOrderUser();
       }
@@ -46,14 +45,20 @@ export class OrderDetailComponent implements OnInit {
 
   loadOrderUser(): void{
     this.orderService.ReadOrderByIDUser(this.orderID, this.user.id).subscribe((order) => {
-      this.order = order; this.loading = false;}, () => {
+      console.log(order);
+      this.order = order; console.log(this.order); this.loading = false;}, () => {
       this.router.navigate(['/orders']);
     })}
 
   loadOrderAdmin(): void{
     this.orderService.ReadOrderByID(this.orderID).subscribe((order) => {
+      console.log(order);
       this.order = order; this.loading = false;}, (error) => {
       this.error = error.error; this.loading = false;
     })}
+
+  goBack(): void{
+    this.location.back();
+  }
 
 }

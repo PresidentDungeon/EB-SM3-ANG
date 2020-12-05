@@ -5,9 +5,29 @@
 
     <div class="tableList" *ngIf="!loading">
       <h3>Ordre {{1000 + order.id}}:</h3>
+      <h3>{{order.orderCreated | date}}</h3>
+
+      <div class="table">
+        <table class="offset-md-2">
+          <tr>
+            <th scope="col">Produkt navn</th>
+            <th scope="col">Varenummer</th>
+            <th scope="col">Pris</th>
+            <th scope="col">Antal</th>
+            <th scope="col">Subtotal</th>
+          </tr>
+          <tr class="data" *ngFor="let orderItem of order.orderBeers">
+            <td>{{orderItem.beer.name}}</td>
+            <td>{{orderItem.beer.id}}</td>
+            <td>{{orderItem.beer.price | currency: 'DKK '}}</td>
+            <td>{{orderItem.amount}}</td>
+            <td>{{orderItem.beer.price * orderItem.amount | currency: 'DKK '}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <h2><b>Total (inkl. moms) {{order.accumulatedPrice | currency: 'DKK '}}</b></h2>
     </div>
-
-
+    <button class="btn btn-info" (click)="goBack();">Gå tilbage</button>
   </div>
-
 </div>

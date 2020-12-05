@@ -27,7 +27,7 @@
           <td>{{1000 + order.id}}</td>
           <td>{{order.orderCreated | date}}</td>
           <td>{{customer.firstName + ' ' + customer.lastName}}</td>
-          <td>{{order.accumulatedPrice}}</td>
+          <td>{{order.accumulatedPrice | currency: 'DKK '}}</td>
           <button type="button" class="btn btn-outline-dark" routerLink="/order/{{order.id}}">Details</button>
         </tr>
       </table>

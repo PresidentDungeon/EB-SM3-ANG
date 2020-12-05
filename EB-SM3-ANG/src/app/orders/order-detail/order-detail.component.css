@@ -1,0 +1,81 @@
+.jumbotron {
+  background-size: cover;
+  background-color: #1d1d1d;
+  background-position-y: center;
+  margin-bottom: 0px;
+  border-radius: 0;
+}
+
+.categories {
+  text-align: center;
+}
+
+button {
+  color: #fefefe;
+  margin: 15px;
+}
+
+label {
+  color: #f28e1c;
+}
+
+input {
+  background: #3d3d3d;
+  border: none!important;
+  color: #f28e1c;
+}
+
+select {
+  background-color: #3d3d3d!important;
+  color: #f28e1c!important;
+  border: none!important;
+}
+
+h2 {
+  color: #f28e1c;
+  text-align: center;
+}
+
+h3 {
+  color: #f28e1c;
+}
+
+table {
+  color: #f28e1c;
+  outline: solid 2px #f28e1c;
+}
+
+td, th {
+  font-size: medium;
+  padding: 15px;
+  color: #f28e1c;
+}
+
+a{
+  text-decoration: none;
+  color: #f28e1c;
+}
+
+progressbar{
+  width: 300px;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+.data:hover a{
+  background-color: #3d3d3d;
+  cursor: pointer;
+}
+
+#pages {
+  justify-content: center;
+}
+
+#paging {
+  justify-content: center;
+}
+
+table tr td
+{
+  border-top: solid 2px #f28e1c;
+}
