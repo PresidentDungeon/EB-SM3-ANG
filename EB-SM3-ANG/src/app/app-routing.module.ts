@@ -14,27 +14,29 @@ import {BeertypesUpdateComponent} from './product/beertypes/beertypes-update/bee
 import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AboutComponent} from './about/about.component';
-import {OrderListComponent} from './orders/order-list/order-list.component';
+import {OrderListPersonalComponent} from './orders/order-list-personal/order-list-personal.component';
 import {OrderDetailComponent} from './orders/order-detail/order-detail.component';
+import {OrderListComponent} from './orders/order-list/order-list.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: FrontpageComponent},
-  {path: 'brands', component: BrandsListComponent},
-  {path: 'brands/add', component: BrandsAddComponent},
-  {path: 'brands/update/:id', component: BrandsUpdateComponent},
-  {path: 'types', component: BeertypesListComponent},
-  {path: 'types/add', component: BeertypesAddComponent},
-  {path: 'types/update/:id', component: BeertypesUpdateComponent},
-  {path: 'beers', component: BeersListComponent},
-  {path: 'beers/add', component: BeersAddComponent},
-  {path: 'beers/update/:id', component: BeersUpdateComponent},
-  {path: 'shop', component: ProductPageComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'about', component: AboutComponent},
-  {path: 'orders', component: OrderListComponent},
-  {path: 'order/:id', component: OrderDetailComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},                //all
+  {path: 'home', component: FrontpageComponent},                    //all
+  {path: 'brands', component: BrandsListComponent},                 //Admin
+  {path: 'brands/add', component: BrandsAddComponent},              //Admin
+  {path: 'brands/update/:id', component: BrandsUpdateComponent},    //Admin
+  {path: 'types', component: BeertypesListComponent},               //Admin
+  {path: 'types/add', component: BeertypesAddComponent},            //Admin
+  {path: 'types/update/:id', component: BeertypesUpdateComponent},  //Admin
+  {path: 'beers', component: BeersListComponent},                   //Admin
+  {path: 'beers/add', component: BeersAddComponent},                //Admin
+  {path: 'beers/update/:id', component: BeersUpdateComponent},      //Admin
+  {path: 'shop', component: ProductPageComponent},                  //all
+  {path: 'login', component: LoginComponent},                       //all
+  {path: 'profile', component: ProfileComponent},                   //logged in
+  {path: 'about', component: AboutComponent},                       //all
+  {path: 'orders', component: OrderListPersonalComponent},          //logged in
+  {path: 'order/:id', component: OrderDetailComponent},             //logged in
+  {path: 'orders/all', component: OrderListComponent},              //Admin
   ];
 
 @NgModule({

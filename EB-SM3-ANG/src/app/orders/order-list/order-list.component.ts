@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {OrderItem} from '../../shared/services/orderItem';
-import {OrderService} from './shared/order.service';
-import {AuthenticationService} from '../../shared/services/authentication.service';
-import {Order} from '../../shared/services/order';
-import {Router} from '@angular/router';
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Order} from '../shared/order';
 import {Customer} from '../../profile/shared/customer';
+import {OrderService} from '../shared/order.service';
+import {AuthenticationService} from '../../shared/services/authentication.service';
+import {Router} from '@angular/router';
 import {UserService} from '../../profile/shared/user.service';
+import {Subject} from 'rxjs';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {Beer} from '../../product/beers/shared/beer';
 
 @Component({
   selector: 'app-order-list',
@@ -15,8 +18,6 @@ import {UserService} from '../../profile/shared/user.service';
 export class OrderListComponent implements OnInit {
 
   orders: Order[] = [];
-  customer: Customer;
-  customerID: number = 0;
 
   loading: boolean = true;
   error: string = '';
@@ -26,33 +27,33 @@ export class OrderListComponent implements OnInit {
   itemsPrPage: number = 10;
   smallNumPages: number = 0;
 
-  constructor(private orderService: OrderService, private authService: AuthenticationService,
-              private router: Router, private userService: UserService) { }
+  modalRef: BsModalRef;
+  selectedOrder: Order;
+  orderFinished: boolean = false;
+
+  constructor(private orderService: OrderService, private router: Router,
+              private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.loadCustomer();
-  }
-
-  loadCustomer(): void{
-
-    this.customerID = this.authService.getID()
-    this.userService.getCustomerById(this.customerID).subscribe((customer) => {this.customer = customer}, (error) => {this.loading = false; return;},
-      () => {
-        if (this.customer === null){this.loading = false; }
-        else{
-          this.loadOrders();
-        }});
+    this.loadOrders();
   }
 
   loadOrders(): void{
-    const filter = `?CurrentPage=${this.currentPage}&ItemsPrPage=${this.itemsPrPage}`;
+    const filter = `?CurrentPage=${this.currentPage}&ItemsPrPage=${this.itemsPrPage}&OrderFinished=${this.orderFinished}`;
+    this.loading = true;
 
-    this.orderService.getOrdersFromCustomer(this.customerID, filter).subscribe((FilterList) => {
-      this.totalItems = FilterList.totalItems;
-      this.orders = FilterList.list;
-      this.loading = false;},
+    this.orderService.getAllOrders(filter).subscribe((FilterList) => {
+        this.totalItems = FilterList.totalItems;
+        this.orders = FilterList.list;},
       (error) => {if (error.status === 401){this.router.navigate(['/login']);}
-          this.error = error.error; this.loading = false; this.loading = false;})
+        this.error = error.error; this.loading = false; this.loading = false;},
+      () => {this.loading = false;})
+  }
+
+  updateOrder(id: number): void{
+
+    this.orderService.updateOrderStatus(id).subscribe((order) => this.loadOrders(),
+      error => {if (error.status === 401){this.router.navigate(['/login']); }});
   }
 
   pageChanged($event: any): void {
@@ -66,6 +67,11 @@ export class OrderListComponent implements OnInit {
     this.smallNumPages = Math.ceil(this.totalItems / this.itemsPrPage);
     this.currentPage = 1;
     this.loadOrders();
+  }
+
+  openUpdateModal(template: TemplateRef<any>, orderToUpdate: Order) {
+    this.selectedOrder = orderToUpdate;
+    this.modalRef = this.modalService.show(template);
   }
 
 }

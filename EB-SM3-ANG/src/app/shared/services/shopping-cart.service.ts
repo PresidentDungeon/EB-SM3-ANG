@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {OrderItem} from "./orderItem";
+import {OrderItem} from "../../orders/shared/orderItem";
 import {Beer} from "../../product/beers/shared/beer";
 import {BeerService} from '../../product/beers/shared/beer.service';
 
@@ -53,7 +53,8 @@ export class ShoppingCartService {
     return this.shoppingCart.reduce((accumulator , OrderItem) => accumulator += OrderItem.item.price * OrderItem.quantity ,0);
   }
 
-  isValid(beer: Beer): boolean{
+  isInvalid(beer: Beer): boolean{
+    if(beer.stock === 0){return true;}
     var orderItemInCart = this.shoppingCart.find(x => x.item.id == beer.id);
     if(orderItemInCart){return orderItemInCart.quantity >= beer.stock}
   }
@@ -77,7 +78,7 @@ export class ShoppingCartService {
 
           if(item.quantity > beer.stock){
 
-            if(item.quantity === 0){object.splice(index, 1);}
+            if(beer.stock === 0){object.splice(index, 1);}
             else{
               item.quantity = beer.stock;
             }

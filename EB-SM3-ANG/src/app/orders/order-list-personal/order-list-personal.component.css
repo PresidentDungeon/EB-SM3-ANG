@@ -1,8 +1,3 @@
-.updateView{
-  background-color: #1d1d1d;
-  color: #f28e1c;
-}
-
 .jumbotron {
   background-size: cover;
   background-color: #1d1d1d;
@@ -74,12 +69,4 @@ progressbar{
 
 #paging {
   justify-content: center;
-}
-
-.modal-header {
-  border-bottom: 0 none;
-}
-
-.modal-footer {
-  border-top: 0 none;
 }

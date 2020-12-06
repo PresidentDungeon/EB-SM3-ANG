@@ -6,7 +6,7 @@ import {map} from 'rxjs/operators';
 import {Brand} from '../../product/brands/shared/brand';
 import {Customer} from './customer';
 import {User} from './user';
-import {Order} from '../../shared/services/order';
+import {Order} from '../../orders/shared/order';
 
 @Injectable({
   providedIn: 'root'

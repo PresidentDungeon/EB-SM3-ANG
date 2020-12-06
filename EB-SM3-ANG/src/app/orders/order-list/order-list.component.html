@@ -1,69 +1,95 @@
 <div class="jumbotron">
   <div class="container">
 
-    <h3>Mine ordrer:</h3>
+    <h3>Alle ordrer:</h3>
     <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+
+    <label class="col-md-2">
+      Ting pr. side:
+      <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+      </select>
+    </label>
+
+    <label class="col-md-2">
+      Status:
+      <select class="form-control" [(ngModel)]="orderFinished" (ngModelChange)="loadOrders()">
+        <option [ngValue]="false">Aktive</option>
+        <option [ngValue]="true">Fuldførte</option>
+      </select>
+    </label>
 
     <div class="tableList" *ngIf="!loading && orders.length !== 0">
 
-      <label class="col-md-2 offset-md-1">
-        Items Pr Page:
-        <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
-          <option value="10">10</option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-        </select>
-      </label>
-
-    <div id="table">
-      <table class="offset-md-2">
-        <tr>
-          <th scope="col">Ordre #</th>
-          <th scope="col">Dato</th>
-          <th scope="col">Leveres til</th>
-          <th scope="col">Ordretotal</th>
-        </tr>
-        <tr class="data" *ngFor="let order of orders">
-          <td>{{1000 + order.id}}</td>
-          <td>{{order.orderCreated | date}}</td>
-          <td>{{customer.firstName + ' ' + customer.lastName}}</td>
-          <td>{{order.accumulatedPrice | currency: 'DKK '}}</td>
-          <button type="button" class="btn btn-outline-dark" routerLink="/order/{{order.id}}">Details</button>
-        </tr>
-      </table>
-    </div>
-
-    <div>
-      <div id="pages" class="row">
-        <pagination
-          [maxSize]="5"
-          [directionLinks]="false"
-          [totalItems]="totalItems"
-          [(ngModel)]="currentPage"
-          (pageChanged)="pageChanged($event)"
-          [itemsPerPage]="itemsPrPage"
-          (numPages)="smallNumPages = $event">
-        </pagination>
+      <div id="table">
+        <table class="offset-md-2">
+          <tr>
+            <th scope="col">Ordre #</th>
+            <th scope="col">Dato</th>
+            <th scope="col">Leveres til</th>
+            <th scope="col">Ordretotal</th>
+          </tr>
+          <tr class="data" *ngFor="let order of orders">
+            <td>{{1000 + order.id}}</td>
+            <td>{{order.orderCreated | date}}</td>
+            <td>{{order.customer.firstName + ' ' + order.customer.lastName}}</td>
+            <td>{{order.accumulatedPrice | currency: 'DKK '}}</td>
+            <button type="button" class="btn btn-outline-dark" routerLink="/order/{{order.id}}">Details</button>
+            <button *ngIf="!orderFinished" type="button" class="btn btn-outline-success" (click)="openUpdateModal(updateTemplate, order)">Fuldført</button>
+          </tr>
+        </table>
       </div>
 
-      <div id="paging" class="row">
-        <pager
-          [totalItems]="totalItems"
-          [(ngModel)]="currentPage"
-          (pageChanged)="pageChanged($event)"
-          pageBtnClass="btn"
-          previousText="« Back"
-          [itemsPerPage]="itemsPrPage"
-          class="pull-left">
-        </pager>
+      <div>
+        <div id="pages" class="row">
+          <pagination
+            [maxSize]="5"
+            [directionLinks]="false"
+            [totalItems]="totalItems"
+            [(ngModel)]="currentPage"
+            (pageChanged)="pageChanged($event)"
+            [itemsPerPage]="itemsPrPage"
+            (numPages)="smallNumPages = $event">
+          </pagination>
+        </div>
+
+        <div id="paging" class="row">
+          <pager
+            [totalItems]="totalItems"
+            [(ngModel)]="currentPage"
+            (pageChanged)="pageChanged($event)"
+            pageBtnClass="btn"
+            previousText="« Back"
+            [itemsPerPage]="itemsPrPage"
+            class="pull-left">
+          </pager>
+        </div>
       </div>
-    </div>
     </div>
 
-      <div *ngIf="!loading && orders.length === 0">
-        <h3>Ingen ordre registreret</h3>
-      </div>
+    <div *ngIf="!loading && orders.length === 0">
+      <h3>Ingen ordrer registreret</h3>
+    </div>
 
   </div>
-
 </div>
+
+
+
+<ng-template #updateTemplate>
+  <div class="updateView modal-header">
+    <h4 class="modal-title w-100 text-center">Bekræft</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="updateView modal-body">
+    <p>Er ordre {{selectedOrder.id + 1000}} blevet afsendt?</p>
+    <div class="float-right">
+      <button (click)="modalRef.hide()" type="button" class="btn btn-secondary" >Annullér</button>
+      <button (click)="modalRef.hide(); updateOrder(selectedOrder.id);" type="button" class="btn btn-success">Godkend</button>
+    </div>
+  </div>
+</ng-template>

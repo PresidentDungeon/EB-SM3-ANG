@@ -21,8 +21,8 @@
 
 <ng-template class="template"  #popTemplate>
   <li class="pageover-route" *ngIf="authenticationService.getRole() === 'Admin'"><a (click)="profileOpen = !profileOpen" routerLink="/beers">Opret produkter</a></li>
+  <li class="pageover-route" *ngIf="authenticationService.getRole() === 'Admin'"><a (click)="profileOpen = !profileOpen" routerLink="/orders/all">Alle ordrer</a></li>
   <li class="pageover-route"><a routerLink="/profile" (click)="profileOpen = false">Min profil</a></li>
   <li class="pageover-route"><a routerLink="/orders" (click)="profileOpen = false">Mine ordrer</a></li>
-  <li class="pageover-route" *ngIf="authenticationService.getRole() === 'Admin'"><a (click)="profileOpen = !profileOpen" routerLink="/orders/all">Alle ordrer</a></li>
   <li class="pageover-route"><a routerLink="/login" (click)="profileOpen = false" k>Log ud</a></li>
 </ng-template>

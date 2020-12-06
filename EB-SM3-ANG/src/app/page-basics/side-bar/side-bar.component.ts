@@ -3,8 +3,8 @@ import {Router} from '@angular/router';
 import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 import {UserService} from '../../profile/shared/user.service';
-import {OrderItem} from '../../shared/services/orderItem';
-import {Order} from '../../shared/services/order';
+import {OrderItem} from '../../orders/shared/orderItem';
+import {Order} from '../../orders/shared/order';
 
 @Component({
   selector: 'app-side-bar',

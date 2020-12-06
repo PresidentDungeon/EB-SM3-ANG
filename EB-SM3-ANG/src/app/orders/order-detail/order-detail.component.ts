@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Order} from '../../shared/services/order';
+import {Order} from '../shared/order';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 import {UserService} from '../../profile/shared/user.service';
 import {User} from '../../profile/shared/user';
 import {ActivatedRoute, Router} from '@angular/router';
-import {OrderService} from '../order-list/shared/order.service';
+import {OrderService} from '../shared/order.service';
 import {Location} from '@angular/common';
 
 @Component({
@@ -44,14 +44,14 @@ export class OrderDetailComponent implements OnInit {
   }
 
   loadOrderUser(): void{
-    this.orderService.ReadOrderByIDUser(this.orderID, this.user.id).subscribe((order) => {
+    this.orderService.readOrderByIDUser(this.orderID, this.user.id).subscribe((order) => {
       console.log(order);
       this.order = order; console.log(this.order); this.loading = false;}, () => {
       this.router.navigate(['/orders']);
     })}
 
   loadOrderAdmin(): void{
-    this.orderService.ReadOrderByID(this.orderID).subscribe((order) => {
+    this.orderService.readOrderByID(this.orderID).subscribe((order) => {
       console.log(order);
       this.order = order; this.loading = false;}, (error) => {
       this.error = error.error; this.loading = false;

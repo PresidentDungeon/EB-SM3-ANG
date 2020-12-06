@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '../../../../environments/environment';
-import {Order} from '../../../shared/services/order';
+import {environment} from '../../../environments/environment';
+import {Order} from './order';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +15,29 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
+  getAllOrders(filter: string): Observable<any>{
+    this.setToken();
+    return this.http.get<Observable<any>>(environment.apiUrl + '/order' + filter, this.httpOptions);
+  }
+
   getOrdersFromCustomer(customerID: number, filter: string): Observable<any>{
+    this.setToken();
     return this.http.get<Observable<any>>(environment.apiUrl + '/order/customer-' + customerID + filter, this.httpOptions);
   }
 
-  ReadOrderByIDUser(orderID: number, userID: number): Observable<Order>{
+  readOrderByIDUser(orderID: number, userID: number): Observable<Order>{
+    this.setToken();
     return this.http.get<Order>(environment.apiUrl + '/order/' + orderID + '/' + userID, this.httpOptions);
   }
 
-  ReadOrderByID(orderID: number): Observable<Order>{
+  readOrderByID(orderID: number): Observable<Order>{
+    this.setToken();
     return this.http.get<Order>(environment.apiUrl + '/order/' + orderID, this.httpOptions);
+  }
+
+  updateOrderStatus(orderID: number): Observable<Order>{
+    this.setToken();
+    return this.http.put<Order>(environment.apiUrl + '/order/' + orderID, this.httpOptions);
   }
 
   setToken(): void{
