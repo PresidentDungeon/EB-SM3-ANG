@@ -34,6 +34,9 @@ import {BeertypesUpdateComponent} from './product/beertypes/beertypes-update/bee
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { AboutEBComponent } from './about-eb/about-eb.component';
+import { TastingComponent } from './tasting/tasting.component';
+import { BeerDetailsComponent } from './product/beer-details/beer-details.component';
 
 
 @NgModule({
@@ -56,7 +59,10 @@ import { OrderListComponent } from './order-list/order-list.component';
     BeertypesUpdateComponent,
     LoginComponent,
     ProfileComponent,
-    OrderListComponent
+    OrderListComponent,
+    AboutEBComponent,
+    TastingComponent,
+    BeerDetailsComponent
   ],
   imports: [
     BrowserAnimationsModule,

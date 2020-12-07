@@ -13,6 +13,9 @@ import {ProductPageComponent} from "./product/product-page/product-page.componen
 import {BeertypesUpdateComponent} from './product/beertypes/beertypes-update/beertypes-update.component';
 import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
+import {AboutEBComponent} from './about-eb/about-eb.component';
+import {TastingComponent} from './tasting/tasting.component';
+import {BeerDetailsComponent} from './product/beer-details/beer-details.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -26,9 +29,12 @@ const routes: Routes = [
   {path: 'beers', component: BeersListComponent},
   {path: 'beers/add', component: BeersAddComponent},
   {path: 'beers/update/:id', component: BeersUpdateComponent},
+  {path: 'beer-details/:id', component: BeerDetailsComponent},
   {path: 'shop', component: ProductPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'about-eb', component: AboutEBComponent},
+  {path: 'tasting', component: TastingComponent},
 ];
 
 @NgModule({
