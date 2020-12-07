@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {NavBarComponent} from './page-basics/nav-bar/nav-bar.component';
 import {FooterComponent} from './page-basics/footer/footer.component';
@@ -21,7 +20,6 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth-guards/auth-interceptor';
-
 import {BeertypesListComponent} from './product/beertypes/beertypes-list/beertypes-list.component';
 import {BeersListComponent} from './product/beers/beers-list/beers-list.component';
 import { BrandsAddComponent } from './product/brands/brands-add/brands-add.component';
@@ -33,7 +31,6 @@ import { ProductPageComponent } from './product/product-page/product-page.compon
 import {BeertypesUpdateComponent} from './product/beertypes/beertypes-update/beertypes-update.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { OrderListComponent } from './order-list/order-list.component';
 import { AboutEBComponent } from './about-eb/about-eb.component';
 import { TastingComponent } from './tasting/tasting.component';
 import { BeerDetailsComponent } from './product/beer-details/beer-details.component';
@@ -67,7 +64,7 @@ import { OrderListComponent } from './orders/order-list/order-list.component';
     OrderListComponent,
     AboutEBComponent,
     TastingComponent,
-    BeerDetailsComponent
+    BeerDetailsComponent,
     OrderListPersonalComponent,
     AboutComponent,
     OrderDetailComponent,
