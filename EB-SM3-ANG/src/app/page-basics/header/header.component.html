@@ -8,7 +8,7 @@
         </a>
       </div>
       <div id="searchdiv" class="col-sm-4">
-        <input class="searchbar form-control" type="text" placeholder="Search" aria-label="Search" (keyup.enter)="searchRedirect($event)">
+        <input #searchBar class="searchbar form-control" type="text" placeholder="Search" aria-label="Search" (keyup.enter)="searchRedirect($event); searchBar.value = '';">
       </div>
       <div id="interactions" class="col-sm-2">
         <a href="https://www.facebook.com/Esbjerg-Bryghus-101017078489088" target="_blank">
