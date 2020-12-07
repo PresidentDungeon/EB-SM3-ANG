@@ -36,7 +36,7 @@
             <td>{{order.orderCreated | date}}</td>
             <td>{{order.customer.firstName + ' ' + order.customer.lastName}}</td>
             <td>{{order.accumulatedPrice | currency: 'DKK '}}</td>
-            <button type="button" class="btn btn-outline-dark" routerLink="/order/{{order.id}}">Details</button>
+            <button type="button" class="btn btn-outline-dark" routerLink="/order/{{order.id}}">Detaljer</button>
             <button *ngIf="!orderFinished" type="button" class="btn btn-outline-success" (click)="openUpdateModal(updateTemplate, order)">Fuldført</button>
           </tr>
         </table>
