@@ -11,7 +11,7 @@
     <li class="nav-bar-route" *ngIf="!authenticationService.getToken()"><a routerLink="/login"><b>Login</b></a></li>
 
     <li class="nav-bar-route" *ngIf="authenticationService.getToken()" type="button" placement="bottom" [popover]="popTemplate" [isOpen]="profileOpen" triggers="" (click)="profileOpen = !profileOpen;" (clickOutside)="outsideClick()">
-      <a><b>Profile</b></a>
+      <a><b>Profil</b></a>
     </li>
 
 
