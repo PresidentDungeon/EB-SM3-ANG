@@ -26,8 +26,14 @@ export class HeaderComponent implements OnInit {
   }
 
   searchRedirect(event: KeyboardEvent): void{
-    this.beerService.searchString = (event.target as HTMLInputElement).value;
-    this.router.navigate(['/shop']);
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
+
+
+    let searchString: string = (event.target as HTMLInputElement).value.trim();
+    this.router.navigate(['/shop/', searchString]);
+
   }
 
 }
