@@ -1,0 +1,14 @@
+<progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+<div class="jumbotron">
+<h1>Detaljer om øllen</h1>
+
+<div container *ngIf="!loading">
+  <h2>Du har valgt: {{beer.name}}</h2>
+  <p>{{beer.description}}<br>Type: {{beer.type.typeName}}<br>Brand: {{beer.brand.brandName}}</p>
+  <p class="price">Pris: {{beer.price | currency:'DKK '}}</p>
+  <p>Procent: {{beer.percentage}}% <br>IBU: {{beer.ibu}} <br>EBC: {{beer.ebc}}</p>
+  <img src="{{beer.imageURL}}">
+
+  <button class="btn btn-success float-right" [disabled]="shoppingService.isValid(beer)" (click)="addItem(beer)">KØB</button>
+</div>
+</div>
