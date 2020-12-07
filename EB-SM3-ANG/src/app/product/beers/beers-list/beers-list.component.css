@@ -67,5 +67,7 @@ progressbar{
 }
 
 #paging {
+  position: relative;
+  right: 20px;
   justify-content: center;
 }

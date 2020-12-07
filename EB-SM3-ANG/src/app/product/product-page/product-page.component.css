@@ -54,5 +54,7 @@ h5 {
 }
 
 #paging {
+  position: relative;
+  right: 20px;
   justify-content: center;
 }
