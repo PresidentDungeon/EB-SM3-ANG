@@ -1,7 +1,7 @@
 <div class="jumbotron">
 <div class="container">
 
-  <input #searchBox class="col-md-4" (input)="search(searchBox.value)"/>
+  <input #searchBox class="col-md-4" [ngModel]="searchTerm" (input)="search(searchBox.value)"/>
 
   <label class="col-md-2">
     Ting pr. side:

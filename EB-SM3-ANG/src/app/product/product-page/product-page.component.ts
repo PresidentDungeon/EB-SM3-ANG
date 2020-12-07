@@ -38,8 +38,10 @@ export class ProductPageComponent implements OnInit {
       distinctUntilChanged(),
     ).subscribe((search) => {this.searchTerm = search; this.getBeers()});
 
+    this.searchTerm = this.beerService.searchString;
     this.getTypes();
     this.getBeers();
+    this.beerService.searchString = '';
   }
 
   getBeers(): void{
