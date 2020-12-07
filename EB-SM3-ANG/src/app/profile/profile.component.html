@@ -1,5 +1,6 @@
+<div class="jumbotron">
 <div class="profile">
-  <h1 align="center">Register customer</h1>
+  <h1 align="center">Oplysninger</h1>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
   <div class="container" *ngIf="!loading">
@@ -39,7 +40,8 @@
         </div>
 
         <div class="col-sm-8 offset-sm-4">
-          <h6 *ngIf="userForm.get('email').invalid && userForm.get('email').dirty">Feltet må ikke være tomt</h6>
+          <h6 *ngIf="userForm.get('email').invalid && userForm.get('email').dirty && userForm.get('email').value.length === 0">Feltet må ikke være tomt</h6>
+          <h6 *ngIf="userForm.get('email').invalid && userForm.get('email').dirty && userForm.get('email').value.length > 0">Email skal være korrekt</h6>
         </div>
       </div>
 
@@ -130,7 +132,8 @@
         </div>
 
         <div class="col-sm-8 offset-sm-4">
-          <h6 *ngIf="userForm.get('email').invalid && userForm.get('email').dirty">Feltet må ikke være tomt</h6>
+          <h6 *ngIf="userForm.get('email').invalid && userForm.get('email').dirty && userForm.get('email').value.length === 0">Feltet må ikke være tomt</h6>
+          <h6 *ngIf="userForm.get('email').invalid && userForm.get('email').dirty && userForm.get('email').value.length > 0">Email skal være korrekt</h6>
         </div>
       </div>
 
@@ -191,7 +194,7 @@
     <button class="btn btn-info" (click)="goBack();">Go back</button>
   </div>
 </div>
-
+</div>
 
 
 
@@ -200,7 +203,7 @@
 
 <ng-template #updateTemplate>
   <div  class="updateView modal-header">
-    <h1 class="modal-title w-100 text-center"><b>Opdater kodeord</b>?</h1>
+    <h1 class="modal-title w-100 text-center"><b>Opdatér kodeord</b>?</h1>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -212,8 +215,8 @@
 
       <div class="form-group">
         <div class="col text-center">
-          <label for="oldPassword">Current password</label>
-          <input type="password" class="form-control" formControlName="oldPassword" id="oldPassword" placeholder="Current password">
+          <label for="oldPassword">Nuværende kodeord</label>
+          <input type="password" class="form-control" formControlName="oldPassword" id="oldPassword" placeholder="Indtast nuværende kodeord">
         </div>
 
         <div class="col text-center">
@@ -223,8 +226,8 @@
 
       <div class="form-group">
         <div class="col text-center">
-          <label for="passwordRegister">Password</label>
-          <input type="password" class="form-control" formControlName="password" id="passwordRegister" placeholder="Enter new password">
+          <label for="passwordRegister">Kodeord</label>
+          <input type="password" class="form-control" formControlName="password" id="passwordRegister" placeholder="Indtast nyt kodeord">
         </div>
 
         <div class="col text-center">
@@ -234,8 +237,8 @@
 
       <div class="form-group">
         <div class="col text-center">
-          <label for="passwordConfirm">Gentag Password</label>
-          <input type="password" class="form-control" formControlName="passwordConfirm" id="passwordConfirm" placeholder="Enter password">
+          <label for="passwordConfirm">Gentag kodeord</label>
+          <input type="password" class="form-control" formControlName="passwordConfirm" id="passwordConfirm" placeholder="Indtast nyt kodeord igen">
         </div>
 
         <div class="col text-center">
@@ -246,8 +249,8 @@
       <progressbar class="progress" *ngIf="passwordUpdateLoading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
       <div class="col text-center">
-        <button (click)="modalRef.hide();" type="button" class="btn btn-secondary" >Cancel</button>
-        <button class="btn btn-success" type="submit" [disabled]="!updateForm.valid || passwordUpdateLoading">Opdater</button>
+        <button (click)="modalRef.hide();" type="button" class="btn btn-secondary" >Fortryd</button>
+        <button class="btn btn-success" type="submit" [disabled]="!updateForm.valid || passwordUpdateLoading">Opdatér</button>
       </div>
 
     </form>
