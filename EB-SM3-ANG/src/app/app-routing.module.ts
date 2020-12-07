@@ -38,6 +38,7 @@ const routes: Routes = [
   {path: 'beers/update/:id', component: BeersUpdateComponent, canActivate: [AdminAuthGuard]},
   {path: 'beer-details/:id', component: BeerDetailsComponent},
   {path: 'shop', component: ProductPageComponent},
+  {path: 'shop/:search', component: ProductPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [UserAuthGuard]},
   {path: 'about', component: AboutComponent},

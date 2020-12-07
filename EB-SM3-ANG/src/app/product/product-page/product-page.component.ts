@@ -6,6 +6,7 @@ import {BeerService} from "../beers/shared/beer.service";
 import {BeertypeService} from "../beertypes/shared/beertype.service";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-product-page',
@@ -30,7 +31,8 @@ export class ProductPageComponent implements OnInit {
   sortingType: string = 'ADDED';
   sorting: string = 'asc';
 
-  constructor(private beerService: BeerService, private typeService: BeertypeService, private shoppingService: ShoppingCartService) { }
+  constructor(private beerService: BeerService, private typeService: BeertypeService,
+              private shoppingService: ShoppingCartService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.searchTerms.pipe(
@@ -38,10 +40,9 @@ export class ProductPageComponent implements OnInit {
       distinctUntilChanged(),
     ).subscribe((search) => {this.searchTerm = search; this.getBeers()});
 
-    this.searchTerm = this.beerService.searchString;
+    if(this.route.snapshot.paramMap.get('search')){this.searchTerm = this.route.snapshot.paramMap.get('search')}
     this.getTypes();
     this.getBeers();
-    this.beerService.searchString = '';
   }
 
   getBeers(): void{
