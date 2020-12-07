@@ -1,14 +1,41 @@
 <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
-<div class="jumbotron">
-<h1>Detaljer om øllen</h1>
 
-<div container *ngIf="!loading">
-  <h2>Du har valgt: {{beer.name}}</h2>
-  <p>{{beer.description}}<br>Type: {{beer.type.typeName}}<br>Brand: {{beer.brand.brandName}}</p>
-  <p class="price">Pris: {{beer.price | currency:'DKK '}}</p>
-  <p>Procent: {{beer.percentage}}% <br>IBU: {{beer.ibu}} <br>EBC: {{beer.ebc}}</p>
-  <img src="{{beer.imageURL}}">
 
-  <button class="btn btn-success float-right" [disabled]="shoppingService.isValid(beer)" (click)="addItem(beer)">KØB</button>
+<div id="itemView" *ngIf="!loading" class="container">
+<div class="row">
+
+  <div class="col-sm-6">
+    <img class="col-sm-10" src="{{beer.imageURL}}">
+  </div>
+
+  <div id="beerInfo" class="col-sm-6">
+    <h1 class=""><b>{{beer.name}}</b></h1>
+    <p class="info">Varenummer: {{beer.id}}</p>
+    <p class="info">På lager: {{beer.stock}}</p>
+    <br>
+    <h6>{{beer.type.typeName}}</h6>
+    <h6>{{beer.brand.brandName}}</h6>
+    <p>Procent: {{beer.percentage}}% <br>IBU: {{beer.ibu}} <br>EBC: {{beer.ebc}}</p>
+    <h3>{{beer.price | currency: 'DKK '}}</h3>
+
+
+    <div id="button">
+      <button class="btn btn-success position-bottom" [disabled]="shoppingService.isInvalid(beer)" (click)="addItem(beer)">KØB</button>
+    </div>
+
+
+
+
+
+
+  </div>
 </div>
+
+
+
 </div>
+
+<div id="description" class="container">
+  <p>{{beer.description}}</p>
+</div>
+

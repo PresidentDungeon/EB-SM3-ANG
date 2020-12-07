@@ -7,8 +7,33 @@
 .container{
   border-bottom: 2px solid #f28e1c;
   margin-bottom: 15px;
+  text-align: right;
 }
 
-h1, h2, p {
+#beerInfo{
+  position: relative;
+  text-align: left;
+}
+
+#button{
+  position: absolute;
+  bottom: 0px;
+}
+
+.info{
+  font-size: 10px;
+  margin: 0px;
+}
+
+#itemView{
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+#description{
+text-align: center;
+}
+
+h1, h2, h3, h6, p {
   color: #f28e1c;
 }
