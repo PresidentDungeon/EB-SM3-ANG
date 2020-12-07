@@ -30,10 +30,8 @@ export class HeaderComponent implements OnInit {
       return false;
     };
 
-
     let searchString: string = (event.target as HTMLInputElement).value.trim();
     this.router.navigate(['/shop/', searchString]);
-
   }
 
 }
