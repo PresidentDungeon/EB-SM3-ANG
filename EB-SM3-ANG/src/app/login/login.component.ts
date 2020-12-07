@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
           this.authService.forgetLogin();
         }},
       error => {this.error = error.error; this.loginLoad = false;},
-      () => {this.location.back(); this.loginLoad = false;});
+      () => {this.loginLoad = false; this.router.navigate(['']);});
   }
 
   register(): void{
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
           () => {this.loginLoad = false; this.router.navigate([''])});
         },
       error => {this.registerError = error.error; this.registerLoad = false;},
-      () => {this.location.back(); this.registerLoad = false;});
+      () => {this.registerLoad = false;});
   }
 
   goBack(): void{
