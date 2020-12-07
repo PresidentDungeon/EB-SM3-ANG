@@ -32,8 +32,7 @@ export class BeertypesAddComponent implements OnInit {
     }
 
     this.typeService.addType(type).subscribe(() => {},
-      (error) => {this.error = error.error;
-        if(error.status === 401){this.router.navigate(['/login']);}},
+      (error) => {this.error = error.error;},
       () => {this.goBack()});
   }
 

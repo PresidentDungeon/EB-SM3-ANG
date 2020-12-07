@@ -14,14 +14,14 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { PopoverModule } from 'ngx-bootstrap/popover';
-
-
 import {CollapseModule} from 'ngx-bootstrap/collapse';
 import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
 import {AppRoutingModule} from './app-routing.module';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from './auth-guards/auth-interceptor';
+
 import {BeertypesListComponent} from './product/beertypes/beertypes-list/beertypes-list.component';
 import {BeersListComponent} from './product/beers/beers-list/beers-list.component';
 import { BrandsAddComponent } from './product/brands/brands-add/brands-add.component';
@@ -37,6 +37,7 @@ import { AboutComponent } from './about/about.component';
 import { OrderListPersonalComponent } from './orders/order-list-personal/order-list-personal.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { OrderListComponent } from './orders/order-list/order-list.component';
+
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { OrderListComponent } from './orders/order-list/order-list.component';
     AlertModule.forRoot(),
     PopoverModule.forRoot()
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  //providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

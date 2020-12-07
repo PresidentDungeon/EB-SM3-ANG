@@ -65,7 +65,7 @@ export class BeertypesListComponent implements OnInit {
 
   deleteType(id: number): void{
     this.typeService.deleteType(id).subscribe((brand) => this.getTypes(),
-      error => {if (error.status === 401){this.router.navigate(['/login']); }});
+      error => {});
   }
 
   openDeleteModal(template: TemplateRef<any>, typeToDelete: BeerType) {

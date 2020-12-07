@@ -51,8 +51,7 @@ export class OrderListPersonalComponent implements OnInit {
       this.totalItems = FilterList.totalItems;
       this.orders = FilterList.list;
       this.loading = false;},
-      (error) => {if (error.status === 401){this.router.navigate(['/login']);}
-          this.error = error.error; this.loading = false; this.loading = false;})
+      (error) => {this.error = error.error; this.loading = false;})
   }
 
   pageChanged($event: any): void {

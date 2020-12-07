@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {FrontpageComponent} from './frontpage/frontpage.component';
 import {BrandsListComponent} from './product/brands/brands-list/brands-list.component';
 import {BeertypesListComponent} from "./product/beertypes/beertypes-list/beertypes-list.component";
@@ -17,26 +17,28 @@ import {AboutComponent} from './about/about.component';
 import {OrderListPersonalComponent} from './orders/order-list-personal/order-list-personal.component';
 import {OrderDetailComponent} from './orders/order-detail/order-detail.component';
 import {OrderListComponent} from './orders/order-list/order-list.component';
+import {AdminAuthGuard} from './auth-guards/admin-auth-guard';
+import {UserAuthGuard} from './auth-guards/user-auth-guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},                //all
-  {path: 'home', component: FrontpageComponent},                    //all
-  {path: 'brands', component: BrandsListComponent},                 //Admin
-  {path: 'brands/add', component: BrandsAddComponent},              //Admin
-  {path: 'brands/update/:id', component: BrandsUpdateComponent},    //Admin
-  {path: 'types', component: BeertypesListComponent},               //Admin
-  {path: 'types/add', component: BeertypesAddComponent},            //Admin
-  {path: 'types/update/:id', component: BeertypesUpdateComponent},  //Admin
-  {path: 'beers', component: BeersListComponent},                   //Admin
-  {path: 'beers/add', component: BeersAddComponent},                //Admin
-  {path: 'beers/update/:id', component: BeersUpdateComponent},      //Admin
-  {path: 'shop', component: ProductPageComponent},                  //all
-  {path: 'login', component: LoginComponent},                       //all
-  {path: 'profile', component: ProfileComponent},                   //logged in
-  {path: 'about', component: AboutComponent},                       //all
-  {path: 'orders', component: OrderListPersonalComponent},          //logged in
-  {path: 'order/:id', component: OrderDetailComponent},             //logged in
-  {path: 'orders/all', component: OrderListComponent},              //Admin
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: FrontpageComponent},
+  {path: 'brands', component: BrandsListComponent, canActivate: [AdminAuthGuard]},
+  {path: 'brands/add', component: BrandsAddComponent, canActivate: [AdminAuthGuard]},
+  {path: 'brands/update/:id', component: BrandsUpdateComponent, canActivate: [AdminAuthGuard]},
+  {path: 'types', component: BeertypesListComponent, canActivate: [AdminAuthGuard]},
+  {path: 'types/add', component: BeertypesAddComponent, canActivate: [AdminAuthGuard]},
+  {path: 'types/update/:id', component: BeertypesUpdateComponent, canActivate: [AdminAuthGuard]},
+  {path: 'beers', component: BeersListComponent, canActivate: [AdminAuthGuard]},
+  {path: 'beers/add', component: BeersAddComponent, canActivate: [AdminAuthGuard]},
+  {path: 'beers/update/:id', component: BeersUpdateComponent, canActivate: [AdminAuthGuard]},
+  {path: 'shop', component: ProductPageComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [UserAuthGuard]},
+  {path: 'about', component: AboutComponent},
+  {path: 'orders', component: OrderListPersonalComponent, canActivate: [UserAuthGuard]},
+  {path: 'order/:id', component: OrderDetailComponent, canActivate: [UserAuthGuard]},
+  {path: 'orders/all', component: OrderListComponent, canActivate: [AdminAuthGuard]},
   ];
 
 @NgModule({

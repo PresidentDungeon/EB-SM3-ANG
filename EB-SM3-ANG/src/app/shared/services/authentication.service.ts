@@ -4,16 +4,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 import {Beer} from '../../product/beers/shared/beer';
+import {Order} from '../../orders/shared/order';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthenticationService {
-
-  private httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  };
 
   constructor(private http: HttpClient) { }
 

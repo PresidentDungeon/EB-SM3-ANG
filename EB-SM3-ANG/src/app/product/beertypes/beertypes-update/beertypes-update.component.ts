@@ -54,8 +54,7 @@ export class BeertypesUpdateComponent implements OnInit {
     this.type.typeName = typeData.name;
 
     this.typeService.updateType(this.type).subscribe(() => this.getType(),
-      error => {this.error = error.error;
-        if(error.status === 401){this.router.navigate(['/login']);}},
+      error => {this.error = error.error;},
       () => {this.router.navigate(['/types']);});
   }
 

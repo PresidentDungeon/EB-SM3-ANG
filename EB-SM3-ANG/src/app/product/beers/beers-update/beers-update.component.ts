@@ -153,8 +153,7 @@ export class BeersUpdateComponent implements OnInit {
           this.beer.imageURL = this.imageURL;
 
           this.beerService.updateBeer(this.beer).subscribe(() => {},
-              error => {this.error = error.error; this.updateLoad = false;
-                if(error.status === 401){this.router.navigate(['/login']);}},
+              error => {this.error = error.error; this.updateLoad = false;},
               () => {this.router.navigate(['/beers']);});
         });
       }
@@ -164,15 +163,13 @@ export class BeersUpdateComponent implements OnInit {
         this.loading = true;
 
         this.beerService.updateBeer(this.beer).subscribe(() => {},
-          error => {this.error = error.error; this.updateLoad = false;
-            if(error.status === 401){this.router.navigate(['/login']);}},
+          error => {this.error = error.error; this.updateLoad = false;},
           () => {this.router.navigate(['/beers']);});
       }
     }
     else{
       this.beerService.updateBeer(this.beer).subscribe(() => {},
-        error => {this.error = error.error; this.updateLoad = false;
-          if(error.status === 401){this.router.navigate(['/login']);}},
+        error => {this.error = error.error; this.updateLoad = false;},
         () => {this.router.navigate(['/beers']);});
     }
   }
@@ -185,6 +182,4 @@ export class BeersUpdateComponent implements OnInit {
   goBack(): void{
     this.location.back();
   }
-
-
 }

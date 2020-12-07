@@ -32,8 +32,7 @@ export class BrandsAddComponent implements OnInit {
     }
 
     this.brandService.addBrand(brand).subscribe(() => {},
-      (error) => {this.error = error.error;
-      if(error.status === 401){this.router.navigate(['/login']);}},
+      (error) => {this.error = error.error;},
       () => {this.goBack()});
   }
 

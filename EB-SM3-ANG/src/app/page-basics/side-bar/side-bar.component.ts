@@ -79,7 +79,6 @@ export class SideBarComponent implements OnInit {
           //recalculate items in case of stock change
           this.shoppingService.loadCart();
         }
-        if (error.status === 401){this.router.navigate(['/login']);}
           this.orderCreateLoad = false;
           this.error = error.error;
       })

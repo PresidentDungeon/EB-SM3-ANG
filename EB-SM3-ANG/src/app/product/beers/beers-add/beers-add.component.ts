@@ -143,8 +143,7 @@ export class BeersAddComponent implements OnInit {
     }
 
     this.beerService.addBeer(beer).subscribe(() => {},
-      (error) => {this.error = error.error; console.log(error); this.loading = false;
-        if(error.status === 401){this.router.navigate(['/login']);}},
+      (error) => {this.error = error.error; console.log(error); this.loading = false;},
       () => {this.created = true; this.router.navigate(['/beers']);});
   }
 

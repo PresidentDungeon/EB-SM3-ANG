@@ -1,14 +1,9 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {Order} from '../shared/order';
-import {Customer} from '../../profile/shared/customer';
 import {OrderService} from '../shared/order.service';
-import {AuthenticationService} from '../../shared/services/authentication.service';
 import {Router} from '@angular/router';
-import {UserService} from '../../profile/shared/user.service';
-import {Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {Beer} from '../../product/beers/shared/beer';
+
 
 @Component({
   selector: 'app-order-list',
@@ -45,15 +40,14 @@ export class OrderListComponent implements OnInit {
     this.orderService.getAllOrders(filter).subscribe((FilterList) => {
         this.totalItems = FilterList.totalItems;
         this.orders = FilterList.list;},
-      (error) => {if (error.status === 401){this.router.navigate(['/login']);}
-        this.error = error.error; this.loading = false; this.loading = false;},
+      (error) => {
+        this.error = error.error; this.loading = false;},
       () => {this.loading = false;})
   }
 
   updateOrder(id: number): void{
-
-    this.orderService.updateOrderStatus(id).subscribe((order) => this.loadOrders(),
-      error => {if (error.status === 401){this.router.navigate(['/login']); }});
+    this.orderService.updateOrderStatus(id).subscribe((order) => {this.loadOrders()},
+      error => {console.log(error);});
   }
 
   pageChanged($event: any): void {

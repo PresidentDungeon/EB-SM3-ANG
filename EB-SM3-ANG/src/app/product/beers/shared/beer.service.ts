@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Beer} from './beer';
 import {environment} from '../../../../environments/environment';
+import {AuthenticationService} from '../../../shared/services/authentication.service';
+import {Order} from '../../../orders/shared/order';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +15,10 @@ export class BeerService {
     headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'my-auth-token'})
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   addBeer(beer: Beer): Observable<Beer>{
-    this.setToken();
-    return this.http.post<Beer>(environment.apiUrl + '/beer', beer, this.httpOptions);
+    return this.http.post<Beer>(environment.apiUrl + '/beer', beer);
   }
 
   getBeers(filter: string): Observable<any>{
@@ -29,13 +30,11 @@ export class BeerService {
   }
 
   updateBeer(beer: Beer): Observable<Beer>{
-    this.setToken();
-    return this.http.put<Beer>(environment.apiUrl + '/beer/' + beer.id, beer, this.httpOptions);
+    return this.http.put<Beer>(environment.apiUrl + '/beer/' + beer.id, beer);
   }
 
   deleteBeer(id: number): Observable<Beer>{
-    this.setToken();
-    return this.http.delete<Beer>(environment.apiUrl + '/beer/' + id, this.httpOptions);
+    return this.http.delete<Beer>(environment.apiUrl + '/beer/' + id);
   }
 
   uploadImage(file: File): Observable<any>{
@@ -48,9 +47,5 @@ export class BeerService {
 
   deleteImage(imageToDelete: any): Observable<any>{
     return this.http.post<any>('https://us-central1-eb-sdm3.cloudfunctions.net/deleteFile', imageToDelete);
-  }
-
-  setToken(): void{
-    //  this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'bearer ' + this.authService.getToken());
   }
 }

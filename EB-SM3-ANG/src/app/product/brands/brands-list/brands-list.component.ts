@@ -66,7 +66,7 @@ export class BrandsListComponent implements OnInit {
 
   deleteBrand(id: number): void{
     this.brandService.deleteBrand(id).subscribe((brand) => this.getBrands(),
-      error => {if (error.status === 401){this.router.navigate(['/login']); }});
+      error => {});
   }
 
   openDeleteModal(template: TemplateRef<any>, brandToDelete: Brand) {

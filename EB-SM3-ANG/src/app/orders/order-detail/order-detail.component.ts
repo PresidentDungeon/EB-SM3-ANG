@@ -6,6 +6,7 @@ import {User} from '../../profile/shared/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../shared/order.service';
 import {Location} from '@angular/common';
+import {BeerService} from '../../product/beers/shared/beer.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -32,7 +33,7 @@ export class OrderDetailComponent implements OnInit {
 
   loadCustomer(): void{
 
-    this.userService.getUserById(this.authService.getID()).subscribe((user) => {this.user = user}, (error) => {this.loading = false; this.router.navigate(['/login']); return;},
+    this.userService.getUserById(this.authService.getID()).subscribe((user) => {this.user = user}, (error) => {this.loading = false; return;},
       () => {
 
       if(this.user.userRole !== 'Admin'){
@@ -45,14 +46,12 @@ export class OrderDetailComponent implements OnInit {
 
   loadOrderUser(): void{
     this.orderService.readOrderByIDUser(this.orderID, this.user.id).subscribe((order) => {
-      console.log(order);
-      this.order = order; console.log(this.order); this.loading = false;}, () => {
+      this.order = order; this.loading = false;}, () => {
       this.router.navigate(['/orders']);
     })}
 
   loadOrderAdmin(): void{
     this.orderService.readOrderByID(this.orderID).subscribe((order) => {
-      console.log(order);
       this.order = order; this.loading = false;}, (error) => {
       this.error = error.error; this.loading = false;
     })}

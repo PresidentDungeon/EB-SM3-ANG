@@ -99,8 +99,7 @@ export class ProfileComponent implements OnInit {
     }
 
     this.userService.createUserCustomer(costumer).subscribe(() => {},
-      (error) => {this.error = error.error; this.formLoading = false;
-        if(error.status === 401){this.router.navigate(['/login']);}},
+      (error) => {this.error = error.error; this.formLoading = false;},
       () => {this.router.navigate(['/home']);});
   }
 
@@ -120,8 +119,7 @@ export class ProfileComponent implements OnInit {
     const userID = this.authService.getID();
 
     this.userService.updateUserCustomer(this.user.customer, userID).subscribe(() => {},
-      (error) => {this.error = error.error; this.formLoading = false;
-        if(error.status === 401){this.router.navigate(['/login']);}},
+      (error) => {this.error = error.error; this.formLoading = false;},
       () => {this.router.navigate(['/home']);});
   }
 
@@ -138,8 +136,7 @@ export class ProfileComponent implements OnInit {
     const userID = this.authService.getID();
 
     this.userService.updateUserPassword(userID, passwordModel).subscribe(() => {},
-      (error) => {this.passwordError = error.error; console.log(error);this.passwordUpdateLoading = false;
-        if(error.status === 401){this.router.navigate(['/login']);}},
+      (error) => {this.passwordError = error.error; this.passwordUpdateLoading = false;},
       () => {this.modalRef.hide(); this.passwordUpdateLoading = false;});
   }
 

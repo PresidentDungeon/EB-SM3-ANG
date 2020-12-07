@@ -88,7 +88,7 @@ export class BeersListComponent implements OnInit {
     }
 
     this.beerService.deleteBeer(id).subscribe((brand) => this.getBeers(),
-      error => {if (error.status === 401){this.router.navigate(['/login']); }});
+      error => {});
   }
 
   openDeleteModal(template: TemplateRef<any>, beerToDelete: Beer) {

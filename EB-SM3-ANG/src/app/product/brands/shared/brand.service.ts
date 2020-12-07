@@ -3,21 +3,17 @@ import {Brand} from './brand';
 import {Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthenticationService} from '../../../shared/services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrandService {
 
-  private httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'my-auth-token'})
-  };
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   addBrand(brand: Brand): Observable<Brand>{
-    this.setToken();
-    return this.http.post<Brand>(environment.apiUrl + '/brand', brand, this.httpOptions);
+    return this.http.post<Brand>(environment.apiUrl + '/brand', brand);
   }
 
   getBrands(filter: string): Observable<any>{
@@ -29,16 +25,10 @@ export class BrandService {
   }
 
   updateBrand(brand: Brand): Observable<Brand>{
-    this.setToken();
-    return this.http.put<Brand>(environment.apiUrl + '/brand/' + brand.id, brand, this.httpOptions);
+    return this.http.put<Brand>(environment.apiUrl + '/brand/' + brand.id, brand);
   }
 
   deleteBrand(id: number): Observable<Brand>{
-    this.setToken();
-    return this.http.delete<Brand>(environment.apiUrl + '/brand/' + id, this.httpOptions);
-  }
-
-  setToken(): void{
-  //  this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'bearer ' + this.authService.getToken());
+    return this.http.delete<Brand>(environment.apiUrl + '/brand/' + id);
   }
 }
