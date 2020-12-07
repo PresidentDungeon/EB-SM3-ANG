@@ -33,7 +33,6 @@ import { ProductPageComponent } from './product/product-page/product-page.compon
 import {BeertypesUpdateComponent} from './product/beertypes/beertypes-update/beertypes-update.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { OrderListComponent } from './order-list/order-list.component';
 import { AboutEBComponent } from './about-eb/about-eb.component';
 import { TastingComponent } from './tasting/tasting.component';
 import { BeerDetailsComponent } from './product/beer-details/beer-details.component';
@@ -67,7 +66,7 @@ import { OrderListComponent } from './orders/order-list/order-list.component';
     OrderListComponent,
     AboutEBComponent,
     TastingComponent,
-    BeerDetailsComponent
+    BeerDetailsComponent,
     OrderListPersonalComponent,
     AboutComponent,
     OrderDetailComponent,
