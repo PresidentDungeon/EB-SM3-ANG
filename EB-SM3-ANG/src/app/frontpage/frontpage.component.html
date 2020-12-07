@@ -19,7 +19,9 @@
 
       <div id="cards" class="col-sm-3" *ngFor="let beer of beers">
         <div class="card">
+          <a routerLink="/beer-details/{{beer.id}}">
           <img src="{{beer.imageURL}}" class="card-img-top" alt="...">
+          </a>
           <div class="card-body">
             <h5 class="card-title-top">{{beer.name}}</h5>
             <p class="card-percentage">{{beer.percentage}}%</p>
