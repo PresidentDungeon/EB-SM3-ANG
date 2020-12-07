@@ -4,7 +4,7 @@
     <h3>Alle ordrer:</h3>
     <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
-    <label class="col-md-2">
+    <label class="col-md-2 offset-md-4">
       Ting pr. side:
       <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
         <option value="10">10</option>
@@ -23,8 +23,8 @@
 
     <div class="tableList" *ngIf="!loading && orders.length !== 0">
 
-      <div id="table">
-        <table class="offset-md-2">
+      <div class="d-flex justify-content-center" id="table">
+        <table>
           <tr>
             <th scope="col">Ordre #</th>
             <th scope="col">Dato</th>

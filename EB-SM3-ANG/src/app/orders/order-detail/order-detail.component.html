@@ -7,7 +7,8 @@
       <h3>Ordre {{1000 + order.id}}:</h3>
       <h3>{{order.orderCreated | date}}</h3>
 
-        <table class="offset-md-3">
+      <div class="d-flex justify-content-center">
+        <table>
           <tr>
             <th scope="col">Produkt navn</th>
             <th scope="col">Varenummer</th>
@@ -23,6 +24,7 @@
             <td>{{orderItem.beer.price * orderItem.amount | currency: 'DKK '}}</td>
           </tr>
         </table>
+      </div>
 
       <h2><b>Total (inkl. moms) {{order.accumulatedPrice | currency: 'DKK '}}</b></h2>
     </div>
