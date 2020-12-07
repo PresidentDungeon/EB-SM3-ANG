@@ -1,5 +1,5 @@
 <div class="jumbotron">
-<h1 align="center">Register beer type</h1>
+<h1 align="center">Tilføj øl type</h1>
 
 <div class="container">
 
@@ -8,20 +8,20 @@
   <form [formGroup]="typeForm" (ngSubmit)="createType()">
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="name">Type name</label>
-        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter type name" maxlength="16" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
+        <label for="name">Type navn</label>
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Indtast type navn" maxlength="16" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 id="error" *ngIf="typeForm.get('name').invalid && typeForm.get('name').dirty">type name must be between 0-16 characters with no trailing whitespace</h6>
+        <h6 id="error" *ngIf="typeForm.get('name').invalid && typeForm.get('name').dirty">Type navn skal være mellem 0-16 tegn uden efterfulgt mellemrum</h6>
       </div>
     </div>
 
     <div class="col text-center">
-      <button class="btn btn-success" type="submit" [disabled]="!typeForm.valid">Create</button>
+      <button class="btn btn-success" type="submit" [disabled]="!typeForm.valid">Tilføj</button>
     </div>
   </form>
-  <button class="btn btn-info" (click)="goBack();">Go back</button>
+  <button class="btn btn-info" (click)="goBack();">Gå tilbage</button>
 
 </div>
 </div>

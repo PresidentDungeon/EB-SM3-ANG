@@ -1,5 +1,5 @@
 <div class="jumbotron">
-<h1 align="center">Register brand</h1>
+<h1 align="center">Tilføj mærke</h1>
 
 <div class="container">
 
@@ -8,20 +8,20 @@
   <form [formGroup]="brandForm" (ngSubmit)="createBrand()">
     <div class="form-group">
       <div class="col-sm-4 offset-sm-4">
-        <label for="name">Brand name</label>
-        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter brand name" maxlength="16" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
+        <label for="name">Mærke navn</label>
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Indtast mærke navn" maxlength="16" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ0-9 ]+$">
       </div>
 
       <div class="col-sm-8 offset-sm-4">
-        <h6 id="error" *ngIf="brandForm.get('name').invalid && brandForm.get('name').dirty">brand name must be between 0-16 characters with no trailing whitespace</h6>
+        <h6 id="error" *ngIf="brandForm.get('name').invalid && brandForm.get('name').dirty">Mærke navn skal være mellem 0-16 tegn uden efterfulgt mellemrum</h6>
       </div>
     </div>
 
     <div class="col text-center">
-      <button class="btn btn-success" type="submit" [disabled]="!brandForm.valid">Create</button>
+      <button class="btn btn-success" type="submit" [disabled]="!brandForm.valid">Tilføj</button>
     </div>
   </form>
-  <button class="btn btn-info" (click)="goBack();">Go back</button>
+  <button class="btn btn-info" (click)="goBack();">Gå tilbage</button>
 
 </div>
 </div>
