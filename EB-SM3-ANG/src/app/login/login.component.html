@@ -15,28 +15,28 @@
 
           <div class="form-group">
             <div class="col text-center">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" formControlName="username" id="username" placeholder="Enter username">
+              <label for="username">Brugernavn</label>
+              <input type="text" class="form-control" formControlName="username" id="username" placeholder="Indtast brugernavn">
             </div>
 
             <div class="col text-center">
-              <h6 *ngIf="loginForm.get('username').invalid && loginForm.get('username').dirty">Username is required</h6>
+              <h6 *ngIf="loginForm.get('username').invalid && loginForm.get('username').dirty">Brugernavn er påkrævet</h6>
             </div>
           </div>
 
           <div class="form-group">
             <div class="col text-center">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" formControlName="password" id="password" placeholder="Enter password">
+              <label for="password">Kodeord</label>
+              <input type="password" class="form-control" formControlName="password" id="password" placeholder="Indtast kodeord">
             </div>
 
             <div class="col text-center">
-              <h6 id="error" *ngIf="loginForm.get('password').invalid && loginForm.get('password').dirty">Password is required</h6>
+              <h6 id="error" *ngIf="loginForm.get('password').invalid && loginForm.get('password').dirty">Kodeord er påkrævet</h6>
             </div>
           </div>
 
-          <input type="checkbox" class="checkbox" id="rememberBe" name="saveLogin" [checked]="saveLogin" [(ngModel)]="saveLogin" [ngModelOptions]="{standalone: true}">
-          <label class="checkboxLabel" for="rememberBe">Remember me</label>
+          <input type="checkbox" class="checkbox" id="rememberMe" name="saveLogin" [checked]="saveLogin" [(ngModel)]="saveLogin" [ngModelOptions]="{standalone: true}">
+          <label class="checkboxLabel" for="rememberMe">Husk mig</label>
 
           <div class="col text-center">
             <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid || loginLoad">Login</button>
@@ -55,8 +55,8 @@
 
           <div class="form-group">
             <div class="col text-center">
-              <label for="usernameRegister">Username</label>
-              <input type="text" class="form-control" formControlName="username" id="usernameRegister" placeholder="Enter username" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ 0-9 ]+$">
+              <label for="usernameRegister">Brugernavn</label>
+              <input type="text" class="form-control" formControlName="username" id="usernameRegister" placeholder="Indtast brugernavn" pattern="^(?!.* {2})(?=\S)(?=.*\S$)[a-zA-Z æøåÆØÅ 0-9 ]+$">
             </div>
 
             <div class="col text-center">
@@ -66,8 +66,8 @@
 
           <div class="form-group">
             <div class="col text-center">
-              <label for="passwordRegister">Password</label>
-              <input type="password" class="form-control" formControlName="password" id="passwordRegister" placeholder="Enter password">
+              <label for="passwordRegister">Kodeord</label>
+              <input type="password" class="form-control" formControlName="password" id="passwordRegister" placeholder="Indtast kodeord">
             </div>
 
             <div class="col text-center">
@@ -77,8 +77,8 @@
 
           <div class="form-group">
             <div class="col text-center">
-              <label for="passwordConfirm">Gentag Password</label>
-              <input type="password" class="form-control" formControlName="passwordConfirm" id="passwordConfirm" placeholder="Enter password">
+              <label for="passwordConfirm">Gentag kodeord</label>
+              <input type="password" class="form-control" formControlName="passwordConfirm" id="passwordConfirm" placeholder="Indtast kodeord">
             </div>
 
             <div class="col text-center">
@@ -97,7 +97,7 @@
 
     </div>
 
-    <button class="btn btn-info" (click)="goBack();">Go back</button>
+    <button class="btn btn-info" (click)="goBack();">Gå tilbage</button>
 
   </div>
 </div>

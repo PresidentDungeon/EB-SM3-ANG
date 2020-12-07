@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
               this.authService.forgetLogin();
             }},
           error => {this.registerError = error.error; this.loginLoad = false;},
-          () => {this.loginLoad = false;});
+          () => {this.loginLoad = false; this.router.navigate([''])});
         },
       error => {this.registerError = error.error; this.registerLoad = false;},
       () => {this.location.back(); this.registerLoad = false;});

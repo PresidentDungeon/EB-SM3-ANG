@@ -1,0 +1,69 @@
+<div class="jumbotron">
+  <div class="container">
+
+    <h3>Mine ordrer:</h3>
+    <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
+
+    <div class="tableList" *ngIf="!loading && orders.length !== 0">
+
+      <label class="col-md-2 offset-md-1">
+        Items Pr Page:
+        <select class="form-control" [(ngModel)]="itemsPrPage" (ngModelChange)="itemsPrPageUpdate()">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
+      </label>
+
+    <div id="table">
+      <table class="offset-md-2">
+        <tr>
+          <th scope="col">Ordre #</th>
+          <th scope="col">Dato</th>
+          <th scope="col">Leveres til</th>
+          <th scope="col">Ordretotal</th>
+        </tr>
+        <tr class="data" *ngFor="let order of orders">
+          <td>{{1000 + order.id}}</td>
+          <td>{{order.orderCreated | date}}</td>
+          <td>{{customer.firstName + ' ' + customer.lastName}}</td>
+          <td>{{order.accumulatedPrice | currency: 'DKK '}}</td>
+          <button type="button" class="btn btn-outline-dark" routerLink="/order/{{order.id}}">Details</button>
+        </tr>
+      </table>
+    </div>
+
+    <div>
+      <div id="pages" class="row">
+        <pagination
+          [maxSize]="5"
+          [directionLinks]="false"
+          [totalItems]="totalItems"
+          [(ngModel)]="currentPage"
+          (pageChanged)="pageChanged($event)"
+          [itemsPerPage]="itemsPrPage"
+          (numPages)="smallNumPages = $event">
+        </pagination>
+      </div>
+
+      <div id="paging" class="row">
+        <pager
+          [totalItems]="totalItems"
+          [(ngModel)]="currentPage"
+          (pageChanged)="pageChanged($event)"
+          pageBtnClass="btn"
+          previousText="« Back"
+          [itemsPerPage]="itemsPrPage"
+          class="pull-left">
+        </pager>
+      </div>
+    </div>
+    </div>
+
+      <div *ngIf="!loading && orders.length === 0">
+        <h3>Ingen ordre registreret</h3>
+      </div>
+
+  </div>
+
+</div>
