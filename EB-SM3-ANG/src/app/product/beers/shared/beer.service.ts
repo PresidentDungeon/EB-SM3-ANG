@@ -11,6 +11,8 @@ import {Order} from '../../../orders/shared/order';
 })
 export class BeerService {
 
+  searchString: string = '';
+
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'my-auth-token'})
   };

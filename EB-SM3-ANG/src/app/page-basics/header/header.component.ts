@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
+import {BeerService} from '../../product/beers/shared/beer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,8 @@ import {ShoppingCartService} from '../../shared/services/shopping-cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public shoppingService: ShoppingCartService) { }
+  constructor(public shoppingService: ShoppingCartService, private beerService: BeerService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +23,11 @@ export class HeaderComponent implements OnInit {
   calculateItemCount(): string{
     let total: number = this.shoppingService.calculateTotal();
     return (total <= 99)?total + "": "+99";
+  }
+
+  searchRedirect(event: KeyboardEvent): void{
+    this.beerService.searchString = (event.target as HTMLInputElement).value;
+    this.router.navigate(['/shop']);
   }
 
 }
