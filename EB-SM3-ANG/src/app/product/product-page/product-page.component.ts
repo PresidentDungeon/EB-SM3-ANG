@@ -52,7 +52,7 @@ export class ProductPageComponent implements OnInit {
     this.beerService.getBeers(filter).subscribe((FilterList) => {
       this.totalItems = FilterList.totalItems;
       this.beers = FilterList.list;
-    }, error => {}, () => {this.loading = false; });
+    }, error => {this.loading = false}, () => {this.loading = false; });
   }
 
   getTypes(): void{

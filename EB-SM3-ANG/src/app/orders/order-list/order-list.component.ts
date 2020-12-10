@@ -40,8 +40,7 @@ export class OrderListComponent implements OnInit {
     this.orderService.getAllOrders(filter).subscribe((FilterList) => {
         this.totalItems = FilterList.totalItems;
         this.orders = FilterList.list;},
-      (error) => {
-        this.error = error.error; this.loading = false;},
+      (error) => {this.error = error.error; this.loading = false;},
       () => {this.loading = false;})
   }
 
