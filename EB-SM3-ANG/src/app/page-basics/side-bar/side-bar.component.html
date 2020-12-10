@@ -1,29 +1,30 @@
 <nav (clickOutside)="closeShoppingCart()" [exclude]="'.cart'" id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': getCartStatus()}">
 
   <alert type="danger" *ngIf="shoppingService.isChanged">
-    <strong>Shopping card updated because of max stock available.</strong>
+    <strong>Indkøbsvognen opdaterede på grund af max. varer tilgængelig.</strong>
     <button (click)="shoppingService.isChanged = false" class="btn btn-danger">X</button>
   </alert>
 
-  <h3>Wares: {{shoppingService.calculateTotal()}}</h3>
-  <h3>Price: {{shoppingService.calculateTotalPrice() | currency:'DKK '}}</h3>
+  <h3>Antal varer:<br>{{shoppingService.calculateTotal()}}</h3>
 
   <div *ngFor="let orderItem of shoppingService.getItems()">
     <h5>{{orderItem.item.name}}</h5>
-  <div class="row">
-    <input type="number" [(ngModel)]="orderItem.quantity" min="0" max="{{orderItem.item.stock}}" (ngModelChange)="modelChanged(orderItem)"/>
-    <h5>{{orderItem.item.price * orderItem.quantity | currency: 'DKK'}}</h5>
-  </div>
+    <div class="row">
+      <input type="number" [(ngModel)]="orderItem.quantity" min="0" max="{{orderItem.item.stock}}" (ngModelChange)="modelChanged(orderItem)"/>
+      <h5>{{orderItem.item.price * orderItem.quantity | currency: 'DKK '}}</h5>
+    </div>
   </div>
 
-  <h3>BON</h3>
+  <h3>Total pris:<br>{{shoppingService.calculateTotalPrice() | currency:'DKK '}}</h3>
+  <br>
+  <h3>Kvittering</h3>
 
   <ul *ngFor="let orderItem of shoppingService.getItems()">
     <li><p>{{orderItem.item.name}} - {{orderItem.quantity}} ({{orderItem.item.price}})</p></li>
   </ul>
 
-  <button (click)="shoppingService.clearCart();" class="btn btn-danger">Reset</button>
-  <button type="button" class="btn btn-outline-success" (click)="orderProducts();" [disabled]="this.shoppingService.calculateTotal() === 0 || this.orderCreateLoad">Purchase items</button>
+  <button type="button" class="btn btn-success" (click)="orderProducts();" [disabled]="this.shoppingService.calculateTotal() === 0 || this.orderCreateLoad">Bestil varer</button>
+  <button (click)="shoppingService.clearCart();" class="btn btn-outline-danger">Nulstil</button>
   <progressbar class="progress center-block" *ngIf="orderCreateLoad" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
 </nav>

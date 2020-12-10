@@ -6,7 +6,7 @@
     <button type="button" class="btn btn-outline-primary" routerLink="/brands">Mærker</button>
   </div>
 
-  <input #searchBox class="col-md-3 offset-md-2" (input)="search(searchBox.value)"/>
+  <input #searchBox class="col-md-3 offset-md-3" (input)="search(searchBox.value)"/>
 
   <label class="col-md-2 offset-md-1">
     Ting pr. side:
@@ -20,20 +20,20 @@
   <h3>Mærke liste</h3>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
-  <div id="table">
-      <table *ngIf="!loading" class="offset-md-4">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Beskrivelse</th>
-        </tr>
-        <tr class="data" *ngFor="let brand of brands">
-          <td><a routerLink="">{{brand.id}}</a></td>
-          <td><a routerLink="">{{brand.brandName}}</a></td>
-          <button type="button" class="btn btn-outline-dark" routerLink="/brands/update/{{brand.id}}">Opdatér</button>
-          <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, brand)">Slet</button>
-        </tr>
-      </table>
-    </div>
+  <div id="table" class="d-flex justify-content-center">
+    <table *ngIf="!loading">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Beskrivelse</th>
+      </tr>
+      <tr class="data" *ngFor="let brand of brands">
+        <td><a routerLink="">{{brand.id}}</a></td>
+        <td><a routerLink="">{{brand.brandName}}</a></td>
+        <button type="button" class="btn btn-outline-dark" routerLink="/brands/update/{{brand.id}}">Opdatér</button>
+        <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(deleteTemplate, brand)">Slet</button>
+      </tr>
+    </table>
+  </div>
 
 <div class="col text-center">
   <button class="btn btn-success" routerLink="add">Tilføj mærke</button>

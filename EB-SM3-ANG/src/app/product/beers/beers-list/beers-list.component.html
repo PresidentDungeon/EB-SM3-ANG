@@ -6,7 +6,7 @@
     <button type="button" class="btn btn-outline-primary" routerLink="/brands">Mærker</button>
   </div>
 
-  <input #searchBox class="col-md-3 offset-md-2" (input)="search(searchBox.value)"/>
+  <input #searchBox class="col-md-3 offset-md-1" (input)="search(searchBox.value)"/>
 
   <label class="col-md-2 offset-md-1">
     Ting pr. side:
@@ -20,16 +20,24 @@
   <label class="col-md-2">
     Øl type:
     <select class="form-control" [(ngModel)]="BeerType" (ngModelChange)="getBeers()">
-      <option value="0">All Types</option>
+      <option value="0">Alle typer</option>
       <option *ngFor="let types of beerTypes" value="{{types.id}}">{{types.typeName}}</option>
+    </select>
+  </label>
+
+  <label class="col-md-2">
+    Mærke:
+    <select class="form-control" [(ngModel)]="Brand" (ngModelChange)="getBeers()">
+      <option value="0">Alle mærker</option>
+      <option *ngFor="let brand of brand" value="{{brand.id}}">{{brand.brandName}}</option>
     </select>
   </label>
 
   <h3>Øl liste</h3>
   <progressbar class="progress center-block" *ngIf="loading" max="100" [value]="100" type="success" [striped]="true" [animate]="true">Loading...</progressbar>
 
-  <div id="table">
-    <table *ngIf="!loading" class="offset-md-2">
+  <div id="table" class="d-flex justify-content-center">
+    <table *ngIf="!loading">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Navn</th>

@@ -4,9 +4,11 @@ import {Beer} from "../shared/beer";
 import {BeerService} from "../shared/beer.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {BeerType} from "../../beertypes/shared/beertype";
+import {Brand} from '../../brands/shared/brand';
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {BeertypeService} from "../../beertypes/shared/beertype.service";
+import {BrandService} from '../../brands/shared/brand.service';
 
 @Component({
   selector: 'app-beers-list',
@@ -17,6 +19,7 @@ export class BeersListComponent implements OnInit {
 
   beers: Beer[];
   beerTypes: BeerType[];
+  brand: Brand[];
   loading: boolean = true;
 
   totalItems: number;
@@ -31,8 +34,9 @@ export class BeersListComponent implements OnInit {
   searchTerm: string = "";
 
   BeerType: number = 0;
+  Brand: number = 0;
 
-  constructor(private beerService: BeerService, private typeService: BeertypeService,
+  constructor(private beerService: BeerService, private typeService: BeertypeService, private brandService: BrandService,
               private router: Router, private modalService: BsModalService) {}
 
   ngOnInit(): void {
@@ -44,6 +48,7 @@ export class BeersListComponent implements OnInit {
 
     this.getTypes();
     this.getBeers();
+    this.getBrands();
   }
 
   getBeers(): void{
@@ -59,6 +64,12 @@ export class BeersListComponent implements OnInit {
   getTypes(): void{
     this.typeService.getTypes('').subscribe((FilterList) => {
       this.beerTypes = FilterList.list;
+    }, error => {}, () => {});
+  }
+
+  getBrands(): void{
+    this.brandService.getBrands('').subscribe((FilterList) => {
+      this.brand = FilterList.list;
     }, error => {}, () => {});
   }
 
