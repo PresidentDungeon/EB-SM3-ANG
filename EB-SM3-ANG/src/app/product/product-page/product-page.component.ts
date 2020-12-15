@@ -21,7 +21,7 @@ export class ProductPageComponent implements OnInit {
 
   totalItems: number;
   currentPage: number = 1;
-  itemsPrPage: number = 10;
+  itemsPrPage: number = 12;
   smallNumPages: number = 0;
 
   searchTerms = new Subject<string>();
